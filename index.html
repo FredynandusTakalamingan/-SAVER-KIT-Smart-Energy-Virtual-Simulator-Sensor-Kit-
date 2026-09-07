@@ -1,0 +1,4632 @@
+<!doctype html>
+<html lang="id">
+
+<head>
+
+  <meta charset="UTF-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
+
+  <title>
+    SAVER-KIT | Smart Energy Virtual Simulator & Sensor Kit
+  </title>
+
+
+  <!-- TAILWIND -->
+
+  <script src="https://cdn.tailwindcss.com"></script>
+
+
+  <!-- LUCIDE ICON -->
+
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+
+  <!-- FONT -->
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap"
+    rel="stylesheet"
+  >
+
+
+  <style>
+
+    * {
+
+      font-family:
+        'Nunito',
+        sans-serif;
+
+    }
+
+
+    html {
+
+      scroll-behavior:
+        smooth;
+
+    }
+
+
+    body {
+
+      background:
+
+        radial-gradient(
+          circle at top left,
+          rgba(59,130,246,.18),
+          transparent 30%
+        ),
+
+        radial-gradient(
+          circle at top right,
+          rgba(34,197,94,.14),
+          transparent 30%
+        ),
+
+        linear-gradient(
+          180deg,
+          #020617,
+          #0f172a
+        );
+
+      color:
+        white;
+
+    }
+
+
+    /* =========================
+       GLASS
+    ========================= */
+
+    .glass {
+
+      background:
+        rgba(15,23,42,.78);
+
+      backdrop-filter:
+        blur(16px);
+
+      border:
+
+        1px solid
+        rgba(148,163,184,.14);
+
+      box-shadow:
+
+        0 18px 50px
+        rgba(2,6,23,.35);
+
+    }
+
+
+    /* =========================
+       HERO
+    ========================= */
+
+    .hero-glow {
+
+      background:
+
+        radial-gradient(
+          circle at 20% 20%,
+          rgba(34,197,94,.16),
+          transparent 30%
+        ),
+
+        radial-gradient(
+          circle at 80% 10%,
+          rgba(59,130,246,.16),
+          transparent 30%
+        ),
+
+        linear-gradient(
+          135deg,
+          #0f172a,
+          #1e293b
+        );
+
+    }
+
+
+    /* =========================
+       CARD
+    ========================= */
+
+    .menu-card {
+
+      transition:
+
+        transform .25s ease,
+        border-color .25s ease,
+        box-shadow .25s ease;
+
+    }
+
+
+    .menu-card:hover {
+
+      transform:
+        translateY(-6px);
+
+      border-color:
+        rgba(34,197,94,.4);
+
+      box-shadow:
+
+        0 20px 35px
+        rgba(0,0,0,.25);
+
+    }
+
+
+    /* =========================
+       INPUT
+    ========================= */
+
+    .energy-input {
+
+      width:
+        100%;
+
+      padding:
+        12px 14px;
+
+      border-radius:
+        12px;
+
+      background:
+        rgba(15,23,42,.8);
+
+      border:
+
+        1px solid
+        rgba(148,163,184,.2);
+
+      color:
+        white;
+
+      outline:
+        none;
+
+    }
+
+
+    .energy-input:focus {
+
+      border-color:
+        #22c55e;
+
+      box-shadow:
+
+        0 0 0 3px
+        rgba(34,197,94,.1);
+
+    }
+
+
+    /* =========================
+       RESULT CARD
+    ========================= */
+
+    .result-card {
+
+      background:
+
+        linear-gradient(
+          135deg,
+          rgba(30,41,59,.9),
+          rgba(15,23,42,.9)
+        );
+
+      border:
+
+        1px solid
+        rgba(148,163,184,.15);
+
+      border-radius:
+        20px;
+
+      padding:
+        20px;
+
+    }
+
+
+    /* =========================
+       SIMULATION VISUAL
+    ========================= */
+
+    .scene-mini {
+
+      position:
+        relative;
+
+      overflow:
+        hidden;
+
+      border-radius:
+        18px;
+
+      height:
+        170px;
+
+      background:
+
+        linear-gradient(
+          180deg,
+          #1e293b,
+          #0f172a
+        );
+
+      border:
+
+        1px solid
+        rgba(148,163,184,.12);
+
+    }
+
+
+    .light-dot {
+
+      position:
+        absolute;
+
+      width:
+        14px;
+
+      height:
+        14px;
+
+      border-radius:
+        50%;
+
+      background:
+        #fde047;
+
+      box-shadow:
+
+        0 0 18px
+        rgba(250,204,21,.9);
+
+    }
+
+
+    .sensor-ring {
+
+      position:
+        absolute;
+
+      border-radius:
+        50%;
+
+      border:
+
+        2px dashed
+        rgba(34,197,94,.7);
+
+    }
+
+
+    .mini-person {
+
+      position:
+        absolute;
+
+      width:
+        16px;
+
+      height:
+        16px;
+
+      border-radius:
+        50%;
+
+      background:
+
+        linear-gradient(
+          180deg,
+          #60a5fa,
+          #2563eb
+        );
+
+      animation:
+
+        moveAvatar
+        5s infinite
+        alternate
+        ease-in-out;
+
+    }
+
+
+    @keyframes moveAvatar {
+
+      from {
+
+        transform:
+          translate(0,0);
+
+      }
+
+      to {
+
+        transform:
+          translate(35px,20px);
+
+      }
+
+    }
+
+
+    /* =========================
+       IFRAME
+    ========================= */
+
+    .iframe-shell {
+
+      height:
+        calc(100vh - 180px);
+
+      min-height:
+        650px;
+
+    }
+
+
+    .iframe-shell iframe {
+
+      width:
+        100%;
+
+      height:
+        100%;
+
+      border:
+        none;
+
+      border-radius:
+        22px;
+
+      background:
+        white;
+
+    }
+
+
+    /* =========================
+       ANIMATION
+    ========================= */
+
+    .fade-in {
+
+      animation:
+        fadeIn .35s ease;
+
+    }
+
+
+    @keyframes fadeIn {
+
+      from {
+
+        opacity:
+          0;
+
+        transform:
+          translateY(10px);
+
+      }
+
+      to {
+
+        opacity:
+          1;
+
+        transform:
+          translateY(0);
+
+      }
+
+    }
+
+
+    /* =========================
+       NAV
+    ========================= */
+
+    .nav-link {
+
+      transition:
+        .2s;
+
+    }
+
+
+    .nav-link:hover {
+
+      color:
+        #86efac;
+
+    }
+
+
+  </style>
+
+</head>
+
+
+
+<body>
+
+
+<!-- =========================
+     MAIN CONTAINER
+========================= -->
+
+<div
+  class="max-w-7xl mx-auto px-4 py-6"
+>
+
+
+<!-- =========================
+     HEADER
+========================= -->
+
+<header
+  class="glass hero-glow
+  rounded-[30px]
+  p-6 md:p-10
+  mb-6"
+>
+
+
+<div
+  class="flex flex-col xl:flex-row
+  gap-8
+  xl:items-center
+  xl:justify-between"
+>
+
+
+<!-- LEFT -->
+
+<div
+  class="max-w-4xl"
+>
+
+
+<div
+  class="inline-flex
+  items-center gap-2
+  px-4 py-2
+  rounded-full
+
+  bg-emerald-500/10
+
+  border
+  border-emerald-400/20
+
+  text-emerald-300
+
+  text-xs
+
+  font-black
+
+  uppercase
+
+  tracking-wider"
+>
+
+
+<i
+  data-lucide="zap"
+  class="w-4 h-4"
+></i>
+
+
+Teacher Tech Championship 2026
+
+
+</div>
+
+
+
+<h1
+  class="text-4xl md:text-6xl
+  font-black
+  mt-5"
+>
+
+SAVER-KIT
+
+</h1>
+
+
+
+<h2
+  class="text-xl md:text-3xl
+  font-black
+  text-emerald-300
+  mt-2"
+>
+
+Smart Energy Virtual Simulator & Sensor Kit
+
+</h2>
+
+
+
+<p
+  class="text-slate-300
+  leading-relaxed
+  mt-5
+  max-w-4xl"
+>
+
+SAVER-KIT merupakan inovasi pembelajaran
+berbasis teknologi yang mengintegrasikan
+
+<strong class="text-white">
+
+Portal Simulasi Energi Virtual
+
+</strong>
+
+dengan
+
+<strong class="text-emerald-300">
+
+Eco-Sensor Kit
+
+</strong>
+
+untuk membantu siswa memahami penggunaan energi listrik,
+menganalisis pemborosan,
+menghitung biaya,
+serta merancang solusi penghematan energi
+berbasis sensor digital.
+
+</p>
+
+
+
+<!-- TAG -->
+
+<div
+  class="flex flex-wrap
+  gap-2
+  mt-6"
+>
+
+
+<span
+  class="px-4 py-2
+  rounded-xl
+
+  bg-slate-900/70
+
+  border border-slate-700
+
+  text-sm font-bold"
+>
+
+🏫 SMA Negeri 2 Bitung
+
+</span>
+
+
+
+<span
+  class="px-4 py-2
+  rounded-xl
+
+  bg-slate-900/70
+
+  border border-slate-700
+
+  text-sm font-bold"
+>
+
+👨‍💻 TARSIUS EDUTECH
+
+</span>
+
+
+
+<span
+  class="px-4 py-2
+  rounded-xl
+
+  bg-slate-900/70
+
+  border border-slate-700
+
+  text-sm font-bold"
+>
+
+🌱 Smart Energy Learning
+
+</span>
+
+
+</div>
+
+
+</div>
+
+
+
+<!-- RIGHT -->
+
+<div
+  class="grid
+  grid-cols-2
+  gap-3
+  min-w-[280px]"
+>
+
+
+<div
+  class="glass
+  rounded-2xl
+  p-5
+  text-center"
+>
+
+<div
+  class="text-3xl
+  font-black
+  text-yellow-300"
+>
+
+3
+
+</div>
+
+<div
+  class="text-xs
+  text-slate-400
+  font-bold
+  mt-1"
+>
+
+SIMULASI
+
+</div>
+
+</div>
+
+
+
+<div
+  class="glass
+  rounded-2xl
+  p-5
+  text-center"
+>
+
+<div
+  class="text-3xl
+  font-black
+  text-emerald-300"
+>
+
+AUTO
+
+</div>
+
+<div
+  class="text-xs
+  text-slate-400
+  font-bold
+  mt-1"
+>
+
+ENERGI
+
+</div>
+
+</div>
+
+
+
+<div
+  class="glass
+  rounded-2xl
+  p-5
+  text-center"
+>
+
+<div
+  class="text-3xl
+  font-black
+  text-sky-300"
+>
+
+STEM
+
+</div>
+
+<div
+  class="text-xs
+  text-slate-400
+  font-bold
+  mt-1"
+>
+
+LEARNING
+
+</div>
+
+</div>
+
+
+
+<div
+  class="glass
+  rounded-2xl
+  p-5
+  text-center"
+>
+
+<div
+  class="text-3xl
+  font-black
+  text-purple-300"
+>
+
+8+
+
+</div>
+
+<div
+  class="text-xs
+  text-slate-400
+  font-bold
+  mt-1"
+>
+
+MAPEL
+
+</div>
+
+</div>
+
+
+</div>
+
+
+</div>
+
+
+</header>
+
+
+
+<!-- =========================
+     NAVIGATION
+========================= -->
+
+<nav
+  class="glass
+  rounded-2xl
+  p-4
+  mb-6"
+>
+
+
+<div
+  class="flex
+  flex-wrap
+  gap-5
+  justify-center
+  text-sm
+  font-bold
+  text-slate-300"
+>
+
+
+<a
+  href="#simulasi"
+  class="nav-link"
+>
+
+Simulasi
+
+</a>
+
+
+<a
+  href="#dashboard"
+  class="nav-link"
+>
+
+Dashboard Energi
+
+</a>
+
+
+<a
+  href="#lintasmapel"
+  class="nav-link"
+>
+
+Lintas Mapel
+
+</a>
+
+
+<a
+  href="#stem"
+  class="nav-link"
+>
+
+STEM
+
+</a>
+
+
+<a
+  href="#deeplearning"
+  class="nav-link"
+>
+
+Deep Learning
+
+</a>
+
+
+</div>
+
+
+</nav>
+
+
+
+<!-- =========================
+     MAIN VIEW
+========================= -->
+
+<section
+  id="menuView"
+  class="fade-in"
+>
+
+
+
+<!-- =========================
+     SIMULASI
+========================= -->
+
+<section
+  id="simulasi"
+  class="mb-10"
+>
+
+
+<div
+  class="mb-6"
+>
+
+
+<div
+  class="text-emerald-300
+  text-xs
+  uppercase
+  font-black
+  tracking-[.2em]"
+>
+
+Interactive Simulation
+
+</div>
+
+
+
+<h2
+  class="text-3xl
+  font-black
+  mt-2"
+>
+
+Eksplorasi Sistem Energi Sekolah
+
+</h2>
+
+
+
+<p
+  class="text-slate-400
+  mt-2"
+>
+
+Bandingkan penggunaan energi listrik
+pada sistem manual dan sistem otomatis
+berbasis sensor digital.
+
+</p>
+
+
+</div>
+
+
+
+<!-- GRID -->
+
+<div
+  class="grid
+  lg:grid-cols-3
+  gap-5"
+>
+
+
+
+<!-- =====================
+     ANALOG
+===================== -->
+
+<article
+  class="menu-card
+  glass
+  rounded-[28px]
+  p-5"
+>
+
+
+<div
+  class="flex
+  justify-between
+  items-center
+  mb-4"
+>
+
+
+<div
+  class="w-14 h-14
+  rounded-2xl
+
+  bg-yellow-400
+
+  flex
+  items-center
+  justify-center"
+>
+
+<i
+  data-lucide="lightbulb"
+  class="w-7 h-7 text-slate-900"
+></i>
+
+</div>
+
+
+<span
+  class="text-xs
+  font-black
+  text-yellow-300"
+>
+
+MANUAL
+
+</span>
+
+
+</div>
+
+
+
+<h3
+  class="text-xl
+  font-black"
+>
+
+Ruang Kelas Analog
+
+</h3>
+
+
+
+<p
+  class="text-sm
+  text-slate-400
+  mt-3
+  leading-relaxed"
+>
+
+Simulasi penggunaan lampu
+dengan sakelar manual.
+
+Lampu dapat tetap menyala
+walaupun kelas kosong
+atau cahaya alami sudah cukup.
+
+</p>
+
+
+
+<div
+  class="scene-mini
+  mt-5"
+>
+
+
+<div
+  class="absolute
+  top-5
+  left-[20%]"
+>
+
+<div class="light-dot"></div>
+
+</div>
+
+
+<div
+  class="absolute
+  top-5
+  left-[48%]"
+>
+
+<div class="light-dot"></div>
+
+</div>
+
+
+<div
+  class="absolute
+  top-5
+  left-[75%]"
+>
+
+<div class="light-dot"></div>
+
+</div>
+
+
+<div
+  class="absolute
+  bottom-6
+  left-6
+  right-6
+
+  grid
+  grid-cols-3
+  gap-3"
+>
+
+
+<div class="bg-stone-600 rounded-lg h-12"></div>
+
+<div class="bg-stone-600 rounded-lg h-12"></div>
+
+<div class="bg-stone-600 rounded-lg h-12"></div>
+
+
+</div>
+
+
+</div>
+
+
+
+<button
+  class="open-sim
+
+  w-full
+
+  mt-5
+
+  bg-yellow-400
+
+  hover:bg-yellow-300
+
+  text-slate-900
+
+  py-3
+
+  rounded-2xl
+
+  font-black"
+
+  data-title="Simulasi Ruang Kelas Analog"
+
+  data-url="https://fredynandustakalamingan.github.io/simulasi-listrik-analog/"
+>
+
+▶ Buka Simulasi
+
+</button>
+
+
+</article>
+
+
+
+<!-- =====================
+     SMART CLASS
+===================== -->
+
+<article
+  class="menu-card
+  glass
+  rounded-[28px]
+  p-5"
+>
+
+
+<div
+  class="flex
+  justify-between
+  items-center
+  mb-4"
+>
+
+
+<div
+  class="w-14 h-14
+  rounded-2xl
+
+  bg-emerald-400
+
+  flex
+  items-center
+  justify-center"
+>
+
+<i
+  data-lucide="radar"
+  class="w-7 h-7 text-slate-900"
+></i>
+
+</div>
+
+
+<span
+  class="text-xs
+  font-black
+  text-emerald-300"
+>
+
+PIR + LDR
+
+</span>
+
+
+</div>
+
+
+
+<h3
+  class="text-xl
+  font-black"
+>
+
+Ruang Kelas Pintar
+
+</h3>
+
+
+
+<p
+  class="text-sm
+  text-slate-400
+  mt-3
+  leading-relaxed"
+>
+
+Simulasi penerangan otomatis
+berbasis sensor gerak PIR
+dan sensor cahaya LDR.
+
+</p>
+
+
+
+<div
+  class="scene-mini
+  mt-5"
+>
+
+
+<div
+  class="sensor-ring
+  w-16 h-16
+  top-8 left-[20%]"
+></div>
+
+
+<div
+  class="sensor-ring
+  w-16 h-16
+  top-8 left-[50%]"
+></div>
+
+
+<div
+  class="light-dot
+  top-5 left-[25%]"
+></div>
+
+
+<div
+  class="light-dot
+  top-5 left-[55%]"
+></div>
+
+
+<div
+  class="mini-person
+  left-[35%]
+  bottom-8"
+></div>
+
+
+<div
+  class="mini-person
+  left-[65%]
+  bottom-10"
+></div>
+
+
+</div>
+
+
+
+<button
+  class="open-sim
+
+  w-full
+
+  mt-5
+
+  bg-emerald-500
+
+  hover:bg-emerald-400
+
+  text-slate-900
+
+  py-3
+
+  rounded-2xl
+
+  font-black"
+
+  data-title="Simulasi Ruang Kelas Pintar"
+
+  data-url="https://fredynandustakalamingan.github.io/simulasi-listrik-sensor/"
+>
+
+▶ Buka Simulasi
+
+</button>
+
+
+</article>
+
+
+
+<!-- =====================
+     LORONG
+===================== -->
+
+<article
+  class="menu-card
+  glass
+  rounded-[28px]
+  p-5"
+>
+
+
+<div
+  class="flex
+  justify-between
+  items-center
+  mb-4"
+>
+
+
+<div
+  class="w-14 h-14
+  rounded-2xl
+
+  bg-sky-400
+
+  flex
+  items-center
+  justify-center"
+>
+
+<i
+  data-lucide="school"
+  class="w-7 h-7 text-slate-900"
+></i>
+
+</div>
+
+
+<span
+  class="text-xs
+  font-black
+  text-sky-300"
+>
+
+SMART
+
+</span>
+
+
+</div>
+
+
+
+<h3
+  class="text-xl
+  font-black"
+>
+
+Lorong Sekolah Pintar
+
+</h3>
+
+
+
+<p
+  class="text-sm
+  text-slate-400
+  mt-3
+  leading-relaxed"
+>
+
+Lampu lorong merespons
+pergerakan pengguna
+dan dapat mati otomatis
+ketika area tidak digunakan.
+
+</p>
+
+
+
+<div
+  class="scene-mini
+  mt-5"
+>
+
+
+<div
+  class="absolute
+  top-0 bottom-0
+  left-[35%]
+  right-[35%]
+
+  bg-slate-700/40"
+></div>
+
+
+<div
+  class="light-dot
+  top-5 left-[42%]"
+></div>
+
+
+<div
+  class="light-dot
+  top-5 left-[57%]"
+></div>
+
+
+<div
+  class="sensor-ring
+  w-20 h-20
+  top-10 left-[37%]"
+></div>
+
+
+<div
+  class="mini-person
+  left-[48%]
+  bottom-8"
+></div>
+
+
+</div>
+
+
+
+<button
+  class="open-sim
+
+  w-full
+
+  mt-5
+
+  bg-sky-500
+
+  hover:bg-sky-400
+
+  text-slate-900
+
+  py-3
+
+  rounded-2xl
+
+  font-black"
+
+  data-title="Simulasi Lorong Sekolah Pintar"
+
+  data-url="https://fredynandustakalamingan.github.io/simulasi-sensor-lorong/"
+>
+
+▶ Buka Simulasi
+
+</button>
+
+
+</article>
+
+
+</div>
+
+
+</section>
+
+
+
+<!-- =========================
+     DASHBOARD
+========================= -->
+
+<section
+  id="dashboard"
+  class="mb-10"
+>
+
+
+<div
+  class="glass
+  rounded-[30px]
+  p-6 md:p-8"
+>
+
+
+<!-- TITLE -->
+
+<div
+  class="flex
+  flex-col md:flex-row
+  justify-between
+  md:items-center
+  gap-4
+  mb-8"
+>
+
+
+<div>
+
+
+<div
+  class="text-xs
+  uppercase
+  font-black
+  text-yellow-300
+  tracking-[.2em]"
+>
+
+Smart Energy Dashboard
+
+</div>
+
+
+
+<h2
+  class="text-3xl
+  font-black
+  mt-2"
+>
+
+Kalkulator Energi & Biaya Otomatis
+
+</h2>
+
+
+
+<p
+  class="text-slate-400
+  mt-2
+  max-w-3xl"
+>
+
+Masukkan data penggunaan listrik
+untuk menghitung konsumsi energi,
+biaya listrik,
+dan potensi penghematan
+pada sistem otomatis SAVER-KIT.
+
+</p>
+
+
+</div>
+
+
+
+<button
+  onclick="calculateEnergy()"
+
+  class="bg-emerald-500
+
+  hover:bg-emerald-400
+
+  text-slate-900
+
+  px-6 py-3
+
+  rounded-2xl
+
+  font-black"
+>
+
+⚡ Hitung Energi
+
+</button>
+
+
+</div>
+
+
+
+<!-- INPUT -->
+
+<div
+  class="grid
+  md:grid-cols-2
+  lg:grid-cols-3
+  gap-5"
+>
+
+
+
+<!-- DAYA -->
+
+<div>
+
+
+<label
+  class="text-sm
+  font-bold
+  text-slate-300"
+>
+
+Daya Lampu
+
+</label>
+
+
+<input
+  id="power"
+
+  type="number"
+
+  value="18"
+
+  class="energy-input
+
+  mt-2"
+>
+
+
+<div
+  class="text-xs
+  text-slate-500
+  mt-1"
+>
+
+Watt
+
+</div>
+
+
+</div>
+
+
+
+<!-- JUMLAH -->
+
+<div>
+
+
+<label
+  class="text-sm
+  font-bold
+  text-slate-300"
+>
+
+Jumlah Lampu
+
+</label>
+
+
+<input
+  id="quantity"
+
+  type="number"
+
+  value="10"
+
+  class="energy-input
+  mt-2"
+>
+
+
+<div
+  class="text-xs
+  text-slate-500
+  mt-1"
+>
+
+Unit
+
+</div>
+
+
+</div>
+
+
+
+<!-- HOURS -->
+
+<div>
+
+
+<label
+  class="text-sm
+  font-bold
+  text-slate-300"
+>
+
+Jam Penggunaan / Hari
+
+</label>
+
+
+<input
+  id="hours"
+
+  type="number"
+
+  value="8"
+
+  class="energy-input
+  mt-2"
+>
+
+
+<div
+  class="text-xs
+  text-slate-500
+  mt-1"
+>
+
+Jam
+
+</div>
+
+
+</div>
+
+
+
+<!-- DAYS -->
+
+<div>
+
+
+<label
+  class="text-sm
+  font-bold
+  text-slate-300"
+>
+
+Hari Penggunaan / Bulan
+
+</label>
+
+
+<input
+  id="days"
+
+  type="number"
+
+  value="22"
+
+  class="energy-input
+  mt-2"
+>
+
+
+<div
+  class="text-xs
+  text-slate-500
+  mt-1"
+>
+
+Hari
+
+</div>
+
+
+</div>
+
+
+
+<!-- TARIFF -->
+
+<div>
+
+
+<label
+  class="text-sm
+  font-bold
+  text-slate-300"
+>
+
+Tarif Listrik
+
+</label>
+
+
+<input
+  id="tariff"
+
+  type="number"
+
+  value="1500"
+
+  class="energy-input
+  mt-2"
+>
+
+
+<div
+  class="text-xs
+  text-slate-500
+  mt-1"
+>
+
+Rp / kWh
+
+</div>
+
+
+</div>
+
+
+
+<!-- SENSOR -->
+
+<div>
+
+
+<label
+  class="text-sm
+  font-bold
+  text-slate-300"
+>
+
+Efisiensi Sensor
+
+</label>
+
+
+<input
+  id="efficiency"
+
+  type="number"
+
+  value="35"
+
+  class="energy-input
+  mt-2"
+>
+
+
+<div
+  class="text-xs
+  text-slate-500
+  mt-1"
+>
+
+Persen %
+
+</div>
+
+
+</div>
+
+
+</div>
+
+
+
+<!-- RESULT -->
+
+<div
+  class="grid
+  md:grid-cols-2
+  lg:grid-cols-4
+  gap-4
+  mt-8"
+>
+
+
+
+<!-- ANALOG -->
+
+<div
+  class="result-card"
+>
+
+
+<div
+  class="text-yellow-300
+  text-sm
+  font-black"
+>
+
+⚡ SISTEM ANALOG
+
+</div>
+
+
+<div
+  id="analogEnergy"
+
+  class="text-3xl
+  font-black
+  mt-3"
+>
+
+0 kWh
+
+</div>
+
+
+<div
+  id="analogCost"
+
+  class="text-sm
+  text-slate-400
+  mt-2"
+>
+
+Rp 0
+
+</div>
+
+
+</div>
+
+
+
+<!-- SMART -->
+
+<div
+  class="result-card"
+>
+
+
+<div
+  class="text-emerald-300
+  text-sm
+  font-black"
+>
+
+🤖 SISTEM SENSOR
+
+</div>
+
+
+<div
+  id="smartEnergy"
+
+  class="text-3xl
+  font-black
+  mt-3"
+>
+
+0 kWh
+
+</div>
+
+
+<div
+  id="smartCost"
+
+  class="text-sm
+  text-slate-400
+  mt-2"
+>
+
+Rp 0
+
+</div>
+
+
+</div>
+
+
+
+<!-- SAVING -->
+
+<div
+  class="result-card"
+>
+
+
+<div
+  class="text-sky-300
+  text-sm
+  font-black"
+>
+
+📉 PENGHEMATAN
+
+</div>
+
+
+<div
+  id="savingEnergy"
+
+  class="text-3xl
+  font-black
+  mt-3"
+>
+
+0 kWh
+
+</div>
+
+
+<div
+  id="savingCost"
+
+  class="text-sm
+  text-slate-400
+  mt-2"
+>
+
+Rp 0
+
+</div>
+
+
+</div>
+
+
+
+<!-- PERCENT -->
+
+<div
+  class="result-card"
+>
+
+
+<div
+  class="text-purple-300
+  text-sm
+  font-black"
+>
+
+🌱 EFISIENSI
+
+</div>
+
+
+<div
+  id="savingPercent"
+
+  class="text-3xl
+  font-black
+  mt-3"
+>
+
+0 %
+
+</div>
+
+
+<div
+  class="text-sm
+  text-slate-400
+  mt-2"
+>
+
+Potensi pengurangan energi
+
+</div>
+
+
+</div>
+
+
+</div>
+
+
+
+<!-- =========================
+     DASHBOARD 3 AREA
+========================= -->
+
+<div
+  class="mt-10"
+>
+
+
+<div
+  class="flex
+  items-center
+  gap-3
+  mb-5"
+>
+
+
+<i
+  data-lucide="bar-chart-3"
+  class="text-emerald-300"
+></i>
+
+
+<h3
+  class="text-2xl
+  font-black"
+>
+
+Dashboard 3 Area SAVER-KIT
+
+</h3>
+
+
+</div>
+
+
+
+<div
+  class="grid
+  lg:grid-cols-3
+  gap-5"
+>
+
+
+
+<!-- AREA 1 -->
+
+<div
+  class="bg-slate-900/70
+  border border-slate-700
+  rounded-2xl
+  p-5"
+>
+
+
+<div
+  class="flex
+  justify-between"
+>
+
+
+<h4
+  class="font-black"
+>
+
+💡 Ruang Analog
+
+</h4>
+
+
+<span
+  class="text-yellow-300
+  font-bold"
+>
+
+Manual
+
+</span>
+
+
+</div>
+
+
+<div
+  class="mt-5
+  space-y-3"
+>
+
+
+<div
+  class="flex
+  justify-between
+  text-sm"
+>
+
+<span class="text-slate-400">
+
+Energi
+
+</span>
+
+<span
+  id="areaAnalogEnergy"
+  class="font-bold"
+>
+
+0 kWh
+
+</span>
+
+</div>
+
+
+<div
+  class="flex
+  justify-between
+  text-sm"
+>
+
+<span class="text-slate-400">
+
+Biaya
+
+</span>
+
+<span
+  id="areaAnalogCost"
+  class="font-bold"
+>
+
+Rp 0
+
+</span>
+
+</div>
+
+
+</div>
+
+
+</div>
+
+
+
+<!-- AREA 2 -->
+
+<div
+  class="bg-slate-900/70
+  border border-slate-700
+  rounded-2xl
+  p-5"
+>
+
+
+<div
+  class="flex
+  justify-between"
+>
+
+
+<h4
+  class="font-black"
+>
+
+🤖 Kelas Pintar
+
+</h4>
+
+
+<span
+  class="text-emerald-300
+  font-bold"
+>
+
+PIR + LDR
+
+</span>
+
+
+</div>
+
+
+<div
+  class="mt-5
+  space-y-3"
+>
+
+
+<div
+  class="flex
+  justify-between
+  text-sm"
+>
+
+<span class="text-slate-400">
+
+Energi
+
+</span>
+
+<span
+  id="areaSmartEnergy"
+  class="font-bold"
+>
+
+0 kWh
+
+</span>
+
+</div>
+
+
+<div
+  class="flex
+  justify-between
+  text-sm"
+>
+
+<span class="text-slate-400">
+
+Biaya
+
+</span>
+
+<span
+  id="areaSmartCost"
+  class="font-bold"
+>
+
+Rp 0
+
+</span>
+
+</div>
+
+
+</div>
+
+
+</div>
+
+
+
+<!-- AREA 3 -->
+
+<div
+  class="bg-slate-900/70
+  border border-slate-700
+  rounded-2xl
+  p-5"
+>
+
+
+<div
+  class="flex
+  justify-between"
+>
+
+
+<h4
+  class="font-black"
+>
+
+🏫 Lorong Pintar
+
+</h4>
+
+
+<span
+  class="text-sky-300
+  font-bold"
+>
+
+Sensor
+
+</span>
+
+
+</div>
+
+
+<div
+  class="mt-5
+  space-y-3"
+>
+
+
+<div
+  class="flex
+  justify-between
+  text-sm"
+>
+
+<span class="text-slate-400">
+
+Energi
+
+</span>
+
+<span
+  id="areaCorridorEnergy"
+  class="font-bold"
+>
+
+0 kWh
+
+</span>
+
+</div>
+
+
+<div
+  class="flex
+  justify-between
+  text-sm"
+>
+
+<span class="text-slate-400">
+
+Potensi Hemat
+
+</span>
+
+<span
+  id="areaCorridorSaving"
+  class="font-bold
+  text-emerald-300"
+>
+
+0 %
+
+</span>
+
+</div>
+
+
+</div>
+
+
+</div>
+
+
+</div>
+
+
+</div>
+
+
+
+<!-- TOTAL DASHBOARD -->
+
+<div
+  class="mt-6
+
+  rounded-3xl
+
+  bg-gradient-to-r
+
+  from-emerald-500/15
+
+  via-slate-900
+
+  to-sky-500/15
+
+  border
+  border-emerald-400/15
+
+  p-6"
+>
+
+
+<div
+  class="grid
+  md:grid-cols-3
+  gap-5"
+>
+
+
+<div>
+
+
+<div
+  class="text-sm
+  text-slate-400"
+>
+
+Total Energi Sebelum
+
+</div>
+
+
+<div
+  id="totalBefore"
+
+  class="text-3xl
+  font-black
+  text-yellow-300
+  mt-2"
+>
+
+0 kWh
+
+</div>
+
+
+</div>
+
+
+
+<div>
+
+
+<div
+  class="text-sm
+  text-slate-400"
+>
+
+Total Energi Sesudah
+
+</div>
+
+
+<div
+  id="totalAfter"
+
+  class="text-3xl
+  font-black
+  text-emerald-300
+  mt-2"
+>
+
+0 kWh
+
+</div>
+
+
+</div>
+
+
+
+<div>
+
+
+<div
+  class="text-sm
+  text-slate-400"
+>
+
+Potensi Penghematan
+
+</div>
+
+
+<div
+  id="totalSaving"
+
+  class="text-3xl
+  font-black
+  text-sky-300
+  mt-2"
+>
+
+Rp 0
+
+</div>
+
+
+</div>
+
+
+</div>
+
+
+</div>
+
+
+</div>
+
+
+</section>
+
+
+
+<!-- =========================
+     LINTAS MAPEL
+========================= -->
+
+<section
+  id="lintasmapel"
+  class="mb-10"
+>
+
+
+<div
+  class="mb-6"
+>
+
+
+<div
+  class="text-xs
+  uppercase
+  font-black
+  tracking-[.2em]
+  text-purple-300"
+>
+
+Interdisciplinary Learning
+
+</div>
+
+
+<h2
+  class="text-3xl
+  font-black
+  mt-2"
+>
+
+Menu Lintas Mata Pelajaran
+
+</h2>
+
+
+<p
+  class="text-slate-400
+  mt-2
+  max-w-4xl"
+>
+
+SAVER-KIT tidak hanya digunakan
+dalam pembelajaran Fisika.
+
+Data energi,
+sensor,
+lingkungan,
+biaya,
+dan hasil pengamatan
+dapat dikembangkan menjadi
+pembelajaran lintas mata pelajaran.
+
+</p>
+
+
+</div>
+
+
+
+<div
+  class="grid
+  md:grid-cols-2
+  lg:grid-cols-4
+  gap-5"
+>
+
+
+
+<!-- FISIKA -->
+
+<div
+  class="menu-card
+  glass
+  rounded-2xl
+  p-5"
+>
+
+
+<div
+  class="text-yellow-300
+  mb-3"
+>
+
+⚡
+
+</div>
+
+
+<h3
+  class="font-black
+  text-lg"
+>
+
+Fisika
+
+</h3>
+
+
+<p
+  class="text-sm
+  text-slate-400
+  mt-3"
+>
+
+Menganalisis daya,
+energi listrik,
+beda potensial,
+arus listrik,
+efisiensi,
+sensor PIR
+dan LDR.
+
+</p>
+
+
+</div>
+
+
+
+<!-- MATEMATIKA -->
+
+<div
+  class="menu-card
+  glass
+  rounded-2xl
+  p-5"
+>
+
+
+<div
+  class="text-blue-300
+  mb-3"
+>
+
+📐
+
+</div>
+
+
+<h3
+  class="font-black
+  text-lg"
+>
+
+Matematika
+
+</h3>
+
+
+<p
+  class="text-sm
+  text-slate-400
+  mt-3"
+>
+
+Mengolah data energi,
+menghitung persentase,
+membandingkan grafik,
+dan menganalisis
+potensi penghematan.
+
+</p>
+
+
+</div>
+
+
+
+<!-- INFORMATIKA -->
+
+<div
+  class="menu-card
+  glass
+  rounded-2xl
+  p-5"
+>
+
+
+<div
+  class="text-emerald-300
+  mb-3"
+>
+
+💻
+
+</div>
+
+
+<h3
+  class="font-black
+  text-lg"
+>
+
+Informatika
+
+</h3>
+
+
+<p
+  class="text-sm
+  text-slate-400
+  mt-3"
+>
+
+Mempelajari coding,
+sensor digital,
+microcontroller,
+IoT,
+pengolahan data
+dan desain sistem otomatis.
+
+</p>
+
+
+</div>
+
+
+
+<!-- BIOLOGI -->
+
+<div
+  class="menu-card
+  glass
+  rounded-2xl
+  p-5"
+>
+
+
+<div
+  class="text-green-300
+  mb-3"
+>
+
+🌱
+
+</div>
+
+
+<h3
+  class="font-black
+  text-lg"
+>
+
+Biologi
+
+</h3>
+
+
+<p
+  class="text-sm
+  text-slate-400
+  mt-3"
+>
+
+Mengkaji hubungan
+efisiensi energi
+dengan lingkungan,
+keberlanjutan
+dan kualitas ekosistem.
+
+</p>
+
+
+</div>
+
+
+
+<!-- GEOGRAFI -->
+
+<div
+  class="menu-card
+  glass
+  rounded-2xl
+  p-5"
+>
+
+
+<div
+  class="text-sky-300
+  mb-3"
+>
+
+🌍
+
+</div>
+
+
+<h3
+  class="font-black
+  text-lg"
+>
+
+Geografi
+
+</h3>
+
+
+<p
+  class="text-sm
+  text-slate-400
+  mt-3"
+>
+
+Menganalisis
+konsumsi energi,
+lingkungan sekolah,
+perubahan iklim
+dan pembangunan berkelanjutan.
+
+</p>
+
+
+</div>
+
+
+
+<!-- EKONOMI -->
+
+<div
+  class="menu-card
+  glass
+  rounded-2xl
+  p-5"
+>
+
+
+<div
+  class="text-yellow-300
+  mb-3"
+>
+
+💰
+
+</div>
+
+
+<h3
+  class="font-black
+  text-lg"
+>
+
+Ekonomi
+
+</h3>
+
+
+<p
+  class="text-sm
+  text-slate-400
+  mt-3"
+>
+
+Menganalisis biaya listrik,
+efisiensi anggaran,
+penghematan
+dan dampak ekonomi
+penggunaan teknologi.
+
+</p>
+
+
+</div>
+
+
+
+<!-- BAHASA -->
+
+<div
+  class="menu-card
+  glass
+  rounded-2xl
+  p-5"
+>
+
+
+<div
+  class="text-pink-300
+  mb-3"
+>
+
+📝
+
+</div>
+
+
+<h3
+  class="font-black
+  text-lg"
+>
+
+Bahasa Indonesia
+
+</h3>
+
+
+<p
+  class="text-sm
+  text-slate-400
+  mt-3"
+>
+
+Menyusun laporan,
+artikel,
+argumentasi,
+presentasi
+dan rekomendasi
+berbasis data.
+
+</p>
+
+
+</div>
+
+
+
+<!-- PPKN -->
+
+<div
+  class="menu-card
+  glass
+  rounded-2xl
+  p-5"
+>
+
+
+<div
+  class="text-red-300
+  mb-3"
+>
+
+🇮🇩
+
+</div>
+
+
+<h3
+  class="font-black
+  text-lg"
+>
+
+PPKn
+
+</h3>
+
+
+<p
+  class="text-sm
+  text-slate-400
+  mt-3"
+>
+
+Mengembangkan
+tanggung jawab,
+kepedulian lingkungan,
+gotong royong
+dan budaya hemat energi.
+
+</p>
+
+
+</div>
+
+
+</div>
+
+
+
+<!-- PROJECT -->
+
+<div
+  class="glass
+  rounded-[28px]
+  p-6
+  mt-6"
+>
+
+
+<div
+  class="flex
+  items-center
+  gap-3
+  mb-4"
+>
+
+
+<i
+  data-lucide="rocket"
+  class="text-emerald-300"
+></i>
+
+
+<h3
+  class="text-xl
+  font-black"
+>
+
+Proyek Kolaborasi Lintas Mata Pelajaran
+
+</h3>
+
+
+</div>
+
+
+
+<div
+  class="grid
+  md:grid-cols-4
+  gap-4"
+>
+
+
+<div
+  class="bg-slate-900/70
+  rounded-xl
+  p-4"
+>
+
+<strong
+  class="text-yellow-300"
+>
+
+01
+
+</strong>
+
+<p
+  class="text-sm
+  mt-2
+  text-slate-400"
+>
+
+Audit penggunaan listrik
+di lingkungan sekolah.
+
+</p>
+
+</div>
+
+
+
+<div
+  class="bg-slate-900/70
+  rounded-xl
+  p-4"
+>
+
+<strong
+  class="text-emerald-300"
+>
+
+02
+
+</strong>
+
+<p
+  class="text-sm
+  mt-2
+  text-slate-400"
+>
+
+Analisis data konsumsi
+dan biaya listrik.
+
+</p>
+
+</div>
+
+
+
+<div
+  class="bg-slate-900/70
+  rounded-xl
+  p-4"
+>
+
+<strong
+  class="text-sky-300"
+>
+
+03
+
+</strong>
+
+<p
+  class="text-sm
+  mt-2
+  text-slate-400"
+>
+
+Merancang solusi
+Smart Energy
+berbasis sensor.
+
+</p>
+
+</div>
+
+
+
+<div
+  class="bg-slate-900/70
+  rounded-xl
+  p-4"
+>
+
+<strong
+  class="text-purple-300"
+>
+
+04
+
+</strong>
+
+<p
+  class="text-sm
+  mt-2
+  text-slate-400"
+>
+
+Presentasi rekomendasi
+Smart School Energy.
+
+</p>
+
+</div>
+
+
+</div>
+
+
+</div>
+
+
+</section>
+
+
+
+<!-- =========================
+     STEM
+========================= -->
+
+<section
+  id="stem"
+  class="mb-10"
+>
+
+
+<div
+  class="glass
+  rounded-[30px]
+  p-6"
+>
+
+
+<h2
+  class="text-3xl
+  font-black"
+>
+
+Integrasi STEM
+
+</h2>
+
+
+<div
+  class="grid
+  md:grid-cols-2
+  lg:grid-cols-4
+  gap-4
+  mt-6"
+>
+
+
+<div
+  class="bg-slate-900/70
+  rounded-2xl
+  p-5"
+>
+
+<h3
+  class="font-black
+  text-emerald-300"
+>
+
+S — Science
+
+</h3>
+
+<p
+  class="text-sm
+  text-slate-400
+  mt-3"
+>
+
+Konsep listrik,
+energi,
+daya,
+sensor
+dan efisiensi.
+
+</p>
+
+</div>
+
+
+
+<div
+  class="bg-slate-900/70
+  rounded-2xl
+  p-5"
+>
+
+<h3
+  class="font-black
+  text-yellow-300"
+>
+
+T — Technology
+
+</h3>
+
+<p
+  class="text-sm
+  text-slate-400
+  mt-3"
+>
+
+Portal web,
+sensor digital,
+microcontroller
+dan otomatisasi.
+
+</p>
+
+</div>
+
+
+
+<div
+  class="bg-slate-900/70
+  rounded-2xl
+  p-5"
+>
+
+<h3
+  class="font-black
+  text-sky-300"
+>
+
+E — Engineering
+
+</h3>
+
+<p
+  class="text-sm
+  text-slate-400
+  mt-3"
+>
+
+Merancang sistem,
+sensor,
+prototype
+dan solusi teknologi.
+
+</p>
+
+</div>
+
+
+
+<div
+  class="bg-slate-900/70
+  rounded-2xl
+  p-5"
+>
+
+<h3
+  class="font-black
+  text-purple-300"
+>
+
+M — Mathematics
+
+</h3>
+
+<p
+  class="text-sm
+  text-slate-400
+  mt-3"
+>
+
+Perhitungan energi,
+biaya,
+persentase
+dan analisis data.
+
+</p>
+
+</div>
+
+
+</div>
+
+
+</div>
+
+
+</section>
+
+
+
+<!-- =========================
+     DEEP LEARNING
+========================= -->
+
+<section
+  id="deeplearning"
+  class="mb-10"
+>
+
+
+<div
+  class="grid
+  md:grid-cols-3
+  gap-5"
+>
+
+
+
+<!-- MEANINGFUL -->
+
+<div
+  class="glass
+  rounded-[26px]
+  p-6"
+>
+
+
+<div
+  class="text-emerald-300
+  text-3xl"
+>
+
+❤️
+
+</div>
+
+
+<h3
+  class="text-xl
+  font-black
+  mt-4"
+>
+
+Meaningful
+
+</h3>
+
+
+<p
+  class="text-slate-400
+  text-sm
+  mt-3"
+>
+
+Pembelajaran dikaitkan
+dengan masalah nyata
+penggunaan energi
+di sekolah.
+
+</p>
+
+
+</div>
+
+
+
+<!-- MINDFUL -->
+
+<div
+  class="glass
+  rounded-[26px]
+  p-6"
+>
+
+
+<div
+  class="text-sky-300
+  text-3xl"
+>
+
+👁
+
+</div>
+
+
+<h3
+  class="text-xl
+  font-black
+  mt-4"
+>
+
+Mindful
+
+</h3>
+
+
+<p
+  class="text-slate-400
+  text-sm
+  mt-3"
+>
+
+Siswa mengamati,
+menganalisis,
+mengambil keputusan
+dan merefleksikan
+hasil pembelajaran.
+
+</p>
+
+
+</div>
+
+
+
+<!-- JOYFUL -->
+
+<div
+  class="glass
+  rounded-[26px]
+  p-6"
+>
+
+
+<div
+  class="text-yellow-300
+  text-3xl"
+>
+
+😊
+
+</div>
+
+
+<h3
+  class="text-xl
+  font-black
+  mt-4"
+>
+
+Joyful
+
+</h3>
+
+
+<p
+  class="text-slate-400
+  text-sm
+  mt-3"
+>
+
+Simulasi interaktif,
+sensor,
+animasi
+dan eksperimen
+membuat pembelajaran
+lebih menarik.
+
+</p>
+
+
+</div>
+
+
+</div>
+
+
+
+<!-- LEARNING FLOW -->
+
+<div
+  class="glass
+  rounded-[30px]
+  p-6
+  mt-6"
+>
+
+
+<h3
+  class="text-2xl
+  font-black
+  mb-6"
+>
+
+Alur Pembelajaran SAVER-KIT
+
+</h3>
+
+
+<div
+  class="grid
+  md:grid-cols-4
+  gap-4"
+>
+
+
+<div
+  class="bg-slate-900/70
+  rounded-2xl
+  p-5"
+>
+
+<div
+  class="text-emerald-300
+  font-black"
+>
+
+01
+
+</div>
+
+<h4
+  class="font-black
+  mt-2"
+>
+
+OBSERVE
+
+</h4>
+
+<p
+  class="text-sm
+  text-slate-400
+  mt-2"
+>
+
+Mengamati masalah
+energi di sekolah.
+
+</p>
+
+</div>
+
+
+
+<div
+  class="bg-slate-900/70
+  rounded-2xl
+  p-5"
+>
+
+<div
+  class="text-yellow-300
+  font-black"
+>
+
+02
+
+</div>
+
+<h4
+  class="font-black
+  mt-2"
+>
+
+APPLY
+
+</h4>
+
+<p
+  class="text-sm
+  text-slate-400
+  mt-2"
+>
+
+Menerapkan konsep
+dalam simulasi.
+
+</p>
+
+</div>
+
+
+
+<div
+  class="bg-slate-900/70
+  rounded-2xl
+  p-5"
+>
+
+<div
+  class="text-sky-300
+  font-black"
+>
+
+03
+
+</div>
+
+<h4
+  class="font-black
+  mt-2"
+>
+
+CALCULATE
+
+</h4>
+
+<p
+  class="text-sm
+  text-slate-400
+  mt-2"
+>
+
+Menghitung energi
+dan biaya listrik.
+
+</p>
+
+</div>
+
+
+
+<div
+  class="bg-slate-900/70
+  rounded-2xl
+  p-5"
+>
+
+<div
+  class="text-purple-300
+  font-black"
+>
+
+04
+
+</div>
+
+<h4
+  class="font-black
+  mt-2"
+>
+
+VERIFY
+
+</h4>
+
+<p
+  class="text-sm
+  text-slate-400
+  mt-2"
+>
+
+Menguji solusi
+menggunakan sensor kit.
+
+</p>
+
+</div>
+
+
+</div>
+
+
+</div>
+
+
+</section>
+
+
+
+<!-- =========================
+     TEAM
+========================= -->
+
+<section
+  class="glass
+  rounded-[30px]
+  p-6
+  mb-8"
+>
+
+
+<h2
+  class="text-2xl
+  font-black
+  mb-5"
+>
+
+Tim Pengembang
+
+</h2>
+
+
+<div
+  class="grid
+  md:grid-cols-2
+  gap-4"
+>
+
+
+<div
+  class="bg-slate-900/70
+  rounded-2xl
+  p-5"
+>
+
+<div
+  class="text-sm
+  text-slate-500"
+>
+
+Ketua Tim
+
+</div>
+
+<div
+  class="text-xl
+  font-black
+  mt-2"
+>
+
+Fredynandus Takalamingan, S.Si
+
+</div>
+
+<div
+  class="text-emerald-300
+  text-sm
+  mt-2"
+>
+
+Guru Fisika
+
+</div>
+
+</div>
+
+
+
+<div
+  class="bg-slate-900/70
+  rounded-2xl
+  p-5"
+>
+
+<div
+  class="text-sm
+  text-slate-500"
+>
+
+Anggota Tim
+
+</div>
+
+<div
+  class="text-xl
+  font-black
+  mt-2"
+>
+
+Justin Rarase Tacazily, ST
+
+</div>
+
+<div
+  class="text-sky-300
+  text-sm
+  mt-2"
+>
+
+Guru Informatika
+
+</div>
+
+</div>
+
+
+</div>
+
+
+</section>
+
+
+</section>
+
+
+
+<!-- =========================
+     VIEWER
+========================= -->
+
+<section
+  id="viewerView"
+  class="hidden"
+>
+
+
+<div
+  class="glass
+  rounded-[30px]
+  p-5
+  mb-5"
+>
+
+
+<div
+  class="flex
+  flex-col md:flex-row
+  justify-between
+  gap-4"
+>
+
+
+<div>
+
+
+<div
+  class="text-xs
+  uppercase
+  text-emerald-300
+  font-black"
+>
+
+SAVER-KIT Simulation
+
+</div>
+
+
+<h2
+  id="viewerTitle"
+  class="text-2xl
+  font-black
+  mt-2"
+>
+
+Simulasi
+
+</h2>
+
+
+</div>
+
+
+
+<div
+  class="flex
+  gap-3"
+>
+
+
+<button
+  id="openNewTabBtn"
+
+  class="bg-slate-700
+  px-5 py-3
+  rounded-xl
+  font-bold"
+>
+
+↗ Tab Baru
+
+</button>
+
+
+<button
+  id="backBtnTop"
+
+  class="bg-emerald-500
+  text-slate-900
+  px-5 py-3
+  rounded-xl
+  font-black"
+>
+
+← Kembali
+
+</button>
+
+
+</div>
+
+
+</div>
+
+
+</div>
+
+
+
+<div
+  class="glass
+  rounded-[30px]
+  p-3"
+>
+
+
+<div
+  class="iframe-shell"
+>
+
+
+<iframe
+  id="simFrame"
+></iframe>
+
+
+</div>
+
+
+</div>
+
+
+
+<div
+  class="text-center
+  mt-5"
+>
+
+
+<button
+  id="backBtnBottom"
+
+  class="bg-sky-500
+  text-slate-900
+  px-6 py-3
+  rounded-xl
+  font-black"
+>
+
+🏠 Kembali ke SAVER-KIT
+
+</button>
+
+
+</div>
+
+
+</section>
+
+
+
+<!-- =========================
+     FOOTER
+========================= -->
+
+<footer
+  class="text-center
+  text-slate-500
+  text-sm
+  py-8"
+>
+
+
+<div
+  class="font-black
+  text-slate-400"
+>
+
+SAVER-KIT
+
+</div>
+
+
+<div
+  class="mt-2"
+>
+
+Smart Energy Virtual Simulator & Sensor Kit
+
+</div>
+
+
+<div
+  class="mt-2"
+>
+
+TARSIUS EDUTECH • SMA Negeri 2 Bitung • TTC 2026
+
+</div>
+
+
+</footer>
+
+
+</div>
+
+
+
+<!-- =========================
+     JAVASCRIPT
+========================= -->
+
+<script>
+
+
+/* =========================
+   ELEMENT
+========================= */
+
+const menuView =
+  document.getElementById("menuView");
+
+
+const viewerView =
+  document.getElementById("viewerView");
+
+
+const viewerTitle =
+  document.getElementById("viewerTitle");
+
+
+const simFrame =
+  document.getElementById("simFrame");
+
+
+const openButtons =
+  document.querySelectorAll(".open-sim");
+
+
+const openNewTabBtn =
+  document.getElementById("openNewTabBtn");
+
+
+const backBtnTop =
+  document.getElementById("backBtnTop");
+
+
+const backBtnBottom =
+  document.getElementById("backBtnBottom");
+
+
+let currentUrl = "";
+
+
+/* =========================
+   OPEN SIMULATION
+========================= */
+
+function openSimulation(
+  title,
+  url
+) {
+
+
+  currentUrl = url;
+
+
+  viewerTitle.textContent =
+    title;
+
+
+  simFrame.src =
+    url;
+
+
+  menuView.classList.add(
+    "hidden"
+  );
+
+
+  viewerView.classList.remove(
+    "hidden"
+  );
+
+
+  window.scrollTo({
+
+    top: 0,
+
+    behavior: "smooth"
+
+  });
+
+
+}
+
+
+/* =========================
+   BUTTON SIMULATION
+========================= */
+
+openButtons.forEach(
+
+  button => {
+
+
+    button.addEventListener(
+
+      "click",
+
+      function() {
+
+
+        openSimulation(
+
+          button.dataset.title,
+
+          button.dataset.url
+
+        );
+
+
+      }
+
+    );
+
+
+  }
+
+);
+
+
+/* =========================
+   BACK MENU
+========================= */
+
+function showMenu() {
+
+
+  viewerView.classList.add(
+    "hidden"
+  );
+
+
+  menuView.classList.remove(
+    "hidden"
+  );
+
+
+  simFrame.src =
+    "about:blank";
+
+
+  window.scrollTo({
+
+    top: 0,
+
+    behavior: "smooth"
+
+  });
+
+
+}
+
+
+backBtnTop.addEventListener(
+
+  "click",
+
+  showMenu
+
+);
+
+
+backBtnBottom.addEventListener(
+
+  "click",
+
+  showMenu
+
+);
+
+
+/* =========================
+   NEW TAB
+========================= */
+
+openNewTabBtn.addEventListener(
+
+  "click",
+
+  function() {
+
+
+    if (currentUrl) {
+
+
+      window.open(
+
+        currentUrl,
+
+        "_blank"
+
+      );
+
+
+    }
+
+
+  }
+
+);
+
+
+/* =========================
+   ENERGY CALCULATOR
+========================= */
+
+function calculateEnergy() {
+
+
+  /* INPUT */
+
+  const power =
+    parseFloat(
+      document.getElementById("power").value
+    ) || 0;
+
+
+  const quantity =
+    parseFloat(
+      document.getElementById("quantity").value
+    ) || 0;
+
+
+  const hours =
+    parseFloat(
+      document.getElementById("hours").value
+    ) || 0;
+
+
+  const days =
+    parseFloat(
+      document.getElementById("days").value
+    ) || 0;
+
+
+  const tariff =
+    parseFloat(
+      document.getElementById("tariff").value
+    ) || 0;
+
+
+  const efficiency =
+    parseFloat(
+      document.getElementById("efficiency").value
+    ) || 0;
+
+
+
+  /* =========================
+     ANALOG ENERGY
+
+     Rumus:
+
+     kWh =
+     P x Jumlah x Jam x Hari / 1000
+  ========================= */
+
+
+  const analogEnergy =
+
+    (
+      power *
+      quantity *
+      hours *
+      days
+    )
+
+    / 1000;
+
+
+
+  /* COST ANALOG */
+
+  const analogCost =
+
+    analogEnergy *
+    tariff;
+
+
+
+  /* =========================
+     SMART SENSOR
+  ========================= */
+
+
+  const smartEnergy =
+
+    analogEnergy *
+
+    (
+      1 -
+      efficiency / 100
+    );
+
+
+
+  const smartCost =
+
+    smartEnergy *
+    tariff;
+
+
+
+  /* SAVING */
+
+  const savingEnergy =
+
+    analogEnergy -
+    smartEnergy;
+
+
+
+  const savingCost =
+
+    analogCost -
+    smartCost;
+
+
+
+  /* =========================
+     UPDATE MAIN DASHBOARD
+  ========================= */
+
+
+  document.getElementById(
+    "analogEnergy"
+  ).textContent =
+
+    analogEnergy.toFixed(2)
+    + " kWh";
+
+
+
+  document.getElementById(
+    "analogCost"
+  ).textContent =
+
+    "Rp " +
+    analogCost.toLocaleString(
+      "id-ID"
+    );
+
+
+
+  document.getElementById(
+    "smartEnergy"
+  ).textContent =
+
+    smartEnergy.toFixed(2)
+    + " kWh";
+
+
+
+  document.getElementById(
+    "smartCost"
+  ).textContent =
+
+    "Rp " +
+    smartCost.toLocaleString(
+      "id-ID"
+    );
+
+
+
+  document.getElementById(
+    "savingEnergy"
+  ).textContent =
+
+    savingEnergy.toFixed(2)
+    + " kWh";
+
+
+
+  document.getElementById(
+    "savingCost"
+  ).textContent =
+
+    "Rp " +
+    savingCost.toLocaleString(
+      "id-ID"
+    );
+
+
+
+  document.getElementById(
+    "savingPercent"
+  ).textContent =
+
+    efficiency.toFixed(0)
+    + " %";
+
+
+
+  /* =========================
+     AREA ANALOG
+  ========================= */
+
+
+  document.getElementById(
+    "areaAnalogEnergy"
+  ).textContent =
+
+    analogEnergy.toFixed(2)
+    + " kWh";
+
+
+
+  document.getElementById(
+    "areaAnalogCost"
+  ).textContent =
+
+    "Rp " +
+    analogCost.toLocaleString(
+      "id-ID"
+    );
+
+
+
+  /* =========================
+     SMART CLASS
+  ========================= */
+
+
+  document.getElementById(
+    "areaSmartEnergy"
+  ).textContent =
+
+    smartEnergy.toFixed(2)
+    + " kWh";
+
+
+
+  document.getElementById(
+    "areaSmartCost"
+  ).textContent =
+
+    "Rp " +
+    smartCost.toLocaleString(
+      "id-ID"
+    );
+
+
+
+  /* =========================
+     CORRIDOR
+  ========================= */
+
+
+  const corridorEnergy =
+
+    smartEnergy *
+    0.7;
+
+
+
+  document.getElementById(
+    "areaCorridorEnergy"
+  ).textContent =
+
+    corridorEnergy.toFixed(2)
+    + " kWh";
+
+
+
+  document.getElementById(
+    "areaCorridorSaving"
+  ).textContent =
+
+    (
+      efficiency + 10
+    ).toFixed(0)
+
+    + " %";
+
+
+
+  /* =========================
+     TOTAL
+  ========================= */
+
+
+  const totalBefore =
+
+    analogEnergy +
+    analogEnergy +
+    analogEnergy;
+
+
+
+  const totalAfter =
+
+    smartEnergy +
+    smartEnergy +
+    corridorEnergy;
+
+
+
+  const totalSavingCost =
+
+    (
+      totalBefore -
+      totalAfter
+    )
+
+    * tariff;
+
+
+
+  document.getElementById(
+    "totalBefore"
+  ).textContent =
+
+    totalBefore.toFixed(2)
+    + " kWh";
+
+
+
+  document.getElementById(
+    "totalAfter"
+  ).textContent =
+
+    totalAfter.toFixed(2)
+    + " kWh";
+
+
+
+  document.getElementById(
+    "totalSaving"
+  ).textContent =
+
+    "Rp " +
+
+    totalSavingCost.toLocaleString(
+      "id-ID"
+    );
+
+
+}
+
+
+/* =========================
+   AUTO CALCULATE
+========================= */
+
+const inputs =
+
+  document.querySelectorAll(
+    ".energy-input"
+  );
+
+
+inputs.forEach(
+
+  input => {
+
+
+    input.addEventListener(
+
+      "input",
+
+      calculateEnergy
+
+    );
+
+
+  }
+
+);
+
+
+/* =========================
+   INITIAL CALCULATE
+========================= */
+
+calculateEnergy();
+
+
+/* =========================
+   ICON
+========================= */
+
+lucide.createIcons();
+
+
+</script>
+
+
+</body>
+
+</html>
