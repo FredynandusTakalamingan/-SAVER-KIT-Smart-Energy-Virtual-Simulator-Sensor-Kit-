@@ -638,6 +638,230 @@
     }
 
 
+    /* =========================
+       SAVER-KIT ADVANCED DASHBOARD
+       Added without replacing existing styles
+    ========================= */
+    .advanced-panel {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      box-shadow: 0 16px 42px var(--shadow);
+    }
+
+    .analytics-card {
+      background: var(--surface-solid);
+      border: 1px solid var(--border);
+      border-radius: 22px;
+      padding: 20px;
+    }
+
+    .bar-chart {
+      height: 260px;
+      display: flex;
+      align-items: end;
+      gap: 10px;
+      padding: 20px 8px 8px;
+      border-bottom: 1px solid var(--border);
+      overflow-x: auto;
+    }
+
+    .bar-group {
+      min-width: 42px;
+      flex: 1;
+      display: flex;
+      align-items: end;
+      justify-content: center;
+      gap: 4px;
+      position: relative;
+      height: 100%;
+    }
+
+    .bar {
+      width: 14px;
+      min-height: 4px;
+      border-radius: 8px 8px 3px 3px;
+      transition: height .45s ease;
+    }
+
+    .bar-analog {
+      background: linear-gradient(180deg, #f59e0b, #ea580c);
+    }
+
+    .bar-smart {
+      background: linear-gradient(180deg, #34d399, #059669);
+    }
+
+    .bar-label {
+      position: absolute;
+      bottom: -28px;
+      font-size: 10px;
+      color: var(--text-soft);
+      font-weight: 800;
+    }
+
+    .chart-legend {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-top: 38px;
+      font-size: 12px;
+      font-weight: 800;
+      color: var(--text-soft);
+    }
+
+    .legend-dot {
+      display: inline-block;
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      margin-right: 5px;
+    }
+
+    .legend-analog { background: #f59e0b; }
+    .legend-smart { background: #10b981; }
+
+    .gauge-wrap {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      flex-wrap: wrap;
+    }
+
+    .energy-gauge {
+      width: 130px;
+      height: 130px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      background: conic-gradient(#10b981 0deg 126deg, #eab308 126deg 252deg, #ef4444 252deg 360deg);
+      position: relative;
+      flex: 0 0 auto;
+    }
+
+    .energy-gauge::before {
+      content: "";
+      width: 96px;
+      height: 96px;
+      border-radius: 50%;
+      background: var(--surface-solid);
+      position: absolute;
+    }
+
+    .energy-gauge > div {
+      z-index: 1;
+      text-align: center;
+      font-weight: 900;
+    }
+
+    .status-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 9px 13px;
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 900;
+    }
+
+    .status-efficient { background: rgba(16,185,129,.16); color: #059669; }
+    .status-enough { background: rgba(234,179,8,.16); color: #a16207; }
+    .status-waste { background: rgba(239,68,68,.16); color: #dc2626; }
+
+    [data-theme="dark"] .status-efficient { color: #6ee7b7; }
+    [data-theme="dark"] .status-enough { color: #fde047; }
+    [data-theme="dark"] .status-waste { color: #fca5a5; }
+
+    .progress-track {
+      height: 14px;
+      border-radius: 999px;
+      background: rgba(100,116,139,.18);
+      overflow: hidden;
+    }
+
+    .progress-fill {
+      height: 100%;
+      width: 0%;
+      border-radius: inherit;
+      background: linear-gradient(90deg, #10b981, #34d399);
+      transition: width .45s ease;
+    }
+
+    .sensor-live {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .sensor-live::after {
+      content: "";
+      width: 9px;
+      height: 9px;
+      border-radius: 50%;
+      background: #10b981;
+      box-shadow: 0 0 0 0 rgba(16,185,129,.45);
+      animation: sensorPulse 1.7s infinite;
+      display: inline-block;
+      margin-left: 8px;
+    }
+
+    @keyframes sensorPulse {
+      70% { box-shadow: 0 0 0 10px rgba(16,185,129,0); }
+      100% { box-shadow: 0 0 0 0 rgba(16,185,129,0); }
+    }
+
+    .activity-step {
+      border-left: 4px solid var(--accent);
+      padding: 14px 16px;
+      background: var(--surface-muted);
+      border-radius: 0 14px 14px 0;
+    }
+
+    .action-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 12px 16px;
+      border-radius: 15px;
+      font-weight: 900;
+      cursor: pointer;
+      border: 1px solid var(--border);
+      color: var(--text-main);
+      background: var(--surface-solid);
+      transition: transform .2s ease, box-shadow .2s ease;
+    }
+
+    .action-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 28px var(--shadow);
+    }
+
+    .action-btn.primary {
+      background: linear-gradient(135deg, #059669, #10b981);
+      color: white;
+      border-color: transparent;
+    }
+
+    .realtime-number {
+      font-variant-numeric: tabular-nums;
+    }
+
+    @media print {
+      nav, .no-print, #themeToggle, .theme-toggle, #viewerView {
+        display: none !important;
+      }
+      body {
+        background: white !important;
+        color: #111827 !important;
+      }
+      .glass, .advanced-panel, .analytics-card, .result-card {
+        box-shadow: none !important;
+        background: white !important;
+        color: #111827 !important;
+        border: 1px solid #d1d5db !important;
+      }
+    }
+
+
   </style>
 
 </head>
@@ -1060,6 +1284,46 @@ STEM
 >
 
 Deep Learning
+
+</a>
+
+
+<a
+  href="#auditenergi"
+  class="nav-link"
+>
+
+Audit Energi
+
+</a>
+
+
+<a
+  href="#ecosensor"
+  class="nav-link"
+>
+
+Eco-Sensor Kit
+
+</a>
+
+
+<a
+  href="#projekaktivitas"
+  class="nav-link"
+>
+
+Projek Siswa
+
+</a>
+
+
+<a
+  href="#realtime"
+  class="nav-link"
+>
+
+Arduino Real-Time
 
 </a>
 
@@ -3923,6 +4187,905 @@ menggunakan sensor kit.
 
 
 <!-- =========================
+     SAVER-KIT ADVANCED ANALYTICS
+========================= -->
+
+<section
+  id="advancedAnalytics"
+  class="mb-10"
+>
+
+<div
+  class="advanced-panel
+  rounded-[30px]
+  p-6 md:p-8"
+>
+
+<div
+  class="flex
+  flex-col
+  lg:flex-row
+  lg:items-end
+  lg:justify-between
+  gap-5
+  mb-8"
+>
+
+<div>
+
+<div
+  class="text-xs
+  uppercase
+  font-black
+  text-emerald-300
+  tracking-[.2em]"
+>
+
+Integrated SAVER-KIT Analytics
+
+</div>
+
+<h2
+  class="text-3xl
+  font-black
+  mt-2"
+>
+
+📊 Dashboard Analitik Energi Sekolah
+
+</h2>
+
+<p
+  class="text-slate-400
+  mt-3
+  max-w-4xl"
+>
+
+Seluruh perhitungan sistem Analog dan Smart Energy diintegrasikan dalam satu dashboard untuk membaca pola penggunaan energi, efisiensi, target penghematan, dan status energi sekolah.
+
+</p>
+
+</div>
+
+<div
+  class="flex
+  flex-wrap
+  gap-3
+  no-print"
+>
+
+<button
+  type="button"
+  onclick="generateEnergyReport()"
+  class="action-btn primary"
+>
+
+📄 Generate Laporan Energi
+
+</button>
+
+</div>
+
+</div>
+
+
+<div
+  class="grid
+  xl:grid-cols-3
+  gap-5"
+>
+
+<!-- CHART -->
+<div
+  class="analytics-card
+  xl:col-span-2"
+>
+
+<div
+  class="flex
+  flex-col
+  md:flex-row
+  md:items-center
+  md:justify-between
+  gap-3"
+>
+
+<div>
+
+<h3
+  class="text-xl
+  font-black"
+>
+
+📈 Grafik Batang Analog vs Smart Energy
+
+</h3>
+
+<p
+  class="text-sm
+  text-slate-400
+  mt-2"
+>
+
+Perbandingan estimasi penggunaan energi per hari selama satu minggu.
+
+</p>
+
+</div>
+
+<div
+  class="text-xs
+  font-black
+  text-slate-400"
+>
+
+Data mengikuti Kalkulator Energi SAVER-KIT
+
+</div>
+
+</div>
+
+<div
+  id="energyBarChart"
+  class="bar-chart"
+></div>
+
+<div
+  class="chart-legend"
+>
+
+<span><i class="legend-dot legend-analog"></i>Analog</span>
+
+<span><i class="legend-dot legend-smart"></i>Smart Energy</span>
+
+</div>
+
+</div>
+
+
+<!-- SCORE -->
+<div
+  class="analytics-card"
+>
+
+<h3
+  class="text-xl
+  font-black"
+>
+
+🏆 Skor Efisiensi Energi Sekolah
+
+</h3>
+
+<div
+  class="gauge-wrap
+  mt-5"
+>
+
+<div
+  class="energy-gauge"
+>
+
+<div>
+
+<div
+  id="efficiencyScore"
+  class="text-3xl
+  font-black"
+>
+
+0
+
+</div>
+
+<div
+  class="text-xs
+  text-slate-400"
+>
+
+/ 100
+
+</div>
+
+</div>
+
+</div>
+
+<div>
+
+<div
+  id="energyStatus"
+  class="status-badge status-enough"
+>
+
+🟡 CUKUP
+
+</div>
+
+<p
+  id="statusDescription"
+  class="text-sm
+  text-slate-400
+  mt-4"
+>
+
+Menghitung efisiensi energi sekolah...
+
+</p>
+
+</div>
+
+</div>
+
+<div
+  class="mt-6
+  text-sm
+  text-slate-400"
+>
+
+Status otomatis:
+
+<div
+  class="flex
+  flex-wrap
+  gap-3
+  mt-3"
+>
+
+<span class="status-badge status-efficient">🟢 Efisien ≥ 60%</span>
+
+<span class="status-badge status-enough">🟡 Cukup 30–59%</span>
+
+<span class="status-badge status-waste">🔴 Boros &lt; 30%</span>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+
+<!-- TARGET -->
+<div
+  class="analytics-card
+  mt-5"
+>
+
+<div
+  class="grid
+  lg:grid-cols-3
+  gap-6
+  lg:items-center"
+>
+
+<div>
+
+<h3
+  class="text-xl
+  font-black"
+>
+
+🎯 Target Penghematan Bulanan
+
+</h3>
+
+<p
+  class="text-sm
+  text-slate-400
+  mt-2"
+>
+
+Target default ditetapkan sebesar 30% dan dapat dibandingkan langsung dengan hasil simulasi.
+
+</p>
+
+</div>
+
+<div>
+
+<div
+  class="flex
+  justify-between
+  text-sm
+  font-bold
+  mb-2"
+>
+
+<span>Progres Penghematan</span>
+
+<span id="targetProgressText">0% / 30%</span>
+
+</div>
+
+<div
+  class="progress-track"
+>
+
+<div
+  id="targetProgressFill"
+  class="progress-fill"
+></div>
+
+</div>
+
+</div>
+
+<div
+  class="rounded-2xl
+  bg-slate-900/70
+  p-5"
+>
+
+<div
+  class="text-sm
+  text-slate-400"
+>
+
+Estimasi Hemat Bulanan
+
+</div>
+
+<div
+  id="monthlySavingSummary"
+  class="text-2xl
+  font-black
+  text-emerald-300
+  mt-2"
+>
+
+Rp 0
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+
+<!-- =========================
+     AUDIT ENERGI
+========================= -->
+
+<section
+  id="auditenergi"
+  class="mb-10"
+>
+
+<div
+  class="glass
+  rounded-[30px]
+  p-6 md:p-8"
+>
+
+<div
+  class="flex
+  items-center
+  gap-3
+  mb-6"
+>
+
+<i
+  data-lucide="clipboard-check"
+  class="text-yellow-300"
+></i>
+
+<div>
+
+<h2
+  class="text-3xl
+  font-black"
+>
+
+🏫 Audit Energi Sekolah
+
+</h2>
+
+<p
+  class="text-slate-400
+  mt-2"
+>
+
+Menu investigasi penggunaan energi nyata sebagai jembatan dari simulasi menuju rekomendasi sekolah.
+
+</p>
+
+</div>
+
+</div>
+
+<div
+  class="grid
+  md:grid-cols-2
+  xl:grid-cols-4
+  gap-4"
+>
+
+<div class="analytics-card">
+
+<div class="text-yellow-300 text-2xl">01</div>
+
+<h3 class="font-black mt-3">Inventarisasi</h3>
+
+<p class="text-sm text-slate-400 mt-2">
+
+Siswa mencatat perangkat listrik, daya, jumlah unit, lokasi, dan pola penggunaan.
+
+</p>
+
+</div>
+
+<div class="analytics-card">
+
+<div class="text-emerald-300 text-2xl">02</div>
+
+<h3 class="font-black mt-3">Observasi</h3>
+
+<p class="text-sm text-slate-400 mt-2">
+
+Mengamati lampu yang tetap menyala, ruangan kosong, serta potensi pemborosan energi.
+
+</p>
+
+</div>
+
+<div class="analytics-card">
+
+<div class="text-sky-300 text-2xl">03</div>
+
+<h3 class="font-black mt-3">Analisis Data</h3>
+
+<p class="text-sm text-slate-400 mt-2">
+
+Menggunakan dashboard untuk menghitung kWh, biaya, penghematan, dan status efisiensi.
+
+</p>
+
+</div>
+
+<div class="analytics-card">
+
+<div class="text-purple-300 text-2xl">04</div>
+
+<h3 class="font-black mt-3">Rekomendasi</h3>
+
+<p class="text-sm text-slate-400 mt-2">
+
+Menyusun solusi berbasis data untuk diterapkan pada kelas, lorong, atau area sekolah.
+
+</p>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+
+<!-- =========================
+     ECO SENSOR KIT
+========================= -->
+
+<section
+  id="ecosensor"
+  class="mb-10"
+>
+
+<div
+  class="glass
+  rounded-[30px]
+  p-6 md:p-8"
+>
+
+<div
+  class="flex
+  items-center
+  gap-3
+  mb-6"
+>
+
+<i
+  data-lucide="flask-conical"
+  class="text-emerald-300"
+></i>
+
+<div>
+
+<h2
+  class="text-3xl
+  font-black"
+>
+
+🔬 Eksperimen Eco-Sensor Kit
+
+</h2>
+
+<p
+  class="text-slate-400
+  mt-2"
+>
+
+Eksperimen alat bantu ajar hibrid untuk menguji konsep sensor, otomatisasi, dan efisiensi energi.
+
+</p>
+
+</div>
+
+</div>
+
+<div
+  class="grid
+  md:grid-cols-3
+  gap-5"
+>
+
+<div class="analytics-card">
+
+<h3 class="font-black text-emerald-300">
+
+PIR — Sensor Gerak
+
+</h3>
+
+<p class="text-sm text-slate-400 mt-3">
+
+Uji respons lampu ketika terdapat aktivitas siswa dan pengaruh waktu tunggu otomatis.
+
+</p>
+
+</div>
+
+<div class="analytics-card">
+
+<h3 class="font-black text-yellow-300">
+
+LDR — Sensor Cahaya
+
+</h3>
+
+<p class="text-sm text-slate-400 mt-3">
+
+Bandingkan kondisi terang dan gelap untuk menentukan kapan lampu harus menyala atau mati.
+
+</p>
+
+</div>
+
+<div class="analytics-card">
+
+<h3 class="font-black text-sky-300">
+
+Arduino / Microcontroller
+
+</h3>
+
+<p class="text-sm text-slate-400 mt-3">
+
+Hubungkan pembacaan sensor dengan logika otomatisasi dan data energi yang dapat dikirim ke portal.
+
+</p>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+
+<!-- =========================
+     PROJECT ACTIVITIES
+========================= -->
+
+<section
+  id="projekaktivitas"
+  class="mb-10"
+>
+
+<div
+  class="glass
+  rounded-[30px]
+  p-6 md:p-8"
+>
+
+<h2
+  class="text-3xl
+  font-black"
+>
+
+🌐 Projek Lintas Mata Pelajaran — Aktivitas Siswa
+
+</h2>
+
+<p
+  class="text-slate-400
+  mt-3
+  max-w-4xl"
+>
+
+SAVER-KIT menjadi ruang projek kolaboratif yang menghubungkan konsep Fisika dengan Informatika, Matematika, Ekonomi, Bahasa Indonesia, PPKn, dan isu lingkungan.
+
+</p>
+
+<div
+  class="grid
+  lg:grid-cols-2
+  gap-4
+  mt-6"
+>
+
+<div class="activity-step">
+
+<strong>Aktivitas 1 — Fisika & Matematika</strong>
+
+<p class="text-sm text-slate-400 mt-2">
+
+Mengukur daya, waktu penggunaan, menghitung energi listrik, membuat tabel, grafik, dan membandingkan Analog vs Smart Energy.
+
+</p>
+
+</div>
+
+<div class="activity-step">
+
+<strong>Aktivitas 2 — Informatika</strong>
+
+<p class="text-sm text-slate-400 mt-2">
+
+Mendesain logika sensor, membaca data Arduino, menguji otomatisasi, dan memahami alur data menuju dashboard.
+
+</p>
+
+</div>
+
+<div class="activity-step">
+
+<strong>Aktivitas 3 — Ekonomi</strong>
+
+<p class="text-sm text-slate-400 mt-2">
+
+Menghitung biaya operasional listrik dan menganalisis manfaat ekonomi dari penghematan energi.
+
+</p>
+
+</div>
+
+<div class="activity-step">
+
+<strong>Aktivitas 4 — Bahasa Indonesia & PPKn</strong>
+
+<p class="text-sm text-slate-400 mt-2">
+
+Menyusun laporan audit, argumentasi rekomendasi, kampanye hemat energi, dan aksi tanggung jawab warga sekolah.
+
+</p>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+
+<!-- =========================
+     ARDUINO REAL TIME
+========================= -->
+
+<section
+  id="realtime"
+  class="mb-10"
+>
+
+<div
+  class="glass
+  rounded-[30px]
+  p-6 md:p-8"
+>
+
+<div
+  class="flex
+  flex-col
+  lg:flex-row
+  lg:justify-between
+  gap-5"
+>
+
+<div>
+
+<div
+  class="text-xs
+  uppercase
+  font-black
+  text-emerald-300
+  tracking-[.2em]"
+>
+
+Future IoT Ready
+
+</div>
+
+<h2
+  class="text-3xl
+  font-black
+  mt-2"
+>
+
+🤖 Dashboard Arduino Real-Time
+
+</h2>
+
+<p
+  class="text-slate-400
+  mt-3
+  max-w-3xl"
+>
+
+Struktur dashboard telah disiapkan agar nantinya dapat menerima data sensor dari Arduino melalui Serial, Wi-Fi, ESP8266/ESP32, Firebase, MQTT, atau API sekolah.
+
+</p>
+
+</div>
+
+<div
+  class="no-print"
+>
+
+<button
+  type="button"
+  onclick="simulateArduinoData()"
+  class="action-btn primary"
+>
+
+⚡ Simulasikan Data Sensor
+
+</button>
+
+</div>
+
+</div>
+
+
+<div
+  class="grid
+  md:grid-cols-2
+  xl:grid-cols-4
+  gap-4
+  mt-7"
+>
+
+<div class="analytics-card">
+
+<div class="text-sm text-slate-400">Status Koneksi</div>
+
+<div
+  id="arduinoConnection"
+  class="font-black
+  text-emerald-300
+  mt-2"
+>
+
+● SIAP INTEGRASI
+
+</div>
+
+</div>
+
+<div class="analytics-card">
+
+<div class="text-sm text-slate-400">PIR</div>
+
+<div
+  id="pirLive"
+  class="text-2xl font-black mt-2 realtime-number"
+>
+
+Tidak Terdeteksi
+
+</div>
+
+</div>
+
+<div class="analytics-card">
+
+<div class="text-sm text-slate-400">Intensitas Cahaya</div>
+
+<div
+  id="ldrLive"
+  class="text-2xl font-black mt-2 realtime-number"
+>
+
+0 lux
+
+</div>
+
+</div>
+
+<div class="analytics-card">
+
+<div class="text-sm text-slate-400">Daya Terbaca</div>
+
+<div
+  id="powerLive"
+  class="text-2xl font-black mt-2 realtime-number"
+>
+
+0 W
+
+</div>
+
+</div>
+
+</div>
+
+
+<div
+  class="analytics-card
+  mt-5"
+>
+
+<div
+  class="flex
+  flex-wrap
+  items-center
+  gap-4"
+>
+
+<span
+  class="font-black sensor-live"
+>
+
+LIVE SENSOR STREAM
+
+</span>
+
+<span
+  id="sensorTimestamp"
+  class="text-sm text-slate-400"
+>
+
+Menunggu data sensor...
+
+</span>
+
+</div>
+
+<p
+  class="text-sm
+  text-slate-400
+  mt-4"
+>
+
+Hook integrasi tersedia melalui fungsi <strong>updateArduinoData(data)</strong>. Sistem dapat menerima objek data seperti PIR, LDR, daya, energi, atau parameter sensor lain tanpa menghapus kalkulator dan simulasi yang sudah ada.
+
+</p>
+
+</div>
+
+</div>
+
+</section>
+
+
+
+
+
+<!-- =========================
      TEAM
 ========================= -->
 
@@ -4781,7 +5944,554 @@ function calculateEnergy() {
     );
 
 
+  /* =========================
+     ADVANCED SAVER-KIT ANALYTICS
+  ========================= */
+
+  updateSaverKitAnalytics({
+
+    analogEnergy,
+    smartEnergy,
+    savingEnergy,
+    analogCost,
+    smartCost,
+    savingCost,
+    efficiency,
+    days
+
+  });
+
+
 }
+
+
+/* =========================
+   SAVER-KIT ADVANCED ANALYTICS
+========================= */
+
+function updateSaverKitAnalytics(data) {
+
+  const {
+
+    analogEnergy,
+    smartEnergy,
+    savingEnergy,
+    analogCost,
+    smartCost,
+    savingCost,
+    efficiency,
+    days
+
+  } = data;
+
+
+  /* DAILY ENERGY DATA */
+
+  const safeDays =
+    Math.max(days || 1, 1);
+
+
+  const analogDaily =
+    analogEnergy / safeDays;
+
+
+  const smartDaily =
+    smartEnergy / safeDays;
+
+
+  renderEnergyBarChart(
+    analogDaily,
+    smartDaily
+  );
+
+
+  /* EFFICIENCY SCORE */
+
+  const score =
+    Math.max(
+      0,
+      Math.min(
+        100,
+        efficiency
+      )
+    );
+
+
+  document.getElementById(
+    "efficiencyScore"
+  ).textContent =
+    score.toFixed(0);
+
+
+  const status =
+    document.getElementById(
+      "energyStatus"
+    );
+
+
+  const description =
+    document.getElementById(
+      "statusDescription"
+    );
+
+
+  status.className =
+    "status-badge";
+
+
+  if (score >= 60) {
+
+    status.classList.add(
+      "status-efficient"
+    );
+
+    status.textContent =
+      "🟢 EFISIEN";
+
+    description.textContent =
+      "Sistem Smart Energy menunjukkan penghematan tinggi dan layak menjadi rekomendasi penerapan.";
+
+  } else if (score >= 30) {
+
+    status.classList.add(
+      "status-enough"
+    );
+
+    status.textContent =
+      "🟡 CUKUP";
+
+    description.textContent =
+      "Penghematan sudah terlihat, tetapi masih terdapat peluang optimasi penggunaan energi.";
+
+  } else {
+
+    status.classList.add(
+      "status-waste"
+    );
+
+    status.textContent =
+      "🔴 BOROS";
+
+    description.textContent =
+      "Efisiensi masih rendah. Audit penggunaan dan pengaturan otomatis perlu ditingkatkan.";
+
+  }
+
+
+  /* TARGET 30% */
+
+  const target =
+    30;
+
+
+  const progress =
+    Math.min(
+      100,
+      (score / target) * 100
+    );
+
+
+  document.getElementById(
+    "targetProgressFill"
+  ).style.width =
+    progress + "%";
+
+
+  document.getElementById(
+    "targetProgressText"
+  ).textContent =
+    score.toFixed(0)
+    + "% / "
+    + target
+    + "%";
+
+
+  document.getElementById(
+    "monthlySavingSummary"
+  ).textContent =
+    "Rp "
+    + savingCost.toLocaleString(
+      "id-ID"
+    );
+
+
+  /* Keep latest values for report */
+
+  window.saverKitEnergyData = {
+
+    analogEnergy,
+    smartEnergy,
+    savingEnergy,
+    analogCost,
+    smartCost,
+    savingCost,
+    efficiency,
+    days
+
+  };
+
+}
+
+
+function renderEnergyBarChart(
+  analogDaily,
+  smartDaily
+) {
+
+  const chart =
+    document.getElementById(
+      "energyBarChart"
+    );
+
+
+  if (!chart) return;
+
+
+  chart.innerHTML = "";
+
+
+  const labels =
+
+    [
+      "Sen",
+      "Sel",
+      "Rab",
+      "Kam",
+      "Jum",
+      "Sab",
+      "Min"
+    ];
+
+
+  const analogFactors =
+
+    [
+      0.95,
+      1.04,
+      1.00,
+      1.08,
+      0.98,
+      0.55,
+      0.45
+    ];
+
+
+  const smartFactors =
+
+    [
+      0.92,
+      1.00,
+      0.96,
+      1.03,
+      0.94,
+      0.58,
+      0.48
+    ];
+
+
+  const values = [];
+
+
+  labels.forEach(
+    (label, index) => {
+
+      values.push(
+        analogDaily *
+        analogFactors[index]
+      );
+
+      values.push(
+        smartDaily *
+        smartFactors[index]
+      );
+
+    }
+  );
+
+
+  const maxValue =
+    Math.max(
+      ...values,
+      0.01
+    );
+
+
+  labels.forEach(
+    (label, index) => {
+
+      const analogValue =
+        analogDaily *
+        analogFactors[index];
+
+
+      const smartValue =
+        smartDaily *
+        smartFactors[index];
+
+
+      const analogHeight =
+        Math.max(
+          4,
+          (analogValue / maxValue)
+          * 100
+        );
+
+
+      const smartHeight =
+        Math.max(
+          4,
+          (smartValue / maxValue)
+          * 100
+        );
+
+
+      const group =
+        document.createElement(
+          "div"
+        );
+
+
+      group.className =
+        "bar-group";
+
+
+      group.innerHTML =
+        '<div class="bar bar-analog" title="Analog: '
+        + analogValue.toFixed(2)
+        + ' kWh" style="height:'
+        + analogHeight
+        + '%"></div>'
+        +
+        '<div class="bar bar-smart" title="Smart: '
+        + smartValue.toFixed(2)
+        + ' kWh" style="height:'
+        + smartHeight
+        + '%"></div>'
+        +
+        '<span class="bar-label">'
+        + label
+        + '</span>';
+
+
+      chart.appendChild(
+        group
+      );
+
+    }
+  );
+
+}
+
+
+/* =========================
+   GENERATE ENERGY REPORT
+========================= */
+
+function generateEnergyReport() {
+
+  const data =
+    window.saverKitEnergyData;
+
+
+  if (!data) {
+
+    calculateEnergy();
+
+  }
+
+
+  const reportData =
+    window.saverKitEnergyData;
+
+
+  const statusText =
+    document.getElementById(
+      "energyStatus"
+    ).textContent;
+
+
+  const report =
+`LAPORAN ENERGI SAVER-KIT
+SMA Negeri 2 Bitung
+Tanggal: ${new Date().toLocaleString("id-ID")}
+
+1. SISTEM ANALOG
+Energi: ${reportData.analogEnergy.toFixed(2)} kWh
+Biaya: Rp ${reportData.analogCost.toLocaleString("id-ID")}
+
+2. SMART ENERGY
+Energi: ${reportData.smartEnergy.toFixed(2)} kWh
+Biaya: Rp ${reportData.smartCost.toLocaleString("id-ID")}
+
+3. HASIL PENGHEMATAN
+Energi Hemat: ${reportData.savingEnergy.toFixed(2)} kWh
+Biaya Hemat: Rp ${reportData.savingCost.toLocaleString("id-ID")}
+Skor Efisiensi: ${reportData.efficiency.toFixed(0)}%
+Status: ${statusText}
+
+REKOMENDASI
+Gunakan hasil audit energi dan data sensor untuk menentukan area prioritas penghematan energi sekolah.`;
+
+  const reportWindow =
+    window.open(
+      "",
+      "_blank"
+    );
+
+
+  if (!reportWindow) {
+
+    window.print();
+
+    return;
+
+  }
+
+
+  reportWindow.document.write(
+    "<!DOCTYPE html><html><head><title>Laporan Energi SAVER-KIT</title>"
+    +
+    "<style>body{font-family:Arial,sans-serif;padding:40px;line-height:1.7;color:#18312a}"
+    +
+    "h1{color:#047857}pre{white-space:pre-wrap;font-family:Arial,sans-serif}"
+    +
+    "@media print{button{display:none}}</style></head><body>"
+    +
+    "<h1>📄 LAPORAN ENERGI SAVER-KIT</h1>"
+    +
+    "<pre>"
+    + report.replace(/&/g, "&amp;").replace(/</g, "&lt;")
+    + "</pre>"
+    +
+    "<button onclick='window.print()'>🖨 Cetak / Simpan PDF</button>"
+    +
+    "</body></html>"
+  );
+
+
+  reportWindow.document.close();
+
+}
+
+
+/* =========================
+   ARDUINO / IOT DATA HOOK
+========================= */
+
+function updateArduinoData(data = {}) {
+
+  const pir =
+    data.pir === true
+      ? "Terdeteksi"
+      : data.pir === false
+        ? "Tidak Terdeteksi"
+        : (
+          data.pir ??
+          "Menunggu"
+        );
+
+
+  const ldr =
+    data.ldr ??
+    data.lux ??
+    0;
+
+
+  const power =
+    data.power ??
+    data.watt ??
+    0;
+
+
+  document.getElementById(
+    "pirLive"
+  ).textContent =
+    pir;
+
+
+  document.getElementById(
+    "ldrLive"
+  ).textContent =
+    Number(ldr).toLocaleString(
+      "id-ID"
+    )
+    + " lux";
+
+
+  document.getElementById(
+    "powerLive"
+  ).textContent =
+    Number(power).toLocaleString(
+      "id-ID"
+    )
+    + " W";
+
+
+  document.getElementById(
+    "arduinoConnection"
+  ).textContent =
+    "● DATA MASUK";
+
+
+  document.getElementById(
+    "sensorTimestamp"
+  ).textContent =
+    "Data terakhir: "
+    + new Date().toLocaleTimeString(
+      "id-ID"
+    );
+
+
+  /* Optional real sensor values can update calculator */
+
+  if (
+    typeof data.power === "number"
+  ) {
+
+    document.getElementById(
+      "power"
+    ).value =
+      data.power;
+
+    calculateEnergy();
+
+  }
+
+}
+
+
+function simulateArduinoData() {
+
+  const simulatedPower =
+    Math.round(
+      12 + Math.random() * 24
+    );
+
+
+  updateArduinoData({
+
+    pir:
+      Math.random() > 0.35,
+
+    ldr:
+      Math.round(
+        150 + Math.random() * 700
+      ),
+
+    power:
+      simulatedPower
+
+  });
+
+}
+
+
+/* Global endpoint for future Serial/WebSocket/MQTT/Firebase/API bridge */
+
+window.updateArduinoData =
+  updateArduinoData;
+
+
 
 
 /* =========================
