@@ -1,40 +1,19 @@
-<!doctype html>
+<!DOCTYPE html>
+
 <html lang="id">
-
 <head>
-
-  <meta charset="UTF-8">
-
-  <meta
-    name="viewport"
-    content="width=device-width, initial-scale=1.0"
-  >
-
-
-  <title>
-    SAVER-KIT | Smart Energy Virtual Simulator & Sensor Kit
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>
+    SAVER-KIT | Smart Energy Virtual Simulator &amp; Sensor Kit
   </title>
-
-
-  <!-- TAILWIND -->
-
-  <script src="https://cdn.tailwindcss.com"></script>
-
-
-  <!-- LUCIDE ICON -->
-
-  <script src="https://unpkg.com/lucide@latest"></script>
-
-
-  <!-- FONT -->
-
-  <link
-    href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap"
-    rel="stylesheet"
-  >
-
-
-  <style>
+<!-- TAILWIND -->
+<script src="https://cdn.tailwindcss.com"></script>
+<!-- LUCIDE ICON -->
+<script src="https://unpkg.com/lucide@latest"></script>
+<!-- FONT -->
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&amp;display=swap" rel="stylesheet"/>
+<style>
 
     * {
 
@@ -1124,118 +1103,61 @@
       .hero-glow { border-radius: 24px !important; }
     }
 
-  </style>
+  
 
+/* =========================================================
+   SIDEBAR NAVIGATION REVISION
+   Konten asli SAVER-KIT tidak diubah.
+   Hanya ditambahkan tata letak menu kiri dan sistem panel.
+========================================================= */
+.sidebar-app{display:grid;grid-template-columns:280px minmax(0,1fr);gap:24px;align-items:start;margin-bottom:32px}
+.sidebar-menu{position:sticky;top:20px;padding:18px;border-radius:28px;background:rgba(255,255,255,.88);border:1px solid rgba(126,87,194,.16);box-shadow:0 16px 42px rgba(70,53,105,.10);backdrop-filter:blur(18px);max-height:calc(100vh - 40px);overflow-y:auto}
+.sidebar-brand{display:flex;align-items:center;gap:12px;padding:12px 10px 18px;margin-bottom:10px;border-bottom:1px solid rgba(126,87,194,.12)}
+.sidebar-brand-icon{width:44px;height:44px;border-radius:15px;display:grid;place-items:center;background:linear-gradient(135deg,#7044d7,#9b6bea);color:#fff;box-shadow:0 10px 20px rgba(112,68,215,.20)}
+.sidebar-brand h3{margin:0;font-size:1rem;font-weight:900;color:#26212f}.sidebar-brand p{margin:2px 0 0;font-size:.72rem;color:#77717f;font-weight:700}
+.sidebar-nav{display:flex;flex-direction:column;gap:7px}
+.sidebar-link{width:100%;display:flex;align-items:center;gap:12px;padding:12px 13px;border-radius:15px;border:1px solid transparent;background:transparent;color:#5f5969;text-align:left;font-weight:800;font-size:.9rem;transition:.2s ease;cursor:pointer}
+.sidebar-link i{width:18px;height:18px;flex:0 0 auto}.sidebar-link:hover{background:rgba(124,77,219,.08);color:#7044d7}.sidebar-link.active{background:linear-gradient(135deg,#7044d7,#8b5cf6);color:#fff;box-shadow:0 10px 22px rgba(112,68,215,.20)}
+.sidebar-content{min-width:0}.app-panel{display:none;animation:panelIn .28s ease}.app-panel.active{display:block}.app-panel>section{margin-bottom:0!important}
+.welcome-panel{display:none}.welcome-panel.active{display:block}.welcome-card{padding:clamp(28px,5vw,60px);border-radius:30px;background:radial-gradient(circle at 0% 0%,rgba(70,198,203,.25),transparent 30%),radial-gradient(circle at 100% 0%,rgba(158,112,234,.22),transparent 32%),rgba(255,255,255,.84);border:1px solid rgba(126,87,194,.16);box-shadow:0 16px 45px rgba(73,54,115,.08);text-align:center}.welcome-icon{width:86px;height:86px;border-radius:28px;margin:0 auto 22px;display:grid;place-items:center;background:linear-gradient(135deg,#7044d7,#9b6bea);color:#fff;box-shadow:0 18px 34px rgba(112,68,215,.22)}.welcome-card h2{font-size:clamp(2rem,4vw,3.3rem);font-weight:900;margin:0;background:linear-gradient(90deg,#3261a8,#4f46d9,#713bc4);-webkit-background-clip:text;background-clip:text;color:transparent}.welcome-card p{max-width:760px;margin:18px auto 0;color:#64606c;line-height:1.8;font-weight:600}.welcome-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;margin-top:32px}.welcome-grid div{padding:18px;border-radius:18px;background:rgba(124,77,219,.06);border:1px solid rgba(124,77,219,.10);text-align:left}.welcome-grid strong{display:block;color:#7044d7;margin-bottom:5px}.welcome-grid span{font-size:.84rem;color:#706b77;font-weight:600}
+.panel-title-mobile{display:none}
+@keyframes panelIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+@media(max-width:1024px){.sidebar-app{grid-template-columns:1fr}.sidebar-menu{position:relative;top:0;max-height:none}.sidebar-nav{display:grid;grid-template-columns:repeat(2,minmax(0,1fr))}.sidebar-brand{grid-column:1/-1}}
+@media(max-width:640px){.sidebar-app{gap:16px}.sidebar-menu{padding:14px;border-radius:22px}.sidebar-nav{grid-template-columns:1fr}.sidebar-link{padding:11px 12px}.welcome-grid{grid-template-columns:1fr}.welcome-card{border-radius:24px;padding:28px 20px}}
+
+</style>
 </head>
-
-
-
 <body>
-
-
 <!-- =========================
      MAIN CONTAINER
 ========================= -->
-
-<div
-  class="max-w-7xl mx-auto px-4 py-6"
->
-
-
+<div class="max-w-7xl mx-auto px-4 py-6">
 <!-- =========================
      HEADER
 ========================= -->
-
-<header
-  class="glass hero-glow
-  rounded-[30px]
-  p-6 md:p-10
-  mb-6"
->
-
-
-<div
-  class="flex flex-col xl:flex-row
-  gap-8
-  xl:items-center
-  xl:justify-between"
->
-
-
+<header class="glass hero-glow rounded-[30px] p-6 md:p-10 mb-6">
+<div class="flex flex-col xl:flex-row gap-8 xl:items-center xl:justify-between">
 <!-- LEFT -->
-
-<div
-  class="max-w-4xl"
->
-
-
-<div
-  class="inline-flex
-  items-center gap-2
-  px-4 py-2
-  rounded-full
-
-  bg-emerald-500/10
-
-  border
-  border-emerald-400/20
-
-  text-emerald-300
-
-  text-xs
-
-  font-black
-
-  uppercase
-
-  tracking-wider"
->
-
-
-<i
-  data-lucide="zap"
-  class="w-4 h-4"
-></i>
+<div class="max-w-4xl">
+<div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-emerald-500/10 border border-emerald-400/20 text-emerald-300 text-xs font-black uppercase tracking-wider">
+<i class="w-4 h-4" data-lucide="zap"></i>
 
 
 Teacher Tech Championship 2026
 
 
 </div>
-
-
-
-<h1
-  class="text-4xl md:text-6xl
-  font-black
-  mt-5"
->
+<h1 class="text-4xl md:text-6xl font-black mt-5">
 
 SAVER-KIT
 
 </h1>
+<h2 class="text-xl md:text-3xl font-black text-emerald-300 mt-2">
 
-
-
-<h2
-  class="text-xl md:text-3xl
-  font-black
-  text-emerald-300
-  mt-2"
->
-
-Smart Energy Virtual Simulator & Sensor Kit
+Smart Energy Virtual Simulator &amp; Sensor Kit
 
 </h2>
-
-
-
-<p
-  class="text-slate-300
-  leading-relaxed
-  mt-5
-  max-w-4xl"
->
+<p class="text-slate-300 leading-relaxed mt-5 max-w-4xl">
 
 SAVER-KIT merupakan inovasi pembelajaran
 berbasis teknologi yang mengintegrasikan
@@ -1261,514 +1183,183 @@ serta merancang solusi penghematan energi
 berbasis sensor digital.
 
 </p>
-
-
-
 <!-- TAG -->
-
-<div
-  class="flex flex-wrap
-  gap-2
-  mt-6"
->
-
-
-<span
-  class="px-4 py-2
-  rounded-xl
-
-  bg-slate-900/70
-
-  border border-slate-700
-
-  text-sm font-bold"
->
+<div class="flex flex-wrap gap-2 mt-6">
+<span class="px-4 py-2 rounded-xl bg-slate-900/70 border border-slate-700 text-sm font-bold">
 
 🏫 SMA Negeri 2 Bitung
 
 </span>
-
-
-
-<span
-  class="px-4 py-2
-  rounded-xl
-
-  bg-slate-900/70
-
-  border border-slate-700
-
-  text-sm font-bold"
->
+<span class="px-4 py-2 rounded-xl bg-slate-900/70 border border-slate-700 text-sm font-bold">
 
 👨‍💻 TARSIUS EDUTECH
 
 </span>
-
-
-
-<span
-  class="px-4 py-2
-  rounded-xl
-
-  bg-slate-900/70
-
-  border border-slate-700
-
-  text-sm font-bold"
->
+<span class="px-4 py-2 rounded-xl bg-slate-900/70 border border-slate-700 text-sm font-bold">
 
 🌱 Smart Energy Learning
 
 </span>
-
-
 </div>
-
-
 </div>
-
-
-
 <!-- RIGHT -->
-
-<div
-  class="grid
-  grid-cols-2
-  gap-3
-  min-w-[280px]"
->
-
-
-<div
-  class="glass
-  rounded-2xl
-  p-5
-  text-center"
->
-
-<div
-  class="text-3xl
-  font-black
-  text-yellow-300"
->
+<div class="grid grid-cols-2 gap-3 min-w-[280px]">
+<div class="glass rounded-2xl p-5 text-center">
+<div class="text-3xl font-black text-yellow-300">
 
 3
 
 </div>
-
-<div
-  class="text-xs
-  text-slate-400
-  font-bold
-  mt-1"
->
+<div class="text-xs text-slate-400 font-bold mt-1">
 
 SIMULASI
 
 </div>
-
 </div>
-
-
-
-<div
-  class="glass
-  rounded-2xl
-  p-5
-  text-center"
->
-
-<div
-  class="text-3xl
-  font-black
-  text-emerald-300"
->
+<div class="glass rounded-2xl p-5 text-center">
+<div class="text-3xl font-black text-emerald-300">
 
 AUTO
 
 </div>
-
-<div
-  class="text-xs
-  text-slate-400
-  font-bold
-  mt-1"
->
+<div class="text-xs text-slate-400 font-bold mt-1">
 
 ENERGI
 
 </div>
-
 </div>
-
-
-
-<div
-  class="glass
-  rounded-2xl
-  p-5
-  text-center"
->
-
-<div
-  class="text-3xl
-  font-black
-  text-sky-300"
->
+<div class="glass rounded-2xl p-5 text-center">
+<div class="text-3xl font-black text-sky-300">
 
 STEM
 
 </div>
-
-<div
-  class="text-xs
-  text-slate-400
-  font-bold
-  mt-1"
->
+<div class="text-xs text-slate-400 font-bold mt-1">
 
 LEARNING
 
 </div>
-
 </div>
-
-
-
-<div
-  class="glass
-  rounded-2xl
-  p-5
-  text-center"
->
-
-<div
-  class="text-3xl
-  font-black
-  text-purple-300"
->
+<div class="glass rounded-2xl p-5 text-center">
+<div class="text-3xl font-black text-purple-300">
 
 8+
 
 </div>
-
-<div
-  class="text-xs
-  text-slate-400
-  font-bold
-  mt-1"
->
+<div class="text-xs text-slate-400 font-bold mt-1">
 
 MAPEL
 
 </div>
-
 </div>
-
-
 </div>
-
-
 </div>
-
-
 </header>
-
-
-
 <!-- =========================
      NAVIGATION
 ========================= -->
-
-<nav
-  class="glass
-  rounded-2xl
-  p-4
-  mb-6"
->
-
-
-<div
-  class="flex
-  flex-wrap
-  gap-5
-  justify-center
-  text-sm
-  font-bold
-  text-slate-300"
->
-
-
-<a
-  href="#simulasi"
-  class="nav-link"
->
+<nav class="glass rounded-2xl p-4 mb-6">
+<div class="flex flex-wrap gap-5 justify-center text-sm font-bold text-slate-300">
+<a class="nav-link" href="#simulasi">
 
 Simulasi
 
 </a>
-
-
-<a
-  href="#dashboard"
-  class="nav-link"
->
+<a class="nav-link" href="#dashboard">
 
 Dashboard Energi
 
 </a>
-
-
-<a
-  href="#lintasmapel"
-  class="nav-link"
->
+<a class="nav-link" href="#lintasmapel">
 
 Lintas Mapel
 
 </a>
-
-
-<a
-  href="#stem"
-  class="nav-link"
->
+<a class="nav-link" href="#stem">
 
 STEM
 
 </a>
-
-
-<a
-  href="#deeplearning"
-  class="nav-link"
->
+<a class="nav-link" href="#deeplearning">
 
 Deep Learning
 
 </a>
-
-
-<a
-  href="#auditenergi"
-  class="nav-link"
->
+<a class="nav-link" href="#auditenergi">
 
 Audit Energi
 
 </a>
-
-
-<a
-  href="#ecosensor"
-  class="nav-link"
->
+<a class="nav-link" href="#ecosensor">
 
 Eco-Sensor Kit
 
 </a>
-
-
-<a
-  href="#projekaktivitas"
-  class="nav-link"
->
+<a class="nav-link" href="#projekaktivitas">
 
 Projek Siswa
 
 </a>
-
-
-<a
-  href="#realtime"
-  class="nav-link"
->
+<a class="nav-link" href="#realtime">
 
 Arduino Real-Time
 
 </a>
-
-
-<button
-  id="themeToggle"
-  type="button"
-  class="theme-toggle"
-  aria-label="Ubah mode tampilan"
-  title="Ubah mode tampilan"
->
-
-<i
-  id="themeIcon"
-  data-lucide="moon"
-  class="theme-icon"
-></i>
-
+<button aria-label="Ubah mode tampilan" class="theme-toggle" id="themeToggle" title="Ubah mode tampilan" type="button">
+<i class="theme-icon" data-lucide="moon" id="themeIcon"></i>
 <span id="themeText">
 
 Mode Gelap
 
 </span>
-
 </button>
-
-
 </div>
-
-
 </nav>
-
-
-
 <!-- =========================
      MAIN VIEW
 ========================= -->
-
-<section
-  id="menuView"
-  class="fade-in"
->
-
-
-
-<!-- =========================
-     SIMULASI
-========================= -->
-
-<section
-  id="simulasi"
-  class="mb-10"
->
-
-
-<div
-  class="mb-6"
->
-
-
-<div
-  class="text-emerald-300
-  text-xs
-  uppercase
-  font-black
-  tracking-[.2em]"
->
+<section class="fade-in" id="menuView"><div class="sidebar-app"><aside class="sidebar-menu"><div class="sidebar-brand"><div class="sidebar-brand-icon"><i class="w-6 h-6" data-lucide="zap"></i></div><div><h3>SAVER-KIT</h3><p>Pilih menu untuk membuka konten</p></div></div><nav aria-label="Menu SAVER-KIT" class="sidebar-nav"><button class="sidebar-link active" data-target="beranda" type="button"><i class="w-5 h-5" data-lucide="house"></i>Beranda</button><button class="sidebar-link" data-target="simulasi" type="button"><i class="w-5 h-5" data-lucide="play-circle"></i>Simulasi Energi</button><button class="sidebar-link" data-target="dashboard" type="button"><i class="w-5 h-5" data-lucide="calculator"></i>Kalkulator Energi</button><button class="sidebar-link" data-target="lintasmapel" type="button"><i class="w-5 h-5" data-lucide="network"></i>Lintas Mata Pelajaran</button><button class="sidebar-link" data-target="stem" type="button"><i class="w-5 h-5" data-lucide="atom"></i>Integrasi STEM</button><button class="sidebar-link" data-target="deeplearning" type="button"><i class="w-5 h-5" data-lucide="brain"></i>Deep Learning</button><button class="sidebar-link" data-target="advancedAnalytics" type="button"><i class="w-5 h-5" data-lucide="bar-chart-3"></i>Analitik Energi</button><button class="sidebar-link" data-target="auditenergi" type="button"><i class="w-5 h-5" data-lucide="clipboard-check"></i>Audit Energi</button><button class="sidebar-link" data-target="ecosensor" type="button"><i class="w-5 h-5" data-lucide="cpu"></i>Eco-Sensor Kit</button><button class="sidebar-link" data-target="projekaktivitas" type="button"><i class="w-5 h-5" data-lucide="folder-kanban"></i>Projek Aktivitas</button><button class="sidebar-link" data-target="realtime" type="button"><i class="w-5 h-5" data-lucide="radio"></i>IoT Real-Time</button><button class="sidebar-link" data-target="timPengembang" type="button"><i class="w-5 h-5" data-lucide="users"></i>Tim Pengembang</button></nav></aside><div class="sidebar-content"><div class="welcome-panel active" id="beranda"><div class="welcome-card"><div class="welcome-icon"><i class="w-10 h-10" data-lucide="layout-dashboard"></i></div><h2>Selamat Datang di SAVER-KIT</h2><p></p><div class="welcome-grid"><div><strong>🧭 Mudah Dijelajahi</strong><span>Akses setiap fitur dan informasi dengan navigasi yang sederhana dan nyaman.</span></div><div><strong>⚡ Interaktif & Inovatif</strong><span>Nikmati berbagai simulasi, kalkulator, dan aktivitas yang dapat digunakan secara langsung.</span></div><div><strong>📚 Lengkap & Terintegrasi</strong><span>Seluruh fitur SAVER-KIT tersedia dalam satu platform yang terstruktur dan mudah diakses.</span></div></div></div></div><div class="app-panel" data-panel="simulasi"><section class="mb-10" id="simulasi">
+<div class="mb-6">
+<div class="text-emerald-300 text-xs uppercase font-black tracking-[.2em]">
 
 Interactive Simulation
 
 </div>
-
-
-
-<h2
-  class="text-3xl
-  font-black
-  mt-2"
->
+<h2 class="text-3xl font-black mt-2">
 
 Eksplorasi Sistem Energi Sekolah
 
 </h2>
-
-
-
-<p
-  class="text-slate-400
-  mt-2"
->
+<p class="text-slate-400 mt-2">
 
 Bandingkan penggunaan energi listrik
 pada sistem manual dan sistem otomatis
 berbasis sensor digital.
 
 </p>
-
-
 </div>
-
-
-
 <!-- GRID -->
-
-<div
-  class="grid
-  lg:grid-cols-3
-  gap-5"
->
-
-
-
+<div class="grid lg:grid-cols-3 gap-5">
 <!-- =====================
      ANALOG
 ===================== -->
-
-<article
-  class="menu-card
-  glass
-  rounded-[28px]
-  p-5"
->
-
-
-<div
-  class="flex
-  justify-between
-  items-center
-  mb-4"
->
-
-
-<div
-  class="w-14 h-14
-  rounded-2xl
-
-  bg-yellow-400
-
-  flex
-  items-center
-  justify-center"
->
-
-<i
-  data-lucide="lightbulb"
-  class="w-7 h-7 text-slate-900"
-></i>
-
+<article class="menu-card glass rounded-[28px] p-5">
+<div class="flex justify-between items-center mb-4">
+<div class="w-14 h-14 rounded-2xl bg-yellow-400 flex items-center justify-center">
+<i class="w-7 h-7 text-slate-900" data-lucide="lightbulb"></i>
 </div>
-
-
-<span
-  class="text-xs
-  font-black
-  text-yellow-300"
->
+<span class="text-xs font-black text-yellow-300">
 
 MANUAL
 
 </span>
-
-
 </div>
-
-
-
-<h3
-  class="text-xl
-  font-black"
->
+<h3 class="text-xl font-black">
 
 Ruang Kelas Analog
 
 </h3>
-
-
-
-<p
-  class="text-sm
-  text-slate-400
-  mt-3
-  leading-relaxed"
->
+<p class="text-sm text-slate-400 mt-3 leading-relaxed">
 
 Simulasi penggunaan lampu
 dengan sakelar manual.
@@ -1778,341 +1369,88 @@ walaupun kelas kosong
 atau cahaya alami sudah cukup.
 
 </p>
-
-
-
-<div
-  class="scene-mini
-  mt-5"
->
-
-
-<div
-  class="absolute
-  top-5
-  left-[20%]"
->
-
+<div class="scene-mini mt-5">
+<div class="absolute top-5 left-[20%]">
 <div class="light-dot"></div>
-
 </div>
-
-
-<div
-  class="absolute
-  top-5
-  left-[48%]"
->
-
+<div class="absolute top-5 left-[48%]">
 <div class="light-dot"></div>
-
 </div>
-
-
-<div
-  class="absolute
-  top-5
-  left-[75%]"
->
-
+<div class="absolute top-5 left-[75%]">
 <div class="light-dot"></div>
-
 </div>
-
-
-<div
-  class="absolute
-  bottom-6
-  left-6
-  right-6
-
-  grid
-  grid-cols-3
-  gap-3"
->
-
-
+<div class="absolute bottom-6 left-6 right-6 grid grid-cols-3 gap-3">
 <div class="bg-stone-600 rounded-lg h-12"></div>
-
 <div class="bg-stone-600 rounded-lg h-12"></div>
-
 <div class="bg-stone-600 rounded-lg h-12"></div>
-
-
 </div>
-
-
 </div>
-
-
-
-<button
-  class="open-sim
-
-  w-full
-
-  mt-5
-
-  bg-yellow-400
-
-  hover:bg-yellow-300
-
-  text-slate-900
-
-  py-3
-
-  rounded-2xl
-
-  font-black"
-
-  data-title="Simulasi Ruang Kelas Analog"
-
-  data-url="https://fredynandustakalamingan.github.io/simulasi-listrik-analog/"
->
+<button class="open-sim w-full mt-5 bg-yellow-400 hover:bg-yellow-300 text-slate-900 py-3 rounded-2xl font-black" data-title="Simulasi Ruang Kelas Analog" data-url="https://fredynandustakalamingan.github.io/simulasi-listrik-analog/">
 
 ▶ Buka Simulasi
 
 </button>
-
-
 </article>
-
-
-
 <!-- =====================
      SMART CLASS
 ===================== -->
-
-<article
-  class="menu-card
-  glass
-  rounded-[28px]
-  p-5"
->
-
-
-<div
-  class="flex
-  justify-between
-  items-center
-  mb-4"
->
-
-
-<div
-  class="w-14 h-14
-  rounded-2xl
-
-  bg-emerald-400
-
-  flex
-  items-center
-  justify-center"
->
-
-<i
-  data-lucide="radar"
-  class="w-7 h-7 text-slate-900"
-></i>
-
+<article class="menu-card glass rounded-[28px] p-5">
+<div class="flex justify-between items-center mb-4">
+<div class="w-14 h-14 rounded-2xl bg-emerald-400 flex items-center justify-center">
+<i class="w-7 h-7 text-slate-900" data-lucide="radar"></i>
 </div>
-
-
-<span
-  class="text-xs
-  font-black
-  text-emerald-300"
->
+<span class="text-xs font-black text-emerald-300">
 
 PIR + LDR
 
 </span>
-
-
 </div>
-
-
-
-<h3
-  class="text-xl
-  font-black"
->
+<h3 class="text-xl font-black">
 
 Ruang Kelas Pintar
 
 </h3>
-
-
-
-<p
-  class="text-sm
-  text-slate-400
-  mt-3
-  leading-relaxed"
->
+<p class="text-sm text-slate-400 mt-3 leading-relaxed">
 
 Simulasi penerangan otomatis
 berbasis sensor gerak PIR
 dan sensor cahaya LDR.
 
 </p>
-
-
-
-<div
-  class="scene-mini
-  mt-5"
->
-
-
-<div
-  class="sensor-ring
-  w-16 h-16
-  top-8 left-[20%]"
-></div>
-
-
-<div
-  class="sensor-ring
-  w-16 h-16
-  top-8 left-[50%]"
-></div>
-
-
-<div
-  class="light-dot
-  top-5 left-[25%]"
-></div>
-
-
-<div
-  class="light-dot
-  top-5 left-[55%]"
-></div>
-
-
-<div
-  class="mini-person
-  left-[35%]
-  bottom-8"
-></div>
-
-
-<div
-  class="mini-person
-  left-[65%]
-  bottom-10"
-></div>
-
-
+<div class="scene-mini mt-5">
+<div class="sensor-ring w-16 h-16 top-8 left-[20%]"></div>
+<div class="sensor-ring w-16 h-16 top-8 left-[50%]"></div>
+<div class="light-dot top-5 left-[25%]"></div>
+<div class="light-dot top-5 left-[55%]"></div>
+<div class="mini-person left-[35%] bottom-8"></div>
+<div class="mini-person left-[65%] bottom-10"></div>
 </div>
-
-
-
-<button
-  class="open-sim
-
-  w-full
-
-  mt-5
-
-  bg-emerald-500
-
-  hover:bg-emerald-400
-
-  text-slate-900
-
-  py-3
-
-  rounded-2xl
-
-  font-black"
-
-  data-title="Simulasi Ruang Kelas Pintar"
-
-  data-url="https://fredynandustakalamingan.github.io/simulasi-listrik-sensor/"
->
+<button class="open-sim w-full mt-5 bg-emerald-500 hover:bg-emerald-400 text-slate-900 py-3 rounded-2xl font-black" data-title="Simulasi Ruang Kelas Pintar" data-url="https://fredynandustakalamingan.github.io/simulasi-listrik-sensor/">
 
 ▶ Buka Simulasi
 
 </button>
-
-
 </article>
-
-
-
 <!-- =====================
      LORONG
 ===================== -->
-
-<article
-  class="menu-card
-  glass
-  rounded-[28px]
-  p-5"
->
-
-
-<div
-  class="flex
-  justify-between
-  items-center
-  mb-4"
->
-
-
-<div
-  class="w-14 h-14
-  rounded-2xl
-
-  bg-sky-400
-
-  flex
-  items-center
-  justify-center"
->
-
-<i
-  data-lucide="school"
-  class="w-7 h-7 text-slate-900"
-></i>
-
+<article class="menu-card glass rounded-[28px] p-5">
+<div class="flex justify-between items-center mb-4">
+<div class="w-14 h-14 rounded-2xl bg-sky-400 flex items-center justify-center">
+<i class="w-7 h-7 text-slate-900" data-lucide="school"></i>
 </div>
-
-
-<span
-  class="text-xs
-  font-black
-  text-sky-300"
->
+<span class="text-xs font-black text-sky-300">
 
 SMART
 
 </span>
-
-
 </div>
-
-
-
-<h3
-  class="text-xl
-  font-black"
->
+<h3 class="text-xl font-black">
 
 Lorong Sekolah Pintar
 
 </h3>
-
-
-
-<p
-  class="text-sm
-  text-slate-400
-  mt-3
-  leading-relaxed"
->
+<p class="text-sm text-slate-400 mt-3 leading-relaxed">
 
 Lampu lorong merespons
 pergerakan pengguna
@@ -2120,157 +1458,36 @@ dan dapat mati otomatis
 ketika area tidak digunakan.
 
 </p>
-
-
-
-<div
-  class="scene-mini
-  mt-5"
->
-
-
-<div
-  class="absolute
-  top-0 bottom-0
-  left-[35%]
-  right-[35%]
-
-  bg-slate-700/40"
-></div>
-
-
-<div
-  class="light-dot
-  top-5 left-[42%]"
-></div>
-
-
-<div
-  class="light-dot
-  top-5 left-[57%]"
-></div>
-
-
-<div
-  class="sensor-ring
-  w-20 h-20
-  top-10 left-[37%]"
-></div>
-
-
-<div
-  class="mini-person
-  left-[48%]
-  bottom-8"
-></div>
-
-
+<div class="scene-mini mt-5">
+<div class="absolute top-0 bottom-0 left-[35%] right-[35%] bg-slate-700/40"></div>
+<div class="light-dot top-5 left-[42%]"></div>
+<div class="light-dot top-5 left-[57%]"></div>
+<div class="sensor-ring w-20 h-20 top-10 left-[37%]"></div>
+<div class="mini-person left-[48%] bottom-8"></div>
 </div>
-
-
-
-<button
-  class="open-sim
-
-  w-full
-
-  mt-5
-
-  bg-sky-500
-
-  hover:bg-sky-400
-
-  text-slate-900
-
-  py-3
-
-  rounded-2xl
-
-  font-black"
-
-  data-title="Simulasi Lorong Sekolah Pintar"
-
-  data-url="https://fredynandustakalamingan.github.io/simulasi-sensor-lorong/"
->
+<button class="open-sim w-full mt-5 bg-sky-500 hover:bg-sky-400 text-slate-900 py-3 rounded-2xl font-black" data-title="Simulasi Lorong Sekolah Pintar" data-url="https://fredynandustakalamingan.github.io/simulasi-sensor-lorong/">
 
 ▶ Buka Simulasi
 
 </button>
-
-
 </article>
-
-
 </div>
-
-
-</section>
-
-
-
-<!-- =========================
-     DASHBOARD
-========================= -->
-
-<section
-  id="dashboard"
-  class="mb-10"
->
-
-
-<div
-  class="glass
-  rounded-[30px]
-  p-6 md:p-8"
->
-
-
+</section></div><div class="app-panel" data-panel="dashboard"><section class="mb-10" id="dashboard">
+<div class="glass rounded-[30px] p-6 md:p-8">
 <!-- TITLE -->
-
-<div
-  class="flex
-  flex-col md:flex-row
-  justify-between
-  md:items-center
-  gap-4
-  mb-8"
->
-
-
+<div class="flex flex-col md:flex-row justify-between md:items-center gap-4 mb-8">
 <div>
-
-
-<div
-  class="text-xs
-  uppercase
-  font-black
-  text-yellow-300
-  tracking-[.2em]"
->
+<div class="text-xs uppercase font-black text-yellow-300 tracking-[.2em]">
 
 Smart Energy Dashboard
 
 </div>
+<h2 class="text-3xl font-black mt-2">
 
-
-
-<h2
-  class="text-3xl
-  font-black
-  mt-2"
->
-
-Kalkulator Energi & Biaya Otomatis
+Kalkulator Energi &amp; Biaya Otomatis
 
 </h2>
-
-
-
-<p
-  class="text-slate-400
-  mt-2
-  max-w-3xl"
->
+<p class="text-slate-400 mt-2 max-w-3xl">
 
 Masukkan data penggunaan listrik
 untuk menghitung konsumsi energi,
@@ -2279,1042 +1496,368 @@ dan potensi penghematan
 pada sistem otomatis SAVER-KIT.
 
 </p>
-
-
 </div>
-
-
-
-<button
-  onclick="calculateEnergy()"
-
-  class="bg-emerald-500
-
-  hover:bg-emerald-400
-
-  text-slate-900
-
-  px-6 py-3
-
-  rounded-2xl
-
-  font-black"
->
+<button class="bg-emerald-500 hover:bg-emerald-400 text-slate-900 px-6 py-3 rounded-2xl font-black" onclick="calculateEnergy()">
 
 ⚡ Hitung Energi
 
 </button>
-
-
 </div>
-
-
-
 <!-- INPUT -->
-
-<div
-  class="grid
-  md:grid-cols-2
-  lg:grid-cols-3
-  gap-5"
->
-
-
-
+<div class="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
 <!-- DAYA -->
-
 <div>
-
-
-<label
-  class="text-sm
-  font-bold
-  text-slate-300"
->
+<label class="text-sm font-bold text-slate-300">
 
 Daya Lampu
 
 </label>
-
-
-<input
-  id="power"
-
-  type="number"
-
-  value="18"
-
-  class="energy-input
-
-  mt-2"
->
-
-
-<div
-  class="text-xs
-  text-slate-500
-  mt-1"
->
+<input class="energy-input mt-2" id="power" type="number" value="18"/>
+<div class="text-xs text-slate-500 mt-1">
 
 Watt
 
 </div>
-
-
 </div>
-
-
-
 <!-- JUMLAH -->
-
 <div>
-
-
-<label
-  class="text-sm
-  font-bold
-  text-slate-300"
->
+<label class="text-sm font-bold text-slate-300">
 
 Jumlah Lampu
 
 </label>
-
-
-<input
-  id="quantity"
-
-  type="number"
-
-  value="10"
-
-  class="energy-input
-  mt-2"
->
-
-
-<div
-  class="text-xs
-  text-slate-500
-  mt-1"
->
+<input class="energy-input mt-2" id="quantity" type="number" value="10"/>
+<div class="text-xs text-slate-500 mt-1">
 
 Unit
 
 </div>
-
-
 </div>
-
-
-
 <!-- HOURS -->
-
 <div>
-
-
-<label
-  class="text-sm
-  font-bold
-  text-slate-300"
->
+<label class="text-sm font-bold text-slate-300">
 
 Jam Penggunaan / Hari
 
 </label>
-
-
-<input
-  id="hours"
-
-  type="number"
-
-  value="8"
-
-  class="energy-input
-  mt-2"
->
-
-
-<div
-  class="text-xs
-  text-slate-500
-  mt-1"
->
+<input class="energy-input mt-2" id="hours" type="number" value="8"/>
+<div class="text-xs text-slate-500 mt-1">
 
 Jam
 
 </div>
-
-
 </div>
-
-
-
 <!-- DAYS -->
-
 <div>
-
-
-<label
-  class="text-sm
-  font-bold
-  text-slate-300"
->
+<label class="text-sm font-bold text-slate-300">
 
 Hari Penggunaan / Bulan
 
 </label>
-
-
-<input
-  id="days"
-
-  type="number"
-
-  value="22"
-
-  class="energy-input
-  mt-2"
->
-
-
-<div
-  class="text-xs
-  text-slate-500
-  mt-1"
->
+<input class="energy-input mt-2" id="days" type="number" value="22"/>
+<div class="text-xs text-slate-500 mt-1">
 
 Hari
 
 </div>
-
-
 </div>
-
-
-
 <!-- TARIFF -->
-
 <div>
-
-
-<label
-  class="text-sm
-  font-bold
-  text-slate-300"
->
+<label class="text-sm font-bold text-slate-300">
 
 Tarif Listrik
 
 </label>
-
-
-<input
-  id="tariff"
-
-  type="number"
-
-  value="1500"
-
-  class="energy-input
-  mt-2"
->
-
-
-<div
-  class="text-xs
-  text-slate-500
-  mt-1"
->
+<input class="energy-input mt-2" id="tariff" type="number" value="1500"/>
+<div class="text-xs text-slate-500 mt-1">
 
 Rp / kWh
 
 </div>
-
-
 </div>
-
-
-
 <!-- SENSOR -->
-
 <div>
-
-
-<label
-  class="text-sm
-  font-bold
-  text-slate-300"
->
+<label class="text-sm font-bold text-slate-300">
 
 Efisiensi Sensor
 
 </label>
-
-
-<input
-  id="efficiency"
-
-  type="number"
-
-  value="35"
-
-  class="energy-input
-  mt-2"
->
-
-
-<div
-  class="text-xs
-  text-slate-500
-  mt-1"
->
+<input class="energy-input mt-2" id="efficiency" type="number" value="35"/>
+<div class="text-xs text-slate-500 mt-1">
 
 Persen %
 
 </div>
-
-
 </div>
-
-
 </div>
-
-
-
 <!-- RESULT -->
-
-<div
-  class="grid
-  md:grid-cols-2
-  lg:grid-cols-4
-  gap-4
-  mt-8"
->
-
-
-
+<div class="grid md:grid-cols-2 lg:grid-cols-4 gap-4 mt-8">
 <!-- ANALOG -->
-
-<div
-  class="result-card"
->
-
-
-<div
-  class="text-yellow-300
-  text-sm
-  font-black"
->
+<div class="result-card">
+<div class="text-yellow-300 text-sm font-black">
 
 ⚡ SISTEM ANALOG
 
 </div>
-
-
-<div
-  id="analogEnergy"
-
-  class="text-3xl
-  font-black
-  mt-3"
->
+<div class="text-3xl font-black mt-3" id="analogEnergy">
 
 0 kWh
 
 </div>
-
-
-<div
-  id="analogCost"
-
-  class="text-sm
-  text-slate-400
-  mt-2"
->
+<div class="text-sm text-slate-400 mt-2" id="analogCost">
 
 Rp 0
 
 </div>
-
-
 </div>
-
-
-
 <!-- SMART -->
-
-<div
-  class="result-card"
->
-
-
-<div
-  class="text-emerald-300
-  text-sm
-  font-black"
->
+<div class="result-card">
+<div class="text-emerald-300 text-sm font-black">
 
 🤖 SISTEM SENSOR
 
 </div>
-
-
-<div
-  id="smartEnergy"
-
-  class="text-3xl
-  font-black
-  mt-3"
->
+<div class="text-3xl font-black mt-3" id="smartEnergy">
 
 0 kWh
 
 </div>
-
-
-<div
-  id="smartCost"
-
-  class="text-sm
-  text-slate-400
-  mt-2"
->
+<div class="text-sm text-slate-400 mt-2" id="smartCost">
 
 Rp 0
 
 </div>
-
-
 </div>
-
-
-
 <!-- SAVING -->
-
-<div
-  class="result-card"
->
-
-
-<div
-  class="text-sky-300
-  text-sm
-  font-black"
->
+<div class="result-card">
+<div class="text-sky-300 text-sm font-black">
 
 📉 PENGHEMATAN
 
 </div>
-
-
-<div
-  id="savingEnergy"
-
-  class="text-3xl
-  font-black
-  mt-3"
->
+<div class="text-3xl font-black mt-3" id="savingEnergy">
 
 0 kWh
 
 </div>
-
-
-<div
-  id="savingCost"
-
-  class="text-sm
-  text-slate-400
-  mt-2"
->
+<div class="text-sm text-slate-400 mt-2" id="savingCost">
 
 Rp 0
 
 </div>
-
-
 </div>
-
-
-
 <!-- PERCENT -->
-
-<div
-  class="result-card"
->
-
-
-<div
-  class="text-purple-300
-  text-sm
-  font-black"
->
+<div class="result-card">
+<div class="text-purple-300 text-sm font-black">
 
 🌱 EFISIENSI
 
 </div>
-
-
-<div
-  id="savingPercent"
-
-  class="text-3xl
-  font-black
-  mt-3"
->
+<div class="text-3xl font-black mt-3" id="savingPercent">
 
 0 %
 
 </div>
-
-
-<div
-  class="text-sm
-  text-slate-400
-  mt-2"
->
+<div class="text-sm text-slate-400 mt-2">
 
 Potensi pengurangan energi
 
 </div>
-
-
 </div>
-
-
 </div>
-
-
-
 <!-- =========================
      DASHBOARD 3 AREA
 ========================= -->
-
-<div
-  class="mt-10"
->
-
-
-<div
-  class="flex
-  items-center
-  gap-3
-  mb-5"
->
-
-
-<i
-  data-lucide="bar-chart-3"
-  class="text-emerald-300"
-></i>
-
-
-<h3
-  class="text-2xl
-  font-black"
->
+<div class="mt-10">
+<div class="flex items-center gap-3 mb-5">
+<i class="text-emerald-300" data-lucide="bar-chart-3"></i>
+<h3 class="text-2xl font-black">
 
 Dashboard 3 Area SAVER-KIT
 
 </h3>
-
-
 </div>
-
-
-
-<div
-  class="grid
-  lg:grid-cols-3
-  gap-5"
->
-
-
-
+<div class="grid lg:grid-cols-3 gap-5">
 <!-- AREA 1 -->
-
-<div
-  class="bg-slate-900/70
-  border border-slate-700
-  rounded-2xl
-  p-5"
->
-
-
-<div
-  class="flex
-  justify-between"
->
-
-
-<h4
-  class="font-black"
->
+<div class="bg-slate-900/70 border border-slate-700 rounded-2xl p-5">
+<div class="flex justify-between">
+<h4 class="font-black">
 
 💡 Ruang Analog
 
 </h4>
-
-
-<span
-  class="text-yellow-300
-  font-bold"
->
+<span class="text-yellow-300 font-bold">
 
 Manual
 
 </span>
-
-
 </div>
-
-
-<div
-  class="mt-5
-  space-y-3"
->
-
-
-<div
-  class="flex
-  justify-between
-  text-sm"
->
-
+<div class="mt-5 space-y-3">
+<div class="flex justify-between text-sm">
 <span class="text-slate-400">
 
 Energi
 
 </span>
-
-<span
-  id="areaAnalogEnergy"
-  class="font-bold"
->
+<span class="font-bold" id="areaAnalogEnergy">
 
 0 kWh
 
 </span>
-
 </div>
-
-
-<div
-  class="flex
-  justify-between
-  text-sm"
->
-
+<div class="flex justify-between text-sm">
 <span class="text-slate-400">
 
 Biaya
 
 </span>
-
-<span
-  id="areaAnalogCost"
-  class="font-bold"
->
+<span class="font-bold" id="areaAnalogCost">
 
 Rp 0
 
 </span>
-
 </div>
-
-
 </div>
-
-
 </div>
-
-
-
 <!-- AREA 2 -->
-
-<div
-  class="bg-slate-900/70
-  border border-slate-700
-  rounded-2xl
-  p-5"
->
-
-
-<div
-  class="flex
-  justify-between"
->
-
-
-<h4
-  class="font-black"
->
+<div class="bg-slate-900/70 border border-slate-700 rounded-2xl p-5">
+<div class="flex justify-between">
+<h4 class="font-black">
 
 🤖 Kelas Pintar
 
 </h4>
-
-
-<span
-  class="text-emerald-300
-  font-bold"
->
+<span class="text-emerald-300 font-bold">
 
 PIR + LDR
 
 </span>
-
-
 </div>
-
-
-<div
-  class="mt-5
-  space-y-3"
->
-
-
-<div
-  class="flex
-  justify-between
-  text-sm"
->
-
+<div class="mt-5 space-y-3">
+<div class="flex justify-between text-sm">
 <span class="text-slate-400">
 
 Energi
 
 </span>
-
-<span
-  id="areaSmartEnergy"
-  class="font-bold"
->
+<span class="font-bold" id="areaSmartEnergy">
 
 0 kWh
 
 </span>
-
 </div>
-
-
-<div
-  class="flex
-  justify-between
-  text-sm"
->
-
+<div class="flex justify-between text-sm">
 <span class="text-slate-400">
 
 Biaya
 
 </span>
-
-<span
-  id="areaSmartCost"
-  class="font-bold"
->
+<span class="font-bold" id="areaSmartCost">
 
 Rp 0
 
 </span>
-
 </div>
-
-
 </div>
-
-
 </div>
-
-
-
 <!-- AREA 3 -->
-
-<div
-  class="bg-slate-900/70
-  border border-slate-700
-  rounded-2xl
-  p-5"
->
-
-
-<div
-  class="flex
-  justify-between"
->
-
-
-<h4
-  class="font-black"
->
+<div class="bg-slate-900/70 border border-slate-700 rounded-2xl p-5">
+<div class="flex justify-between">
+<h4 class="font-black">
 
 🏫 Lorong Pintar
 
 </h4>
-
-
-<span
-  class="text-sky-300
-  font-bold"
->
+<span class="text-sky-300 font-bold">
 
 Sensor
 
 </span>
-
-
 </div>
-
-
-<div
-  class="mt-5
-  space-y-3"
->
-
-
-<div
-  class="flex
-  justify-between
-  text-sm"
->
-
+<div class="mt-5 space-y-3">
+<div class="flex justify-between text-sm">
 <span class="text-slate-400">
 
 Energi
 
 </span>
-
-<span
-  id="areaCorridorEnergy"
-  class="font-bold"
->
+<span class="font-bold" id="areaCorridorEnergy">
 
 0 kWh
 
 </span>
-
 </div>
-
-
-<div
-  class="flex
-  justify-between
-  text-sm"
->
-
+<div class="flex justify-between text-sm">
 <span class="text-slate-400">
 
 Potensi Hemat
 
 </span>
-
-<span
-  id="areaCorridorSaving"
-  class="font-bold
-  text-emerald-300"
->
+<span class="font-bold text-emerald-300" id="areaCorridorSaving">
 
 0 %
 
 </span>
-
 </div>
-
-
 </div>
-
-
 </div>
-
-
 </div>
-
-
 </div>
-
-
-
 <!-- TOTAL DASHBOARD -->
-
-<div
-  class="mt-6
-
-  rounded-3xl
-
-  bg-gradient-to-r
-
-  from-emerald-500/15
-
-  via-slate-900
-
-  to-sky-500/15
-
-  border
-  border-emerald-400/15
-
-  p-6"
->
-
-
-<div
-  class="grid
-  md:grid-cols-3
-  gap-5"
->
-
-
+<div class="mt-6 rounded-3xl bg-gradient-to-r from-emerald-500/15 via-slate-900 to-sky-500/15 border border-emerald-400/15 p-6">
+<div class="grid md:grid-cols-3 gap-5">
 <div>
-
-
-<div
-  class="text-sm
-  text-slate-400"
->
+<div class="text-sm text-slate-400">
 
 Total Energi Sebelum
 
 </div>
-
-
-<div
-  id="totalBefore"
-
-  class="text-3xl
-  font-black
-  text-yellow-300
-  mt-2"
->
+<div class="text-3xl font-black text-yellow-300 mt-2" id="totalBefore">
 
 0 kWh
 
 </div>
-
-
 </div>
-
-
-
 <div>
-
-
-<div
-  class="text-sm
-  text-slate-400"
->
+<div class="text-sm text-slate-400">
 
 Total Energi Sesudah
 
 </div>
-
-
-<div
-  id="totalAfter"
-
-  class="text-3xl
-  font-black
-  text-emerald-300
-  mt-2"
->
+<div class="text-3xl font-black text-emerald-300 mt-2" id="totalAfter">
 
 0 kWh
 
 </div>
-
-
 </div>
-
-
-
 <div>
-
-
-<div
-  class="text-sm
-  text-slate-400"
->
+<div class="text-sm text-slate-400">
 
 Potensi Penghematan
 
 </div>
-
-
-<div
-  id="totalSaving"
-
-  class="text-3xl
-  font-black
-  text-sky-300
-  mt-2"
->
+<div class="text-3xl font-black text-sky-300 mt-2" id="totalSaving">
 
 Rp 0
 
 </div>
-
-
 </div>
-
-
 </div>
-
-
 </div>
-
-
 </div>
-
-
-</section>
-
-
-
-<!-- =========================
-     LINTAS MAPEL
-========================= -->
-
-<section
-  id="lintasmapel"
-  class="mb-10"
->
-
-
-<div
-  class="mb-6"
->
-
-
-<div
-  class="text-xs
-  uppercase
-  font-black
-  tracking-[.2em]
-  text-purple-300"
->
+</section></div><div class="app-panel" data-panel="lintasmapel"><section class="mb-10" id="lintasmapel">
+<div class="mb-6">
+<div class="text-xs uppercase font-black tracking-[.2em] text-purple-300">
 
 Interdisciplinary Learning
 
 </div>
-
-
-<h2
-  class="text-3xl
-  font-black
-  mt-2"
->
+<h2 class="text-3xl font-black mt-2">
 
 Menu Lintas Mata Pelajaran
 
 </h2>
-
-
-<p
-  class="text-slate-400
-  mt-2
-  max-w-4xl"
->
+<p class="text-slate-400 mt-2 max-w-4xl">
 
 SAVER-KIT tidak hanya digunakan
 dalam pembelajaran Fisika.
@@ -3328,56 +1871,21 @@ dapat dikembangkan menjadi
 pembelajaran lintas mata pelajaran.
 
 </p>
-
-
 </div>
-
-
-
-<div
-  class="grid
-  md:grid-cols-2
-  lg:grid-cols-4
-  gap-5"
->
-
-
-
+<div class="grid md:grid-cols-2 lg:grid-cols-4 gap-5">
 <!-- FISIKA -->
-
-<div
-  class="menu-card
-  glass
-  rounded-2xl
-  p-5"
->
-
-
-<div
-  class="text-yellow-300
-  mb-3"
->
+<div class="menu-card glass rounded-2xl p-5">
+<div class="text-yellow-300 mb-3">
 
 ⚡
 
 </div>
-
-
-<h3
-  class="font-black
-  text-lg"
->
+<h3 class="font-black text-lg">
 
 Fisika
 
 </h3>
-
-
-<p
-  class="text-sm
-  text-slate-400
-  mt-3"
->
+<p class="text-sm text-slate-400 mt-3">
 
 Menganalisis daya,
 energi listrik,
@@ -3388,47 +1896,20 @@ sensor PIR
 dan LDR.
 
 </p>
-
-
 </div>
-
-
-
 <!-- MATEMATIKA -->
-
-<div
-  class="menu-card
-  glass
-  rounded-2xl
-  p-5"
->
-
-
-<div
-  class="text-blue-300
-  mb-3"
->
+<div class="menu-card glass rounded-2xl p-5">
+<div class="text-blue-300 mb-3">
 
 📐
 
 </div>
-
-
-<h3
-  class="font-black
-  text-lg"
->
+<h3 class="font-black text-lg">
 
 Matematika
 
 </h3>
-
-
-<p
-  class="text-sm
-  text-slate-400
-  mt-3"
->
+<p class="text-sm text-slate-400 mt-3">
 
 Mengolah data energi,
 menghitung persentase,
@@ -3437,47 +1918,20 @@ dan menganalisis
 potensi penghematan.
 
 </p>
-
-
 </div>
-
-
-
 <!-- INFORMATIKA -->
-
-<div
-  class="menu-card
-  glass
-  rounded-2xl
-  p-5"
->
-
-
-<div
-  class="text-emerald-300
-  mb-3"
->
+<div class="menu-card glass rounded-2xl p-5">
+<div class="text-emerald-300 mb-3">
 
 💻
 
 </div>
-
-
-<h3
-  class="font-black
-  text-lg"
->
+<h3 class="font-black text-lg">
 
 Informatika
 
 </h3>
-
-
-<p
-  class="text-sm
-  text-slate-400
-  mt-3"
->
+<p class="text-sm text-slate-400 mt-3">
 
 Mempelajari coding,
 sensor digital,
@@ -3487,47 +1941,20 @@ pengolahan data
 dan desain sistem otomatis.
 
 </p>
-
-
 </div>
-
-
-
 <!-- BIOLOGI -->
-
-<div
-  class="menu-card
-  glass
-  rounded-2xl
-  p-5"
->
-
-
-<div
-  class="text-green-300
-  mb-3"
->
+<div class="menu-card glass rounded-2xl p-5">
+<div class="text-green-300 mb-3">
 
 🌱
 
 </div>
-
-
-<h3
-  class="font-black
-  text-lg"
->
+<h3 class="font-black text-lg">
 
 Biologi
 
 </h3>
-
-
-<p
-  class="text-sm
-  text-slate-400
-  mt-3"
->
+<p class="text-sm text-slate-400 mt-3">
 
 Mengkaji hubungan
 efisiensi energi
@@ -3536,47 +1963,20 @@ keberlanjutan
 dan kualitas ekosistem.
 
 </p>
-
-
 </div>
-
-
-
 <!-- GEOGRAFI -->
-
-<div
-  class="menu-card
-  glass
-  rounded-2xl
-  p-5"
->
-
-
-<div
-  class="text-sky-300
-  mb-3"
->
+<div class="menu-card glass rounded-2xl p-5">
+<div class="text-sky-300 mb-3">
 
 🌍
 
 </div>
-
-
-<h3
-  class="font-black
-  text-lg"
->
+<h3 class="font-black text-lg">
 
 Geografi
 
 </h3>
-
-
-<p
-  class="text-sm
-  text-slate-400
-  mt-3"
->
+<p class="text-sm text-slate-400 mt-3">
 
 Menganalisis
 konsumsi energi,
@@ -3585,47 +1985,20 @@ perubahan iklim
 dan pembangunan berkelanjutan.
 
 </p>
-
-
 </div>
-
-
-
 <!-- EKONOMI -->
-
-<div
-  class="menu-card
-  glass
-  rounded-2xl
-  p-5"
->
-
-
-<div
-  class="text-yellow-300
-  mb-3"
->
+<div class="menu-card glass rounded-2xl p-5">
+<div class="text-yellow-300 mb-3">
 
 💰
 
 </div>
-
-
-<h3
-  class="font-black
-  text-lg"
->
+<h3 class="font-black text-lg">
 
 Ekonomi
 
 </h3>
-
-
-<p
-  class="text-sm
-  text-slate-400
-  mt-3"
->
+<p class="text-sm text-slate-400 mt-3">
 
 Menganalisis biaya listrik,
 efisiensi anggaran,
@@ -3634,47 +2007,20 @@ dan dampak ekonomi
 penggunaan teknologi.
 
 </p>
-
-
 </div>
-
-
-
 <!-- BAHASA -->
-
-<div
-  class="menu-card
-  glass
-  rounded-2xl
-  p-5"
->
-
-
-<div
-  class="text-pink-300
-  mb-3"
->
+<div class="menu-card glass rounded-2xl p-5">
+<div class="text-pink-300 mb-3">
 
 📝
 
 </div>
-
-
-<h3
-  class="font-black
-  text-lg"
->
+<h3 class="font-black text-lg">
 
 Bahasa Indonesia
 
 </h3>
-
-
-<p
-  class="text-sm
-  text-slate-400
-  mt-3"
->
+<p class="text-sm text-slate-400 mt-3">
 
 Menyusun laporan,
 artikel,
@@ -3684,47 +2030,20 @@ dan rekomendasi
 berbasis data.
 
 </p>
-
-
 </div>
-
-
-
 <!-- PPKN -->
-
-<div
-  class="menu-card
-  glass
-  rounded-2xl
-  p-5"
->
-
-
-<div
-  class="text-red-300
-  mb-3"
->
+<div class="menu-card glass rounded-2xl p-5">
+<div class="text-red-300 mb-3">
 
 🇮🇩
 
 </div>
-
-
-<h3
-  class="font-black
-  text-lg"
->
+<h3 class="font-black text-lg">
 
 PPKn
 
 </h3>
-
-
-<p
-  class="text-sm
-  text-slate-400
-  mt-3"
->
+<p class="text-sm text-slate-400 mt-3">
 
 Mengembangkan
 tanggung jawab,
@@ -3733,242 +2052,89 @@ gotong royong
 dan budaya hemat energi.
 
 </p>
-
-
 </div>
-
-
 </div>
-
-
-
 <!-- PROJECT -->
-
-<div
-  class="glass
-  rounded-[28px]
-  p-6
-  mt-6"
->
-
-
-<div
-  class="flex
-  items-center
-  gap-3
-  mb-4"
->
-
-
-<i
-  data-lucide="rocket"
-  class="text-emerald-300"
-></i>
-
-
-<h3
-  class="text-xl
-  font-black"
->
+<div class="glass rounded-[28px] p-6 mt-6">
+<div class="flex items-center gap-3 mb-4">
+<i class="text-emerald-300" data-lucide="rocket"></i>
+<h3 class="text-xl font-black">
 
 Proyek Kolaborasi Lintas Mata Pelajaran
 
 </h3>
-
-
 </div>
-
-
-
-<div
-  class="grid
-  md:grid-cols-4
-  gap-4"
->
-
-
-<div
-  class="bg-slate-900/70
-  rounded-xl
-  p-4"
->
-
-<strong
-  class="text-yellow-300"
->
+<div class="grid md:grid-cols-4 gap-4">
+<div class="bg-slate-900/70 rounded-xl p-4">
+<strong class="text-yellow-300">
 
 01
 
 </strong>
-
-<p
-  class="text-sm
-  mt-2
-  text-slate-400"
->
+<p class="text-sm mt-2 text-slate-400">
 
 Audit penggunaan listrik
 di lingkungan sekolah.
 
 </p>
-
 </div>
-
-
-
-<div
-  class="bg-slate-900/70
-  rounded-xl
-  p-4"
->
-
-<strong
-  class="text-emerald-300"
->
+<div class="bg-slate-900/70 rounded-xl p-4">
+<strong class="text-emerald-300">
 
 02
 
 </strong>
-
-<p
-  class="text-sm
-  mt-2
-  text-slate-400"
->
+<p class="text-sm mt-2 text-slate-400">
 
 Analisis data konsumsi
 dan biaya listrik.
 
 </p>
-
 </div>
-
-
-
-<div
-  class="bg-slate-900/70
-  rounded-xl
-  p-4"
->
-
-<strong
-  class="text-sky-300"
->
+<div class="bg-slate-900/70 rounded-xl p-4">
+<strong class="text-sky-300">
 
 03
 
 </strong>
-
-<p
-  class="text-sm
-  mt-2
-  text-slate-400"
->
+<p class="text-sm mt-2 text-slate-400">
 
 Merancang solusi
 Smart Energy
 berbasis sensor.
 
 </p>
-
 </div>
-
-
-
-<div
-  class="bg-slate-900/70
-  rounded-xl
-  p-4"
->
-
-<strong
-  class="text-purple-300"
->
+<div class="bg-slate-900/70 rounded-xl p-4">
+<strong class="text-purple-300">
 
 04
 
 </strong>
-
-<p
-  class="text-sm
-  mt-2
-  text-slate-400"
->
+<p class="text-sm mt-2 text-slate-400">
 
 Presentasi rekomendasi
 Smart School Energy.
 
 </p>
-
 </div>
-
-
 </div>
-
-
 </div>
-
-
-</section>
-
-
-
-<!-- =========================
-     STEM
-========================= -->
-
-<section
-  id="stem"
-  class="mb-10"
->
-
-
-<div
-  class="glass
-  rounded-[30px]
-  p-6"
->
-
-
-<h2
-  class="text-3xl
-  font-black"
->
+</section></div><div class="app-panel" data-panel="stem"><section class="mb-10" id="stem">
+<div class="glass rounded-[30px] p-6">
+<h2 class="text-3xl font-black">
 
 Integrasi STEM
 
 </h2>
-
-
-<div
-  class="grid
-  md:grid-cols-2
-  lg:grid-cols-4
-  gap-4
-  mt-6"
->
-
-
-<div
-  class="bg-slate-900/70
-  rounded-2xl
-  p-5"
->
-
-<h3
-  class="font-black
-  text-emerald-300"
->
+<div class="grid md:grid-cols-2 lg:grid-cols-4 gap-4 mt-6">
+<div class="bg-slate-900/70 rounded-2xl p-5">
+<h3 class="font-black text-emerald-300">
 
 S — Science
 
 </h3>
-
-<p
-  class="text-sm
-  text-slate-400
-  mt-3"
->
+<p class="text-sm text-slate-400 mt-3">
 
 Konsep listrik,
 energi,
@@ -3977,31 +2143,14 @@ sensor
 dan efisiensi.
 
 </p>
-
 </div>
-
-
-
-<div
-  class="bg-slate-900/70
-  rounded-2xl
-  p-5"
->
-
-<h3
-  class="font-black
-  text-yellow-300"
->
+<div class="bg-slate-900/70 rounded-2xl p-5">
+<h3 class="font-black text-yellow-300">
 
 T — Technology
 
 </h3>
-
-<p
-  class="text-sm
-  text-slate-400
-  mt-3"
->
+<p class="text-sm text-slate-400 mt-3">
 
 Portal web,
 sensor digital,
@@ -4009,31 +2158,14 @@ microcontroller
 dan otomatisasi.
 
 </p>
-
 </div>
-
-
-
-<div
-  class="bg-slate-900/70
-  rounded-2xl
-  p-5"
->
-
-<h3
-  class="font-black
-  text-sky-300"
->
+<div class="bg-slate-900/70 rounded-2xl p-5">
+<h3 class="font-black text-sky-300">
 
 E — Engineering
 
 </h3>
-
-<p
-  class="text-sm
-  text-slate-400
-  mt-3"
->
+<p class="text-sm text-slate-400 mt-3">
 
 Merancang sistem,
 sensor,
@@ -4041,31 +2173,14 @@ prototype
 dan solusi teknologi.
 
 </p>
-
 </div>
-
-
-
-<div
-  class="bg-slate-900/70
-  rounded-2xl
-  p-5"
->
-
-<h3
-  class="font-black
-  text-purple-300"
->
+<div class="bg-slate-900/70 rounded-2xl p-5">
+<h3 class="font-black text-purple-300">
 
 M — Mathematics
 
 </h3>
-
-<p
-  class="text-sm
-  text-slate-400
-  mt-3"
->
+<p class="text-sm text-slate-400 mt-3">
 
 Perhitungan energi,
 biaya,
@@ -4073,73 +2188,24 @@ persentase
 dan analisis data.
 
 </p>
-
 </div>
-
-
 </div>
-
-
 </div>
-
-
-</section>
-
-
-
-<!-- =========================
-     DEEP LEARNING
-========================= -->
-
-<section
-  id="deeplearning"
-  class="mb-10"
->
-
-
-<div
-  class="grid
-  md:grid-cols-3
-  gap-5"
->
-
-
-
+</section></div><div class="app-panel" data-panel="deeplearning"><section class="mb-10" id="deeplearning">
+<div class="grid md:grid-cols-3 gap-5">
 <!-- MEANINGFUL -->
-
-<div
-  class="glass
-  rounded-[26px]
-  p-6"
->
-
-
-<div
-  class="text-emerald-300
-  text-3xl"
->
+<div class="glass rounded-[26px] p-6">
+<div class="text-emerald-300 text-3xl">
 
 ❤️
 
 </div>
-
-
-<h3
-  class="text-xl
-  font-black
-  mt-4"
->
+<h3 class="text-xl font-black mt-4">
 
 Meaningful
 
 </h3>
-
-
-<p
-  class="text-slate-400
-  text-sm
-  mt-3"
->
+<p class="text-slate-400 text-sm mt-3">
 
 Pembelajaran dikaitkan
 dengan masalah nyata
@@ -4147,47 +2213,20 @@ penggunaan energi
 di sekolah.
 
 </p>
-
-
 </div>
-
-
-
 <!-- MINDFUL -->
-
-<div
-  class="glass
-  rounded-[26px]
-  p-6"
->
-
-
-<div
-  class="text-sky-300
-  text-3xl"
->
+<div class="glass rounded-[26px] p-6">
+<div class="text-sky-300 text-3xl">
 
 👁
 
 </div>
-
-
-<h3
-  class="text-xl
-  font-black
-  mt-4"
->
+<h3 class="text-xl font-black mt-4">
 
 Mindful
 
 </h3>
-
-
-<p
-  class="text-slate-400
-  text-sm
-  mt-3"
->
+<p class="text-slate-400 text-sm mt-3">
 
 Siswa mengamati,
 menganalisis,
@@ -4196,47 +2235,20 @@ dan merefleksikan
 hasil pembelajaran.
 
 </p>
-
-
 </div>
-
-
-
 <!-- JOYFUL -->
-
-<div
-  class="glass
-  rounded-[26px]
-  p-6"
->
-
-
-<div
-  class="text-yellow-300
-  text-3xl"
->
+<div class="glass rounded-[26px] p-6">
+<div class="text-yellow-300 text-3xl">
 
 😊
 
 </div>
-
-
-<h3
-  class="text-xl
-  font-black
-  mt-4"
->
+<h3 class="text-xl font-black mt-4">
 
 Joyful
 
 </h3>
-
-
-<p
-  class="text-slate-400
-  text-sm
-  mt-3"
->
+<p class="text-slate-400 text-sm mt-3">
 
 Simulasi interaktif,
 sensor,
@@ -4246,1429 +2258,585 @@ membuat pembelajaran
 lebih menarik.
 
 </p>
-
-
 </div>
-
-
 </div>
-
-
-
 <!-- LEARNING FLOW -->
-
-<div
-  class="glass
-  rounded-[30px]
-  p-6
-  mt-6"
->
-
-
-<h3
-  class="text-2xl
-  font-black
-  mb-6"
->
+<div class="glass rounded-[30px] p-6 mt-6">
+<h3 class="text-2xl font-black mb-6">
 
 Alur Pembelajaran SAVER-KIT
 
 </h3>
-
-
-<div
-  class="grid
-  md:grid-cols-4
-  gap-4"
->
-
-
-<div
-  class="bg-slate-900/70
-  rounded-2xl
-  p-5"
->
-
-<div
-  class="text-emerald-300
-  font-black"
->
+<div class="grid md:grid-cols-4 gap-4">
+<div class="bg-slate-900/70 rounded-2xl p-5">
+<div class="text-emerald-300 font-black">
 
 01
 
 </div>
-
-<h4
-  class="font-black
-  mt-2"
->
+<h4 class="font-black mt-2">
 
 OBSERVE
 
 </h4>
-
-<p
-  class="text-sm
-  text-slate-400
-  mt-2"
->
+<p class="text-sm text-slate-400 mt-2">
 
 Mengamati masalah
 energi di sekolah.
 
 </p>
-
 </div>
-
-
-
-<div
-  class="bg-slate-900/70
-  rounded-2xl
-  p-5"
->
-
-<div
-  class="text-yellow-300
-  font-black"
->
+<div class="bg-slate-900/70 rounded-2xl p-5">
+<div class="text-yellow-300 font-black">
 
 02
 
 </div>
-
-<h4
-  class="font-black
-  mt-2"
->
+<h4 class="font-black mt-2">
 
 APPLY
 
 </h4>
-
-<p
-  class="text-sm
-  text-slate-400
-  mt-2"
->
+<p class="text-sm text-slate-400 mt-2">
 
 Menerapkan konsep
 dalam simulasi.
 
 </p>
-
 </div>
-
-
-
-<div
-  class="bg-slate-900/70
-  rounded-2xl
-  p-5"
->
-
-<div
-  class="text-sky-300
-  font-black"
->
+<div class="bg-slate-900/70 rounded-2xl p-5">
+<div class="text-sky-300 font-black">
 
 03
 
 </div>
-
-<h4
-  class="font-black
-  mt-2"
->
+<h4 class="font-black mt-2">
 
 CALCULATE
 
 </h4>
-
-<p
-  class="text-sm
-  text-slate-400
-  mt-2"
->
+<p class="text-sm text-slate-400 mt-2">
 
 Menghitung energi
 dan biaya listrik.
 
 </p>
-
 </div>
-
-
-
-<div
-  class="bg-slate-900/70
-  rounded-2xl
-  p-5"
->
-
-<div
-  class="text-purple-300
-  font-black"
->
+<div class="bg-slate-900/70 rounded-2xl p-5">
+<div class="text-purple-300 font-black">
 
 04
 
 </div>
-
-<h4
-  class="font-black
-  mt-2"
->
+<h4 class="font-black mt-2">
 
 VERIFY
 
 </h4>
-
-<p
-  class="text-sm
-  text-slate-400
-  mt-2"
->
+<p class="text-sm text-slate-400 mt-2">
 
 Menguji solusi
 menggunakan sensor kit.
 
 </p>
-
 </div>
-
-
 </div>
-
-
 </div>
-
-
-</section>
-
-
-
-<!-- =========================
-     SAVER-KIT ADVANCED ANALYTICS
-========================= -->
-
-<section
-  id="advancedAnalytics"
-  class="mb-10"
->
-
-<div
-  class="advanced-panel
-  rounded-[30px]
-  p-6 md:p-8"
->
-
-<div
-  class="flex
-  flex-col
-  lg:flex-row
-  lg:items-end
-  lg:justify-between
-  gap-5
-  mb-8"
->
-
+</section></div><div class="app-panel" data-panel="advancedAnalytics"><section class="mb-10" id="advancedAnalytics">
+<div class="advanced-panel rounded-[30px] p-6 md:p-8">
+<div class="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-5 mb-8">
 <div>
-
-<div
-  class="text-xs
-  uppercase
-  font-black
-  text-emerald-300
-  tracking-[.2em]"
->
+<div class="text-xs uppercase font-black text-emerald-300 tracking-[.2em]">
 
 Integrated SAVER-KIT Analytics
 
 </div>
-
-<h2
-  class="text-3xl
-  font-black
-  mt-2"
->
+<h2 class="text-3xl font-black mt-2">
 
 📊 Dashboard Analitik Energi Sekolah
 
 </h2>
-
-<p
-  class="text-slate-400
-  mt-3
-  max-w-4xl"
->
+<p class="text-slate-400 mt-3 max-w-4xl">
 
 Seluruh perhitungan sistem Analog dan Smart Energy diintegrasikan dalam satu dashboard untuk membaca pola penggunaan energi, efisiensi, target penghematan, dan status energi sekolah.
 
 </p>
-
 </div>
-
-<div
-  class="flex
-  flex-wrap
-  gap-3
-  no-print"
->
-
-<button
-  type="button"
-  onclick="generateEnergyReport()"
-  class="action-btn primary"
->
+<div class="flex flex-wrap gap-3 no-print">
+<button class="action-btn primary" onclick="generateEnergyReport()" type="button">
 
 📄 Generate Laporan Energi
 
 </button>
-
 </div>
-
 </div>
-
-
-<div
-  class="grid
-  xl:grid-cols-3
-  gap-5"
->
-
+<div class="grid xl:grid-cols-3 gap-5">
 <!-- CHART -->
-<div
-  class="analytics-card
-  xl:col-span-2"
->
-
-<div
-  class="flex
-  flex-col
-  md:flex-row
-  md:items-center
-  md:justify-between
-  gap-3"
->
-
+<div class="analytics-card xl:col-span-2">
+<div class="flex flex-col md:flex-row md:items-center md:justify-between gap-3">
 <div>
-
-<h3
-  class="text-xl
-  font-black"
->
+<h3 class="text-xl font-black">
 
 📈 Grafik Batang Analog vs Smart Energy
 
 </h3>
-
-<p
-  class="text-sm
-  text-slate-400
-  mt-2"
->
+<p class="text-sm text-slate-400 mt-2">
 
 Perbandingan estimasi penggunaan energi per hari selama satu minggu.
 
 </p>
-
 </div>
-
-<div
-  class="text-xs
-  font-black
-  text-slate-400"
->
+<div class="text-xs font-black text-slate-400">
 
 Data mengikuti Kalkulator Energi SAVER-KIT
 
 </div>
-
 </div>
-
-<div
-  id="energyBarChart"
-  class="bar-chart"
-></div>
-
-<div
-  class="chart-legend"
->
-
+<div class="bar-chart" id="energyBarChart"></div>
+<div class="chart-legend">
 <span><i class="legend-dot legend-analog"></i>Analog</span>
-
 <span><i class="legend-dot legend-smart"></i>Smart Energy</span>
-
 </div>
-
 </div>
-
-
 <!-- SCORE -->
-<div
-  class="analytics-card"
->
-
-<h3
-  class="text-xl
-  font-black"
->
+<div class="analytics-card">
+<h3 class="text-xl font-black">
 
 🏆 Skor Efisiensi Energi Sekolah
 
 </h3>
-
-<div
-  class="gauge-wrap
-  mt-5"
->
-
-<div
-  class="energy-gauge"
->
-
+<div class="gauge-wrap mt-5">
+<div class="energy-gauge">
 <div>
-
-<div
-  id="efficiencyScore"
-  class="text-3xl
-  font-black"
->
+<div class="text-3xl font-black" id="efficiencyScore">
 
 0
 
 </div>
-
-<div
-  class="text-xs
-  text-slate-400"
->
+<div class="text-xs text-slate-400">
 
 / 100
 
 </div>
-
 </div>
-
 </div>
-
 <div>
-
-<div
-  id="energyStatus"
-  class="status-badge status-enough"
->
+<div class="status-badge status-enough" id="energyStatus">
 
 🟡 CUKUP
 
 </div>
-
-<p
-  id="statusDescription"
-  class="text-sm
-  text-slate-400
-  mt-4"
->
+<p class="text-sm text-slate-400 mt-4" id="statusDescription">
 
 Menghitung efisiensi energi sekolah...
 
 </p>
-
 </div>
-
 </div>
-
-<div
-  class="mt-6
-  text-sm
-  text-slate-400"
->
+<div class="mt-6 text-sm text-slate-400">
 
 Status otomatis:
 
-<div
-  class="flex
-  flex-wrap
-  gap-3
-  mt-3"
->
-
+<div class="flex flex-wrap gap-3 mt-3">
 <span class="status-badge status-efficient">🟢 Efisien ≥ 60%</span>
-
 <span class="status-badge status-enough">🟡 Cukup 30–59%</span>
-
 <span class="status-badge status-waste">🔴 Boros &lt; 30%</span>
-
 </div>
-
 </div>
-
 </div>
-
 </div>
-
-
 <!-- TARGET -->
-<div
-  class="analytics-card
-  mt-5"
->
-
-<div
-  class="grid
-  lg:grid-cols-3
-  gap-6
-  lg:items-center"
->
-
+<div class="analytics-card mt-5">
+<div class="grid lg:grid-cols-3 gap-6 lg:items-center">
 <div>
-
-<h3
-  class="text-xl
-  font-black"
->
+<h3 class="text-xl font-black">
 
 🎯 Target Penghematan Bulanan
 
 </h3>
-
-<p
-  class="text-sm
-  text-slate-400
-  mt-2"
->
+<p class="text-sm text-slate-400 mt-2">
 
 Target default ditetapkan sebesar 30% dan dapat dibandingkan langsung dengan hasil simulasi.
 
 </p>
-
 </div>
-
 <div>
-
-<div
-  class="flex
-  justify-between
-  text-sm
-  font-bold
-  mb-2"
->
-
+<div class="flex justify-between text-sm font-bold mb-2">
 <span>Progres Penghematan</span>
-
 <span id="targetProgressText">0% / 30%</span>
-
 </div>
-
-<div
-  class="progress-track"
->
-
-<div
-  id="targetProgressFill"
-  class="progress-fill"
-></div>
-
+<div class="progress-track">
+<div class="progress-fill" id="targetProgressFill"></div>
 </div>
-
 </div>
-
-<div
-  class="rounded-2xl
-  bg-slate-900/70
-  p-5"
->
-
-<div
-  class="text-sm
-  text-slate-400"
->
+<div class="rounded-2xl bg-slate-900/70 p-5">
+<div class="text-sm text-slate-400">
 
 Estimasi Hemat Bulanan
 
 </div>
-
-<div
-  id="monthlySavingSummary"
-  class="text-2xl
-  font-black
-  text-emerald-300
-  mt-2"
->
+<div class="text-2xl font-black text-emerald-300 mt-2" id="monthlySavingSummary">
 
 Rp 0
 
 </div>
-
 </div>
-
 </div>
-
 </div>
-
 </div>
-
-</section>
-
-
-
-<!-- =========================
-     AUDIT ENERGI
-========================= -->
-
-<section
-  id="auditenergi"
-  class="mb-10"
->
-
-<div
-  class="glass
-  rounded-[30px]
-  p-6 md:p-8"
->
-
-<div
-  class="flex
-  items-center
-  gap-3
-  mb-6"
->
-
-<i
-  data-lucide="clipboard-check"
-  class="text-yellow-300"
-></i>
-
+</section></div><div class="app-panel" data-panel="auditenergi"><section class="mb-10" id="auditenergi">
+<div class="glass rounded-[30px] p-6 md:p-8">
+<div class="flex items-center gap-3 mb-6">
+<i class="text-yellow-300" data-lucide="clipboard-check"></i>
 <div>
-
-<h2
-  class="text-3xl
-  font-black"
->
+<h2 class="text-3xl font-black">
 
 🏫 Audit Energi Sekolah
 
 </h2>
-
-<p
-  class="text-slate-400
-  mt-2"
->
+<p class="text-slate-400 mt-2">
 
 Menu investigasi penggunaan energi nyata sebagai jembatan dari simulasi menuju rekomendasi sekolah.
 
 </p>
-
 </div>
-
 </div>
-
-<div
-  class="grid
-  md:grid-cols-2
-  xl:grid-cols-4
-  gap-4"
->
-
+<div class="grid md:grid-cols-2 xl:grid-cols-4 gap-4">
 <div class="analytics-card">
-
 <div class="text-yellow-300 text-2xl">01</div>
-
 <h3 class="font-black mt-3">Inventarisasi</h3>
-
 <p class="text-sm text-slate-400 mt-2">
 
 Siswa mencatat perangkat listrik, daya, jumlah unit, lokasi, dan pola penggunaan.
 
 </p>
-
 </div>
-
 <div class="analytics-card">
-
 <div class="text-emerald-300 text-2xl">02</div>
-
 <h3 class="font-black mt-3">Observasi</h3>
-
 <p class="text-sm text-slate-400 mt-2">
 
 Mengamati lampu yang tetap menyala, ruangan kosong, serta potensi pemborosan energi.
 
 </p>
-
 </div>
-
 <div class="analytics-card">
-
 <div class="text-sky-300 text-2xl">03</div>
-
 <h3 class="font-black mt-3">Analisis Data</h3>
-
 <p class="text-sm text-slate-400 mt-2">
 
 Menggunakan dashboard untuk menghitung kWh, biaya, penghematan, dan status efisiensi.
 
 </p>
-
 </div>
-
 <div class="analytics-card">
-
 <div class="text-purple-300 text-2xl">04</div>
-
 <h3 class="font-black mt-3">Rekomendasi</h3>
-
 <p class="text-sm text-slate-400 mt-2">
 
 Menyusun solusi berbasis data untuk diterapkan pada kelas, lorong, atau area sekolah.
 
 </p>
-
 </div>
-
 </div>
-
 </div>
-
-</section>
-
-
-
-<!-- =========================
-     ECO SENSOR KIT
-========================= -->
-
-<section
-  id="ecosensor"
-  class="mb-10"
->
-
-<div
-  class="glass
-  rounded-[30px]
-  p-6 md:p-8"
->
-
-<div
-  class="flex
-  items-center
-  gap-3
-  mb-6"
->
-
-<i
-  data-lucide="flask-conical"
-  class="text-emerald-300"
-></i>
-
+</section></div><div class="app-panel" data-panel="ecosensor"><section class="mb-10" id="ecosensor">
+<div class="glass rounded-[30px] p-6 md:p-8">
+<div class="flex items-center gap-3 mb-6">
+<i class="text-emerald-300" data-lucide="flask-conical"></i>
 <div>
-
-<h2
-  class="text-3xl
-  font-black"
->
+<h2 class="text-3xl font-black">
 
 🔬 Eksperimen Eco-Sensor Kit
 
 </h2>
-
-<p
-  class="text-slate-400
-  mt-2"
->
+<p class="text-slate-400 mt-2">
 
 Eksperimen alat bantu ajar hibrid untuk menguji konsep sensor, otomatisasi, dan efisiensi energi.
 
 </p>
-
 </div>
-
 </div>
-
-<div
-  class="grid
-  md:grid-cols-3
-  gap-5"
->
-
+<div class="grid md:grid-cols-3 gap-5">
 <div class="analytics-card">
-
 <h3 class="font-black text-emerald-300">
 
 PIR — Sensor Gerak
 
 </h3>
-
 <p class="text-sm text-slate-400 mt-3">
 
 Uji respons lampu ketika terdapat aktivitas siswa dan pengaruh waktu tunggu otomatis.
 
 </p>
-
 </div>
-
 <div class="analytics-card">
-
 <h3 class="font-black text-yellow-300">
 
 LDR — Sensor Cahaya
 
 </h3>
-
 <p class="text-sm text-slate-400 mt-3">
 
 Bandingkan kondisi terang dan gelap untuk menentukan kapan lampu harus menyala atau mati.
 
 </p>
-
 </div>
-
 <div class="analytics-card">
-
 <h3 class="font-black text-sky-300">
 
 Arduino / Microcontroller
 
 </h3>
-
 <p class="text-sm text-slate-400 mt-3">
 
 Hubungkan pembacaan sensor dengan logika otomatisasi dan data energi yang dapat dikirim ke portal.
 
 </p>
-
 </div>
-
 </div>
-
 </div>
-
-</section>
-
-
-
-<!-- =========================
-     PROJECT ACTIVITIES
-========================= -->
-
-<section
-  id="projekaktivitas"
-  class="mb-10"
->
-
-<div
-  class="glass
-  rounded-[30px]
-  p-6 md:p-8"
->
-
-<h2
-  class="text-3xl
-  font-black"
->
+</section></div><div class="app-panel" data-panel="projekaktivitas"><section class="mb-10" id="projekaktivitas">
+<div class="glass rounded-[30px] p-6 md:p-8">
+<h2 class="text-3xl font-black">
 
 🌐 Projek Lintas Mata Pelajaran — Aktivitas Siswa
 
 </h2>
-
-<p
-  class="text-slate-400
-  mt-3
-  max-w-4xl"
->
+<p class="text-slate-400 mt-3 max-w-4xl">
 
 SAVER-KIT menjadi ruang projek kolaboratif yang menghubungkan konsep Fisika dengan Informatika, Matematika, Ekonomi, Bahasa Indonesia, PPKn, dan isu lingkungan.
 
 </p>
-
-<div
-  class="grid
-  lg:grid-cols-2
-  gap-4
-  mt-6"
->
-
+<div class="grid lg:grid-cols-2 gap-4 mt-6">
 <div class="activity-step">
-
-<strong>Aktivitas 1 — Fisika & Matematika</strong>
-
+<strong>Aktivitas 1 — Fisika &amp; Matematika</strong>
 <p class="text-sm text-slate-400 mt-2">
 
 Mengukur daya, waktu penggunaan, menghitung energi listrik, membuat tabel, grafik, dan membandingkan Analog vs Smart Energy.
 
 </p>
-
 </div>
-
 <div class="activity-step">
-
 <strong>Aktivitas 2 — Informatika</strong>
-
 <p class="text-sm text-slate-400 mt-2">
 
 Mendesain logika sensor, membaca data Arduino, menguji otomatisasi, dan memahami alur data menuju dashboard.
 
 </p>
-
 </div>
-
 <div class="activity-step">
-
 <strong>Aktivitas 3 — Ekonomi</strong>
-
 <p class="text-sm text-slate-400 mt-2">
 
 Menghitung biaya operasional listrik dan menganalisis manfaat ekonomi dari penghematan energi.
 
 </p>
-
 </div>
-
 <div class="activity-step">
-
-<strong>Aktivitas 4 — Bahasa Indonesia & PPKn</strong>
-
+<strong>Aktivitas 4 — Bahasa Indonesia &amp; PPKn</strong>
 <p class="text-sm text-slate-400 mt-2">
 
 Menyusun laporan audit, argumentasi rekomendasi, kampanye hemat energi, dan aksi tanggung jawab warga sekolah.
 
 </p>
-
 </div>
-
 </div>
-
 </div>
-
-</section>
-
-
-
-<!-- =========================
-     ARDUINO REAL TIME
-========================= -->
-
-<section
-  id="realtime"
-  class="mb-10"
->
-
-<div
-  class="glass
-  rounded-[30px]
-  p-6 md:p-8"
->
-
-<div
-  class="flex
-  flex-col
-  lg:flex-row
-  lg:justify-between
-  gap-5"
->
-
+</section></div><div class="app-panel" data-panel="realtime"><section class="mb-10" id="realtime">
+<div class="glass rounded-[30px] p-6 md:p-8">
+<div class="flex flex-col lg:flex-row lg:justify-between gap-5">
 <div>
-
-<div
-  class="text-xs
-  uppercase
-  font-black
-  text-emerald-300
-  tracking-[.2em]"
->
+<div class="text-xs uppercase font-black text-emerald-300 tracking-[.2em]">
 
 Future IoT Ready
 
 </div>
-
-<h2
-  class="text-3xl
-  font-black
-  mt-2"
->
+<h2 class="text-3xl font-black mt-2">
 
 🤖 Dashboard Arduino Real-Time
 
 </h2>
-
-<p
-  class="text-slate-400
-  mt-3
-  max-w-3xl"
->
+<p class="text-slate-400 mt-3 max-w-3xl">
 
 Struktur dashboard telah disiapkan agar nantinya dapat menerima data sensor dari Arduino melalui Serial, Wi-Fi, ESP8266/ESP32, Firebase, MQTT, atau API sekolah.
 
 </p>
-
 </div>
-
-<div
-  class="no-print"
->
-
-<button
-  type="button"
-  onclick="simulateArduinoData()"
-  class="action-btn primary"
->
+<div class="no-print">
+<button class="action-btn primary" onclick="simulateArduinoData()" type="button">
 
 ⚡ Simulasikan Data Sensor
 
 </button>
-
 </div>
-
 </div>
-
-
-<div
-  class="grid
-  md:grid-cols-2
-  xl:grid-cols-4
-  gap-4
-  mt-7"
->
-
+<div class="grid md:grid-cols-2 xl:grid-cols-4 gap-4 mt-7">
 <div class="analytics-card">
-
 <div class="text-sm text-slate-400">Status Koneksi</div>
-
-<div
-  id="arduinoConnection"
-  class="font-black
-  text-emerald-300
-  mt-2"
->
+<div class="font-black text-emerald-300 mt-2" id="arduinoConnection">
 
 ● SIAP INTEGRASI
 
 </div>
-
 </div>
-
 <div class="analytics-card">
-
 <div class="text-sm text-slate-400">PIR</div>
-
-<div
-  id="pirLive"
-  class="text-2xl font-black mt-2 realtime-number"
->
+<div class="text-2xl font-black mt-2 realtime-number" id="pirLive">
 
 Tidak Terdeteksi
 
 </div>
-
 </div>
-
 <div class="analytics-card">
-
 <div class="text-sm text-slate-400">Intensitas Cahaya</div>
-
-<div
-  id="ldrLive"
-  class="text-2xl font-black mt-2 realtime-number"
->
+<div class="text-2xl font-black mt-2 realtime-number" id="ldrLive">
 
 0 lux
 
 </div>
-
 </div>
-
 <div class="analytics-card">
-
 <div class="text-sm text-slate-400">Daya Terbaca</div>
-
-<div
-  id="powerLive"
-  class="text-2xl font-black mt-2 realtime-number"
->
+<div class="text-2xl font-black mt-2 realtime-number" id="powerLive">
 
 0 W
 
 </div>
-
 </div>
-
 </div>
-
-
-<div
-  class="analytics-card
-  mt-5"
->
-
-<div
-  class="flex
-  flex-wrap
-  items-center
-  gap-4"
->
-
-<span
-  class="font-black sensor-live"
->
+<div class="analytics-card mt-5">
+<div class="flex flex-wrap items-center gap-4">
+<span class="font-black sensor-live">
 
 LIVE SENSOR STREAM
 
 </span>
-
-<span
-  id="sensorTimestamp"
-  class="text-sm text-slate-400"
->
+<span class="text-sm text-slate-400" id="sensorTimestamp">
 
 Menunggu data sensor...
 
 </span>
-
 </div>
-
-<p
-  class="text-sm
-  text-slate-400
-  mt-4"
->
+<p class="text-sm text-slate-400 mt-4">
 
 Hook integrasi tersedia melalui fungsi <strong>updateArduinoData(data)</strong>. Sistem dapat menerima objek data seperti PIR, LDR, daya, energi, atau parameter sensor lain tanpa menghapus kalkulator dan simulasi yang sudah ada.
 
 </p>
-
 </div>
-
 </div>
-
-</section>
-
-
-
-
-
-<!-- =========================
-     TEAM
-========================= -->
-
-<section
-  class="glass
-  rounded-[30px]
-  p-6
-  mb-8"
->
-
-
-<h2
-  class="text-2xl
-  font-black
-  mb-5"
->
+</section></div><div class="app-panel" data-panel="timPengembang"><section class="glass rounded-[30px] p-6 mb-8" id="timPengembang">
+<h2 class="text-2xl font-black mb-5">
 
 Tim Pengembang
 
 </h2>
-
-
-<div
-  class="grid
-  md:grid-cols-2
-  gap-4"
->
-
-
-<div
-  class="bg-slate-900/70
-  rounded-2xl
-  p-5"
->
-
-<div
-  class="text-sm
-  text-slate-500"
->
+<div class="grid md:grid-cols-2 gap-4">
+<div class="bg-slate-900/70 rounded-2xl p-5">
+<div class="text-sm text-slate-500">
 
 Ketua Tim
 
 </div>
-
-<div
-  class="text-xl
-  font-black
-  mt-2"
->
+<div class="text-xl font-black mt-2">
 
 Fredynandus Takalamingan, S.Si
 
 </div>
-
-<div
-  class="text-emerald-300
-  text-sm
-  mt-2"
->
+<div class="text-emerald-300 text-sm mt-2">
 
 Guru Fisika
 
 </div>
-
 </div>
-
-
-
-<div
-  class="bg-slate-900/70
-  rounded-2xl
-  p-5"
->
-
-<div
-  class="text-sm
-  text-slate-500"
->
+<div class="bg-slate-900/70 rounded-2xl p-5">
+<div class="text-sm text-slate-500">
 
 Anggota Tim
 
 </div>
-
-<div
-  class="text-xl
-  font-black
-  mt-2"
->
+<div class="text-xl font-black mt-2">
 
 Justin Rarase Tacazily, ST
 
 </div>
-
-<div
-  class="text-sky-300
-  text-sm
-  mt-2"
->
+<div class="text-sky-300 text-sm mt-2">
 
 Guru Informatika
 
 </div>
-
 </div>
-
-
 </div>
-
-
-</section>
-
-
-</section>
-
-
-
+</section></div></div></div></section>
 <!-- =========================
      VIEWER
 ========================= -->
-
-<section
-  id="viewerView"
-  class="hidden"
->
-
-
-<div
-  class="glass
-  rounded-[30px]
-  p-5
-  mb-5"
->
-
-
-<div
-  class="flex
-  flex-col md:flex-row
-  justify-between
-  gap-4"
->
-
-
+<section class="hidden" id="viewerView">
+<div class="glass rounded-[30px] p-5 mb-5">
+<div class="flex flex-col md:flex-row justify-between gap-4">
 <div>
-
-
-<div
-  class="text-xs
-  uppercase
-  text-emerald-300
-  font-black"
->
+<div class="text-xs uppercase text-emerald-300 font-black">
 
 SAVER-KIT Simulation
 
 </div>
-
-
-<h2
-  id="viewerTitle"
-  class="text-2xl
-  font-black
-  mt-2"
->
+<h2 class="text-2xl font-black mt-2" id="viewerTitle">
 
 Simulasi
 
 </h2>
-
-
 </div>
-
-
-
-<div
-  class="flex
-  gap-3"
->
-
-
-<button
-  id="openNewTabBtn"
-
-  class="bg-slate-700
-  px-5 py-3
-  rounded-xl
-  font-bold"
->
+<div class="flex gap-3">
+<button class="bg-slate-700 px-5 py-3 rounded-xl font-bold" id="openNewTabBtn">
 
 ↗ Tab Baru
 
 </button>
-
-
-<button
-  id="backBtnTop"
-
-  class="bg-emerald-500
-  text-slate-900
-  px-5 py-3
-  rounded-xl
-  font-black"
->
+<button class="bg-emerald-500 text-slate-900 px-5 py-3 rounded-xl font-black" id="backBtnTop">
 
 ← Kembali
 
 </button>
-
-
 </div>
-
-
 </div>
-
-
 </div>
-
-
-
-<div
-  class="glass
-  rounded-[30px]
-  p-3"
->
-
-
-<div
-  class="iframe-shell"
->
-
-
-<iframe
-  id="simFrame"
-></iframe>
-
-
+<div class="glass rounded-[30px] p-3">
+<div class="iframe-shell">
+<iframe id="simFrame"></iframe>
 </div>
-
-
 </div>
-
-
-
-<div
-  class="text-center
-  mt-5"
->
-
-
-<button
-  id="backBtnBottom"
-
-  class="bg-sky-500
-  text-slate-900
-  px-6 py-3
-  rounded-xl
-  font-black"
->
+<div class="text-center mt-5">
+<button class="bg-sky-500 text-slate-900 px-6 py-3 rounded-xl font-black" id="backBtnBottom">
 
 🏠 Kembali ke SAVER-KIT
 
 </button>
-
-
 </div>
-
-
 </section>
-
-
-
 <!-- =========================
      FOOTER
 ========================= -->
-
-<footer
-  class="text-center
-  text-slate-500
-  text-sm
-  py-8"
->
-
-
-<div
-  class="font-black
-  text-slate-400"
->
+<footer class="text-center text-slate-500 text-sm py-8">
+<div class="font-black text-slate-400">
 
 SAVER-KIT
 
 </div>
+<div class="mt-2">
 
-
-<div
-  class="mt-2"
->
-
-Smart Energy Virtual Simulator & Sensor Kit
+Smart Energy Virtual Simulator &amp; Sensor Kit
 
 </div>
-
-
-<div
-  class="mt-2"
->
+<div class="mt-2">
 
 TARSIUS EDUTECH • SMA Negeri 2 Bitung • TTC 2026
 
 </div>
-
-
 </footer>
-
-
 </div>
-
-
-
 <!-- =========================
      JAVASCRIPT
 ========================= -->
-
 <script>
 
 
@@ -6916,8 +4084,20 @@ lucide.createIcons();
 
 
 </script>
-
-
-</body>
-
+<script>
+/* SIDEBAR MENU: hanya mengatur tampilan panel, fungsi asli tidak diubah */
+document.addEventListener('DOMContentLoaded', function(){
+  const sidebarLinks=document.querySelectorAll('.sidebar-link');
+  const panels=document.querySelectorAll('.app-panel');
+  const welcome=document.getElementById('beranda');
+  function showPanel(target){
+    sidebarLinks.forEach(link=>link.classList.toggle('active',link.dataset.target===target));
+    panels.forEach(panel=>panel.classList.toggle('active',panel.dataset.panel===target));
+    if(welcome) welcome.classList.toggle('active',target==='beranda');
+    window.scrollTo({top:0,behavior:'smooth'});
+  }
+  sidebarLinks.forEach(link=>link.addEventListener('click',()=>showPanel(link.dataset.target)));
+  if(window.lucide) lucide.createIcons();
+});
+</script></body>
 </html>
