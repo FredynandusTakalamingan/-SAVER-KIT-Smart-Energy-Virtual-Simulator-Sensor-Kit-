@@ -1126,6 +1126,26 @@
 @media(max-width:640px){.sidebar-app{gap:16px}.sidebar-menu{padding:14px;border-radius:22px}.sidebar-nav{grid-template-columns:1fr}.sidebar-link{padding:11px 12px}.welcome-grid{grid-template-columns:1fr}.welcome-card{border-radius:24px;padding:28px 20px}}
 
 </style>
+
+<style id="learning-submenu-style">
+.learning-menu-group{width:100%;margin:2px 0;}
+.learning-menu-toggle{
+  width:100%;display:flex;align-items:center;gap:12px;padding:12px 13px;
+  border-radius:15px;border:1px solid transparent;background:transparent;
+  color:#5f5969;text-align:left;font-weight:800;font-size:.9rem;
+  transition:.2s ease;cursor:pointer;
+}
+.learning-menu-toggle:hover{background:rgba(124,77,219,.08);color:#7044d7;}
+.learning-menu-toggle .submenu-arrow{margin-left:auto;transition:transform .25s ease;}
+.learning-menu-group.open .submenu-arrow{transform:rotate(180deg);}
+.learning-submenu{
+  display:none;width:calc(100% - 16px);margin:4px 0 8px 16px;
+  padding-left:10px;border-left:1px solid rgba(124,77,219,.22);
+}
+.learning-menu-group.open .learning-submenu{display:block;}
+.learning-submenu .sidebar-link{width:100%;font-size:.86rem;}
+</style>
+
 </head>
 <body>
 <!-- =========================
@@ -1318,7 +1338,19 @@ Mode Gelap
 <!-- =========================
      MAIN VIEW
 ========================= -->
-<section class="fade-in" id="menuView"><div class="sidebar-app"><aside class="sidebar-menu"><div class="sidebar-brand"><div class="sidebar-brand-icon"><i class="w-6 h-6" data-lucide="zap"></i></div><div><h3>SAVER-KIT</h3><p>Pilih menu untuk membuka konten</p></div></div><nav aria-label="Menu SAVER-KIT" class="sidebar-nav"><button class="sidebar-link active" data-target="beranda" type="button"><i class="w-5 h-5" data-lucide="house"></i>Beranda</button><button class="sidebar-link" data-target="simulasi" type="button"><i class="w-5 h-5" data-lucide="play-circle"></i>Simulasi Energi</button><button class="sidebar-link" data-target="dashboard" type="button"><i class="w-5 h-5" data-lucide="calculator"></i>Kalkulator Energi</button><button class="sidebar-link" data-target="lintasmapel" type="button"><i class="w-5 h-5" data-lucide="network"></i>Lintas Mata Pelajaran</button><button class="sidebar-link" data-target="stem" type="button"><i class="w-5 h-5" data-lucide="atom"></i>Integrasi STEM</button><button class="sidebar-link" data-target="deeplearning" type="button"><i class="w-5 h-5" data-lucide="brain"></i>Deep Learning</button><button class="sidebar-link" data-target="advancedAnalytics" type="button"><i class="w-5 h-5" data-lucide="bar-chart-3"></i>Analitik Energi</button><button class="sidebar-link" data-target="auditenergi" type="button"><i class="w-5 h-5" data-lucide="clipboard-check"></i>Audit Energi</button><button class="sidebar-link" data-target="ecosensor" type="button"><i class="w-5 h-5" data-lucide="cpu"></i>Eco-Sensor Kit</button><button class="sidebar-link" data-target="projekaktivitas" type="button"><i class="w-5 h-5" data-lucide="folder-kanban"></i>Projek Aktivitas</button><button class="sidebar-link" data-target="realtime" type="button"><i class="w-5 h-5" data-lucide="radio"></i>IoT Real-Time</button><button class="sidebar-link" data-target="timPengembang" type="button"><i class="w-5 h-5" data-lucide="users"></i>Tim Pengembang</button></nav></aside><div class="sidebar-content"><div class="welcome-panel active" id="beranda"><div class="welcome-card"><div class="welcome-icon"><i class="w-10 h-10" data-lucide="layout-dashboard"></i></div><h2>Selamat Datang di SAVER-KIT</h2><p></p><div class="welcome-grid"><div><strong>🧭 Mudah Dijelajahi</strong><span>Akses setiap fitur dan informasi dengan navigasi yang sederhana dan nyaman.</span></div><div><strong>⚡ Interaktif & Inovatif</strong><span>Nikmati berbagai simulasi, kalkulator, dan aktivitas yang dapat digunakan secara langsung.</span></div><div><strong>📚 Lengkap & Terintegrasi</strong><span>Seluruh fitur SAVER-KIT tersedia dalam satu platform yang terstruktur dan mudah diakses.</span></div></div></div></div><div class="app-panel" data-panel="simulasi"><section class="mb-10" id="simulasi">
+<section class="fade-in" id="menuView"><div class="sidebar-app"><aside class="sidebar-menu"><div class="sidebar-brand"><div class="sidebar-brand-icon"><i class="w-6 h-6" data-lucide="zap"></i></div><div><h3>SAVER-KIT</h3><p>Pilih menu untuk membuka konten</p></div></div><nav aria-label="Menu SAVER-KIT" class="sidebar-nav"><button class="sidebar-link active" data-target="beranda" type="button"><i class="w-5 h-5" data-lucide="house"></i>Beranda</button><button class="sidebar-link" data-target="simulasi" type="button"><i class="w-5 h-5" data-lucide="play-circle"></i>Simulasi Energi</button><button class="sidebar-link" data-target="dashboard" type="button"><i class="w-5 h-5" data-lucide="calculator"></i>Kalkulator Energi</button><div class="learning-menu-group" id="learningMenuGroup">
+<button class="learning-menu-toggle" id="learningMenuToggle" type="button" aria-expanded="false">
+<i class="w-5 h-5" data-lucide="graduation-cap"></i>
+<span>Pembelajaran &amp; Projek</span>
+<i class="w-4 h-4 submenu-arrow" data-lucide="chevron-down"></i>
+</button>
+<div class="learning-submenu">
+<button class="sidebar-link" data-target="lintasmapel" type="button"><i class="w-5 h-5" data-lucide="network"></i>Lintas Mata Pelajaran</button>
+<button class="sidebar-link" data-target="stem" type="button"><i class="w-5 h-5" data-lucide="atom"></i>Integrasi STEM</button>
+<button class="sidebar-link" data-target="deeplearning" type="button"><i class="w-5 h-5" data-lucide="brain"></i>Deep Learning</button>
+<button class="sidebar-link" data-target="projekaktivitas" type="button"><i class="w-5 h-5" data-lucide="folder-kanban"></i>Projek Aktivitas</button>
+</div>
+</div><button class="sidebar-link" data-target="advancedAnalytics" type="button"><i class="w-5 h-5" data-lucide="bar-chart-3"></i>Analitik Energi</button><button class="sidebar-link" data-target="auditenergi" type="button"><i class="w-5 h-5" data-lucide="clipboard-check"></i>Audit Energi</button><button class="sidebar-link" data-target="ecosensor" type="button"><i class="w-5 h-5" data-lucide="cpu"></i>Eco-Sensor Kit</button><button class="sidebar-link" data-target="realtime" type="button"><i class="w-5 h-5" data-lucide="radio"></i>IoT Real-Time</button><button class="sidebar-link" data-target="timPengembang" type="button"><i class="w-5 h-5" data-lucide="users"></i>Tim Pengembang</button></nav></aside><div class="sidebar-content"><div class="welcome-panel active" id="beranda"><div class="welcome-card"><div class="welcome-icon"><i class="w-10 h-10" data-lucide="layout-dashboard"></i></div><h2>Selamat Datang di SAVER-KIT</h2><p></p><div class="welcome-grid"><div><strong>🧭 Mudah Dijelajahi</strong><span>Akses setiap fitur dan informasi dengan navigasi yang sederhana dan nyaman.</span></div><div><strong>⚡ Interaktif & Inovatif</strong><span>Nikmati berbagai simulasi, kalkulator, dan aktivitas yang dapat digunakan secara langsung.</span></div><div><strong>📚 Lengkap & Terintegrasi</strong><span>Seluruh fitur SAVER-KIT tersedia dalam satu platform yang terstruktur dan mudah diakses.</span></div></div></div></div><div class="app-panel" data-panel="simulasi"><section class="mb-10" id="simulasi">
 <div class="mb-6">
 <div class="text-emerald-300 text-xs uppercase font-black tracking-[.2em]">
 
@@ -4128,5 +4160,26 @@ document.addEventListener('DOMContentLoaded', function(){
   sidebarLinks.forEach(link=>link.addEventListener('click',()=>showPanel(link.dataset.target)));
   if(window.lucide) lucide.createIcons();
 });
-</script></body>
+</script>
+<script id="learning-submenu-script">
+document.addEventListener('DOMContentLoaded', function(){
+  const group = document.getElementById('learningMenuGroup');
+  const toggle = document.getElementById('learningMenuToggle');
+
+  if (!group || !toggle) return;
+
+  toggle.addEventListener('click', function(){
+    const isOpen = group.classList.toggle('open');
+    toggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+  });
+
+  group.querySelectorAll('.learning-submenu .sidebar-link').forEach(function(item){
+    item.addEventListener('click', function(){
+      group.classList.add('open');
+      toggle.setAttribute('aria-expanded', 'true');
+    });
+  });
+});
+</script>
+</body>
 </html>
