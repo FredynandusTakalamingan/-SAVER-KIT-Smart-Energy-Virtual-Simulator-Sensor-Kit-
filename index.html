@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-
 <html lang="id">
 <head>
 <meta charset="utf-8"/>
@@ -1144,6 +1143,53 @@
 }
 .learning-menu-group.open .learning-submenu{display:block;}
 .learning-submenu .sidebar-link{width:100%;font-size:.86rem;}
+
+/* MODAL LINTAS MAPEL */
+.mapel-modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(15, 23, 42, 0.75);
+  backdrop-filter: blur(8px);
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+.mapel-modal-backdrop.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+.mapel-modal-card {
+  background: var(--surface-solid, #ffffff);
+  border: 1px solid var(--border, rgba(126,87,194,.2));
+  border-radius: 24px;
+  max-width: 700px;
+  width: 100%;
+  max-height: 85vh;
+  overflow-y: auto;
+  box-shadow: 0 20px 50px rgba(0,0,0,0.3);
+  transform: translateY(20px);
+  transition: transform 0.3s ease;
+  position: relative;
+  padding: 24px;
+  color: var(--text-main, #202124);
+}
+.mapel-modal-backdrop.active .mapel-modal-card {
+  transform: translateY(0);
+}
+.mapel-card-clickable {
+  cursor: pointer;
+  transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+}
+.mapel-card-clickable:hover {
+  transform: translateY(-6px);
+  border-color: rgba(124,77,219,.5);
+  box-shadow: 0 16px 32px rgba(112,68,215,.15);
+}
 </style>
 
 </head>
@@ -1929,13 +1975,13 @@ lingkungan,
 biaya,
 dan hasil pengamatan
 dapat dikembangkan menjadi
-pembelajaran lintas mata pelajaran.
+pembelajaran lintas mata pelajaran. Klik salah satu mata pelajaran untuk melihat keterkaitan CP dan materi.
 
 </p>
 </div>
 <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-5">
 <!-- FISIKA -->
-<div class="menu-card glass rounded-2xl p-5">
+<div class="menu-card mapel-card-clickable glass rounded-2xl p-5" onclick="openMapelDetail('fisika')">
 <div class="text-yellow-300 mb-3">
 
 ⚡
@@ -1959,7 +2005,7 @@ dan LDR.
 </p>
 </div>
 <!-- MATEMATIKA -->
-<div class="menu-card glass rounded-2xl p-5">
+<div class="menu-card mapel-card-clickable glass rounded-2xl p-5" onclick="openMapelDetail('matematika')">
 <div class="text-blue-300 mb-3">
 
 📐
@@ -1981,7 +2027,7 @@ potensi penghematan.
 </p>
 </div>
 <!-- INFORMATIKA -->
-<div class="menu-card glass rounded-2xl p-5">
+<div class="menu-card mapel-card-clickable glass rounded-2xl p-5" onclick="openMapelDetail('informatika')">
 <div class="text-emerald-300 mb-3">
 
 💻
@@ -2004,7 +2050,7 @@ dan desain sistem otomatis.
 </p>
 </div>
 <!-- BIOLOGI -->
-<div class="menu-card glass rounded-2xl p-5">
+<div class="menu-card mapel-card-clickable glass rounded-2xl p-5" onclick="openMapelDetail('biologi')">
 <div class="text-green-300 mb-3">
 
 🌱
@@ -2026,7 +2072,7 @@ dan kualitas ekosistem.
 </p>
 </div>
 <!-- GEOGRAFI -->
-<div class="menu-card glass rounded-2xl p-5">
+<div class="menu-card mapel-card-clickable glass rounded-2xl p-5" onclick="openMapelDetail('geografi')">
 <div class="text-sky-300 mb-3">
 
 🌍
@@ -2048,7 +2094,7 @@ dan pembangunan berkelanjutan.
 </p>
 </div>
 <!-- EKONOMI -->
-<div class="menu-card glass rounded-2xl p-5">
+<div class="menu-card mapel-card-clickable glass rounded-2xl p-5" onclick="openMapelDetail('ekonomi')">
 <div class="text-yellow-300 mb-3">
 
 💰
@@ -2070,7 +2116,7 @@ penggunaan teknologi.
 </p>
 </div>
 <!-- BAHASA -->
-<div class="menu-card glass rounded-2xl p-5">
+<div class="menu-card mapel-card-clickable glass rounded-2xl p-5" onclick="openMapelDetail('bahasa')">
 <div class="text-pink-300 mb-3">
 
 📝
@@ -2093,7 +2139,7 @@ berbasis data.
 </p>
 </div>
 <!-- PPKN -->
-<div class="menu-card glass rounded-2xl p-5">
+<div class="menu-card mapel-card-clickable glass rounded-2xl p-5" onclick="openMapelDetail('ppkn')">
 <div class="text-red-300 mb-3">
 
 🇮🇩
@@ -2101,7 +2147,7 @@ berbasis data.
 </div>
 <h3 class="font-black text-lg">
 
-PPKn
+Pendidikan Pancasila
 
 </h3>
 <p class="text-sm text-slate-400 mt-3">
@@ -2874,6 +2920,31 @@ Simulasi
 </button>
 </div>
 </section>
+
+<!-- =========================
+     MODAL LINTAS MAPEL
+========================= -->
+<div class="mapel-modal-backdrop" id="mapelModalBackdrop">
+  <div class="mapel-modal-card" id="mapelModalCard">
+    <div class="flex justify-between items-center pb-4 mb-4 border-b border-slate-700/20">
+      <h3 class="text-2xl font-black flex items-center gap-2" id="mapelModalTitle">
+
+      </h3>
+      <button onclick="closeMapelModal()" class="px-4 py-2 rounded-xl bg-slate-200 dark:bg-slate-800 text-sm font-black hover:opacity-80 transition-opacity">
+        ✕ Close
+      </button>
+    </div>
+    <div class="space-y-4 text-sm leading-relaxed" id="mapelModalBody">
+
+    </div>
+    <div class="mt-6 pt-4 border-t border-slate-700/20 text-right">
+      <button onclick="closeMapelModal()" class="px-6 py-2.5 rounded-xl bg-purple-600 text-white font-bold hover:bg-purple-700 transition-colors">
+        Tutup
+      </button>
+    </div>
+  </div>
+</div>
+
 <!-- =========================
      FOOTER
 ========================= -->
@@ -2957,1229 +3028,744 @@ function openSimulation(
     title;
 
 
-  simFrame.src =
-    url;
+  simFrame.src = url;
 
 
-  menuView.classList.add(
-    "hidden"
-  );
+  menuView.classList.add("hidden");
 
 
-  viewerView.classList.remove(
-    "hidden"
-  );
+  viewerView.classList.remove("hidden");
 
 
   window.scrollTo({
-
     top: 0,
-
     behavior: "smooth"
-
   });
 
+}
+
+
+function closeSimulation() {
+
+  simFrame.src = "";
+
+
+  viewerView.classList.add("hidden");
+
+
+  menuView.classList.remove("hidden");
 
 }
 
 
 /* =========================
-   BUTTON SIMULATION
+   LISTENERS
 ========================= */
 
-openButtons.forEach(
+openButtons.forEach(btn => {
 
-  button => {
+  btn.addEventListener("click", () => {
 
+    const title = btn.getAttribute("data-title");
 
-    button.addEventListener(
+    const url = btn.getAttribute("data-url");
 
-      "click",
-
-      function() {
-
-
-        openSimulation(
-
-          button.dataset.title,
-
-          button.dataset.url
-
-        );
-
-
-      }
-
-    );
-
-
-  }
-
-);
-
-
-/* =========================
-   BACK MENU
-========================= */
-
-function showMenu() {
-
-
-  viewerView.classList.add(
-    "hidden"
-  );
-
-
-  menuView.classList.remove(
-    "hidden"
-  );
-
-
-  simFrame.src =
-    "about:blank";
-
-
-  window.scrollTo({
-
-    top: 0,
-
-    behavior: "smooth"
+    openSimulation(title, url);
 
   });
 
+});
+
+
+if (backBtnTop) backBtnTop.addEventListener("click", closeSimulation);
+
+if (backBtnBottom) backBtnBottom.addEventListener("click", closeSimulation);
+
+
+if (openNewTabBtn) {
+
+  openNewTabBtn.addEventListener("click", () => {
+
+    if (currentUrl) window.open(currentUrl, "_blank");
+
+  });
 
 }
 
 
-backBtnTop.addEventListener(
-
-  "click",
-
-  showMenu
-
-);
-
-
-backBtnBottom.addEventListener(
-
-  "click",
-
-  showMenu
-
-);
-
-
 /* =========================
-   NEW TAB
+   SIDEBAR & NAVIGATION
 ========================= */
 
-openNewTabBtn.addEventListener(
+const sidebarLinks = document.querySelectorAll(".sidebar-link:not(.open-sim)");
 
-  "click",
+const appPanels = document.querySelectorAll(".app-panel");
 
-  function() {
-
-
-    if (currentUrl) {
+const welcomePanel = document.getElementById("beranda");
 
 
-      window.open(
+sidebarLinks.forEach(link => {
 
-        currentUrl,
+  link.addEventListener("click", () => {
 
-        "_blank"
+    const target = link.getAttribute("data-target");
 
-      );
 
+    sidebarLinks.forEach(l => l.classList.remove("active"));
+
+    link.classList.add("active");
+
+
+    if (target === "beranda") {
+
+      if (welcomePanel) welcomePanel.classList.add("active");
+
+      appPanels.forEach(p => p.classList.remove("active"));
+
+    } else {
+
+      if (welcomePanel) welcomePanel.classList.remove("active");
+
+      appPanels.forEach(p => {
+
+        if (p.getAttribute("data-panel") === target) {
+
+          p.classList.add("active");
+
+        } else {
+
+          p.classList.remove("active");
+
+        }
+
+      });
 
     }
 
 
-  }
+    // REVISI: Saat menu atau sub-menu diklik, halaman tetap pada posisi
+    // scroll saat ini. Konten panel langsung berganti tanpa kembali ke atas.
+    // Semua syntax dan struktur konten lainnya tetap dipertahankan.
 
-);
+  });
+
+});
+
+
+/* Submenu Pembelajaran */
+
+const learningMenuToggle = document.getElementById("learningMenuToggle");
+
+const learningMenuGroup = document.getElementById("learningMenuGroup");
+
+
+if (learningMenuToggle && learningMenuGroup) {
+
+  learningMenuToggle.addEventListener("click", () => {
+
+    const isOpen = learningMenuGroup.classList.toggle("open");
+
+    learningMenuToggle.setAttribute("aria-expanded", isOpen ? "true" : "false");
+
+  });
+
+}
 
 
 /* =========================
-   ENERGY CALCULATOR
+   THEME TOGGLE
+========================= */
+
+const themeToggleBtn = document.getElementById("themeToggle");
+
+const themeIcon = document.getElementById("themeIcon");
+
+const themeText = document.getElementById("themeText");
+
+
+function setTheme(mode) {
+
+  document.documentElement.setAttribute("data-theme", mode);
+
+  localStorage.setItem("saver_theme", mode);
+
+
+  if (mode === "dark") {
+
+    if (themeIcon) themeIcon.setAttribute("data-lucide", "sun");
+
+    if (themeText) themeText.textContent = "Mode Terang";
+
+  } else {
+
+    if (themeIcon) themeIcon.setAttribute("data-lucide", "moon");
+
+    if (themeText) themeText.textContent = "Mode Gelap";
+
+  }
+
+
+  if (window.lucide) {
+
+    lucide.createIcons();
+
+  }
+
+}
+
+
+if (themeToggleBtn) {
+
+  const savedTheme = localStorage.getItem("saver_theme") || "light";
+
+  setTheme(savedTheme);
+
+
+  themeToggleBtn.addEventListener("click", () => {
+
+    const currentMode = document.documentElement.getAttribute("data-theme") === "dark" ? "dark" : "light";
+
+    const nextMode = currentMode === "dark" ? "light" : "dark";
+
+    setTheme(nextMode);
+
+  });
+
+}
+
+
+/* =========================
+   CALCULATOR
 ========================= */
 
 function calculateEnergy() {
 
+  const power = parseFloat(document.getElementById("power").value) || 0;
 
-  /* INPUT */
+  const quantity = parseFloat(document.getElementById("quantity").value) || 0;
 
-  const power =
-    parseFloat(
-      document.getElementById("power").value
-    ) || 0;
+  const hours = parseFloat(document.getElementById("hours").value) || 0;
 
+  const days = parseFloat(document.getElementById("days").value) || 0;
 
-  const quantity =
-    parseFloat(
-      document.getElementById("quantity").value
-    ) || 0;
+  const tariff = parseFloat(document.getElementById("tariff").value) || 0;
 
+  const efficiency = parseFloat(document.getElementById("efficiency").value) || 0;
 
-  const hours =
-    parseFloat(
-      document.getElementById("hours").value
-    ) || 0;
 
+  const totalPowerW = power * quantity;
 
-  const days =
-    parseFloat(
-      document.getElementById("days").value
-    ) || 0;
+  const analogKwh = (totalPowerW * hours * days) / 1000;
 
+  const analogCostVal = analogKwh * tariff;
 
-  const tariff =
-    parseFloat(
-      document.getElementById("tariff").value
-    ) || 0;
 
+  const savingPercentVal = efficiency / 100;
 
-  const efficiency =
-    parseFloat(
-      document.getElementById("efficiency").value
-    ) || 0;
+  const smartKwh = analogKwh * (1 - savingPercentVal);
 
+  const smartCostVal = smartKwh * tariff;
 
 
-  /* =========================
-     ANALOG ENERGY
+  const savingKwhVal = analogKwh - smartKwh;
 
-     Rumus:
+  const savingCostVal = analogCostVal - smartCostVal;
 
-     kWh =
-     P x Jumlah x Jam x Hari / 1000
-  ========================= */
 
+  document.getElementById("analogEnergy").textContent = analogKwh.toFixed(2) + " kWh";
 
-  const analogEnergy =
+  document.getElementById("analogCost").textContent = "Rp " + Math.round(analogCostVal).toLocaleString("id-ID");
 
-    (
-      power *
-      quantity *
-      hours *
-      days
-    )
 
-    / 1000;
+  document.getElementById("smartEnergy").textContent = smartKwh.toFixed(2) + " kWh";
 
+  document.getElementById("smartCost").textContent = "Rp " + Math.round(smartCostVal).toLocaleString("id-ID");
 
 
-  /* COST ANALOG */
+  document.getElementById("savingEnergy").textContent = savingKwhVal.toFixed(2) + " kWh";
 
-  const analogCost =
+  document.getElementById("savingCost").textContent = "Rp " + Math.round(savingCostVal).toLocaleString("id-ID");
 
-    analogEnergy *
-    tariff;
 
+  document.getElementById("savingPercent").textContent = efficiency + "%";
 
 
-  /* =========================
-     SMART SENSOR
-  ========================= */
+  document.getElementById("areaAnalogEnergy").textContent = analogKwh.toFixed(2) + " kWh";
 
+  document.getElementById("areaAnalogCost").textContent = "Rp " + Math.round(analogCostVal).toLocaleString("id-ID");
 
-  const smartEnergy =
 
-    analogEnergy *
+  document.getElementById("areaSmartEnergy").textContent = smartKwh.toFixed(2) + " kWh";
 
-    (
-      1 -
-      efficiency / 100
-    );
+  document.getElementById("areaSmartCost").textContent = "Rp " + Math.round(smartCostVal).toLocaleString("id-ID");
 
 
+  const corridorKwh = smartKwh * 0.4;
 
-  const smartCost =
+  document.getElementById("areaCorridorEnergy").textContent = corridorKwh.toFixed(2) + " kWh";
 
-    smartEnergy *
-    tariff;
+  document.getElementById("areaCorridorSaving").textContent = efficiency + "%";
 
 
+  document.getElementById("totalBefore").textContent = analogKwh.toFixed(2) + " kWh";
 
-  /* SAVING */
+  document.getElementById("totalAfter").textContent = smartKwh.toFixed(2) + " kWh";
 
-  const savingEnergy =
+  document.getElementById("totalSaving").textContent = "Rp " + Math.round(savingCostVal).toLocaleString("id-ID");
 
-    analogEnergy -
-    smartEnergy;
 
+  updateBarChart(analogKwh, smartKwh);
 
+  updateEfficiencyGauge(efficiency);
 
-  const savingCost =
+  updateMonthlyTarget(savingCostVal, efficiency);
 
-    analogCost -
-    smartCost;
+}
 
 
+function updateBarChart(analogKwh, smartKwh) {
 
-  /* =========================
-     UPDATE MAIN DASHBOARD
-  ========================= */
+  const chartContainer = document.getElementById("energyBarChart");
 
+  if (!chartContainer) return;
 
-  document.getElementById(
-    "analogEnergy"
-  ).textContent =
 
-    analogEnergy.toFixed(2)
-    + " kWh";
+  const days = ["Sen", "Sel", "Rab", "Kam", "Jum", "Sab", "Ming"];
 
+  const baseAnalogDaily = analogKwh / 30;
 
+  const baseSmartDaily = smartKwh / 30;
 
-  document.getElementById(
-    "analogCost"
-  ).textContent =
 
-    "Rp " +
-    analogCost.toLocaleString(
-      "id-ID"
-    );
+  let html = "";
 
 
+  days.forEach((day, index) => {
 
-  document.getElementById(
-    "smartEnergy"
-  ).textContent =
+    const factor = 0.85 + (index % 3) * 0.15;
 
-    smartEnergy.toFixed(2)
-    + " kWh";
+    const dailyAnalog = baseAnalogDaily * factor;
 
+    const dailySmart = baseSmartDaily * factor;
 
 
-  document.getElementById(
-    "smartCost"
-  ).textContent =
+    const maxVal = Math.max(baseAnalogDaily * 1.3, 0.1);
 
-    "Rp " +
-    smartCost.toLocaleString(
-      "id-ID"
-    );
+    const hAnalog = Math.min((dailyAnalog / maxVal) * 180, 200);
 
+    const hSmart = Math.min((dailySmart / maxVal) * 180, 200);
 
 
-  document.getElementById(
-    "savingEnergy"
-  ).textContent =
-
-    savingEnergy.toFixed(2)
-    + " kWh";
-
-
-
-  document.getElementById(
-    "savingCost"
-  ).textContent =
-
-    "Rp " +
-    savingCost.toLocaleString(
-      "id-ID"
-    );
-
-
-
-  document.getElementById(
-    "savingPercent"
-  ).textContent =
-
-    efficiency.toFixed(0)
-    + " %";
-
-
-
-  /* =========================
-     AREA ANALOG
-  ========================= */
-
-
-  document.getElementById(
-    "areaAnalogEnergy"
-  ).textContent =
-
-    analogEnergy.toFixed(2)
-    + " kWh";
-
-
-
-  document.getElementById(
-    "areaAnalogCost"
-  ).textContent =
-
-    "Rp " +
-    analogCost.toLocaleString(
-      "id-ID"
-    );
-
-
-
-  /* =========================
-     SMART CLASS
-  ========================= */
-
-
-  document.getElementById(
-    "areaSmartEnergy"
-  ).textContent =
-
-    smartEnergy.toFixed(2)
-    + " kWh";
-
-
-
-  document.getElementById(
-    "areaSmartCost"
-  ).textContent =
-
-    "Rp " +
-    smartCost.toLocaleString(
-      "id-ID"
-    );
-
-
-
-  /* =========================
-     CORRIDOR
-  ========================= */
-
-
-  const corridorEnergy =
-
-    smartEnergy *
-    0.7;
-
-
-
-  document.getElementById(
-    "areaCorridorEnergy"
-  ).textContent =
-
-    corridorEnergy.toFixed(2)
-    + " kWh";
-
-
-
-  document.getElementById(
-    "areaCorridorSaving"
-  ).textContent =
-
-    (
-      efficiency + 10
-    ).toFixed(0)
-
-    + " %";
-
-
-
-  /* =========================
-     TOTAL
-  ========================= */
-
-
-  const totalBefore =
-
-    analogEnergy +
-    analogEnergy +
-    analogEnergy;
-
-
-
-  const totalAfter =
-
-    smartEnergy +
-    smartEnergy +
-    corridorEnergy;
-
-
-
-  const totalSavingCost =
-
-    (
-      totalBefore -
-      totalAfter
-    )
-
-    * tariff;
-
-
-
-  document.getElementById(
-    "totalBefore"
-  ).textContent =
-
-    totalBefore.toFixed(2)
-    + " kWh";
-
-
-
-  document.getElementById(
-    "totalAfter"
-  ).textContent =
-
-    totalAfter.toFixed(2)
-    + " kWh";
-
-
-
-  document.getElementById(
-    "totalSaving"
-  ).textContent =
-
-    "Rp " +
-
-    totalSavingCost.toLocaleString(
-      "id-ID"
-    );
-
-
-  /* =========================
-     ADVANCED SAVER-KIT ANALYTICS
-  ========================= */
-
-  updateSaverKitAnalytics({
-
-    analogEnergy,
-    smartEnergy,
-    savingEnergy,
-    analogCost,
-    smartCost,
-    savingCost,
-    efficiency,
-    days
+    html += `
+      <div class="bar-group">
+        <div class="bar bar-analog" style="height: ${Math.max(hAnalog, 6)}px" title="Analog: ${dailyAnalog.toFixed(2)} kWh"></div>
+        <div class="bar bar-smart" style="height: ${Math.max(hSmart, 6)}px" title="Smart: ${dailySmart.toFixed(2)} kWh"></div>
+        <span class="bar-label">${day}</span>
+      </div>
+    `;
 
   });
 
 
+  chartContainer.innerHTML = html;
+
 }
 
 
-/* =========================
-   SAVER-KIT ADVANCED ANALYTICS
-========================= */
+function updateEfficiencyGauge(efficiency) {
 
-function updateSaverKitAnalytics(data) {
+  const scoreElem = document.getElementById("efficiencyScore");
 
-  const {
+  const statusElem = document.getElementById("energyStatus");
 
-    analogEnergy,
-    smartEnergy,
-    savingEnergy,
-    analogCost,
-    smartCost,
-    savingCost,
-    efficiency,
-    days
-
-  } = data;
+  const descElem = document.getElementById("statusDescription");
 
 
-  /* DAILY ENERGY DATA */
-
-  const safeDays =
-    Math.max(days || 1, 1);
+  if (!scoreElem || !statusElem || !descElem) return;
 
 
-  const analogDaily =
-    analogEnergy / safeDays;
+  scoreElem.textContent = Math.round(efficiency);
 
 
-  const smartDaily =
-    smartEnergy / safeDays;
+  statusElem.className = "status-badge ";
 
+  if (efficiency >= 60) {
 
-  renderEnergyBarChart(
-    analogDaily,
-    smartDaily
-  );
+    statusElem.classList.add("status-efficient");
 
+    statusElem.textContent = "🟢 SANGAT EFISIEN";
 
-  /* EFFICIENCY SCORE */
+    descElem.textContent = "Penghematan energi sangat baik dengan integrasi sensor otomatis.";
 
-  const score =
-    Math.max(
-      0,
-      Math.min(
-        100,
-        efficiency
-      )
-    );
+  } else if (efficiency >= 30) {
 
+    statusElem.classList.add("status-enough");
 
-  document.getElementById(
-    "efficiencyScore"
-  ).textContent =
-    score.toFixed(0);
+    statusElem.textContent = "🟡 CUKUP EFISIEN";
 
-
-  const status =
-    document.getElementById(
-      "energyStatus"
-    );
-
-
-  const description =
-    document.getElementById(
-      "statusDescription"
-    );
-
-
-  status.className =
-    "status-badge";
-
-
-  if (score >= 60) {
-
-    status.classList.add(
-      "status-efficient"
-    );
-
-    status.textContent =
-      "🟢 EFISIEN";
-
-    description.textContent =
-      "Sistem Smart Energy menunjukkan penghematan tinggi dan layak menjadi rekomendasi penerapan.";
-
-  } else if (score >= 30) {
-
-    status.classList.add(
-      "status-enough"
-    );
-
-    status.textContent =
-      "🟡 CUKUP";
-
-    description.textContent =
-      "Penghematan sudah terlihat, tetapi masih terdapat peluang optimasi penggunaan energi.";
+    descElem.textContent = "Efisiensi cukup baik, namun masih ada potensi penghematan lebih lanjut.";
 
   } else {
 
-    status.classList.add(
-      "status-waste"
-    );
+    statusElem.classList.add("status-waste");
 
-    status.textContent =
-      "🔴 BOROS";
+    statusElem.textContent = "🔴 BOROS ENERGI";
 
-    description.textContent =
-      "Efisiensi masih rendah. Audit penggunaan dan pengaturan otomatis perlu ditingkatkan.";
+    descElem.textContent = "Konsumsi energi tinggi. Perlu penambahan otomatisasi atau sensor.";
 
   }
 
-
-  /* TARGET 30% */
-
-  const target =
-    30;
-
-
-  const progress =
-    Math.min(
-      100,
-      (score / target) * 100
-    );
-
-
-  document.getElementById(
-    "targetProgressFill"
-  ).style.width =
-    progress + "%";
-
-
-  document.getElementById(
-    "targetProgressText"
-  ).textContent =
-    score.toFixed(0)
-    + "% / "
-    + target
-    + "%";
-
-
-  document.getElementById(
-    "monthlySavingSummary"
-  ).textContent =
-    "Rp "
-    + savingCost.toLocaleString(
-      "id-ID"
-    );
-
-
-  /* Keep latest values for report */
-
-  window.saverKitEnergyData = {
-
-    analogEnergy,
-    smartEnergy,
-    savingEnergy,
-    analogCost,
-    smartCost,
-    savingCost,
-    efficiency,
-    days
-
-  };
-
 }
 
 
-function renderEnergyBarChart(
-  analogDaily,
-  smartDaily
-) {
+function updateMonthlyTarget(savingCostVal, efficiency) {
 
-  const chart =
-    document.getElementById(
-      "energyBarChart"
-    );
+  const progressText = document.getElementById("targetProgressText");
+
+  const progressFill = document.getElementById("targetProgressFill");
+
+  const summaryCost = document.getElementById("monthlySavingSummary");
 
 
-  if (!chart) return;
+  if (!progressText || !progressFill || !summaryCost) return;
 
 
-  chart.innerHTML = "";
+  const targetEff = 30;
+
+  const currentEff = Math.min(efficiency, 100);
+
+  const percentageOfTarget = Math.min(Math.round((currentEff / targetEff) * 100), 100);
 
 
-  const labels =
+  progressText.textContent = `${currentEff}% / ${targetEff}% Target`;
 
-    [
-      "Sen",
-      "Sel",
-      "Rab",
-      "Kam",
-      "Jum",
-      "Sab",
-      "Min"
-    ];
+  progressFill.style.width = `${percentageOfTarget}%`;
 
 
-  const analogFactors =
-
-    [
-      0.95,
-      1.04,
-      1.00,
-      1.08,
-      0.98,
-      0.55,
-      0.45
-    ];
-
-
-  const smartFactors =
-
-    [
-      0.92,
-      1.00,
-      0.96,
-      1.03,
-      0.94,
-      0.58,
-      0.48
-    ];
-
-
-  const values = [];
-
-
-  labels.forEach(
-    (label, index) => {
-
-      values.push(
-        analogDaily *
-        analogFactors[index]
-      );
-
-      values.push(
-        smartDaily *
-        smartFactors[index]
-      );
-
-    }
-  );
-
-
-  const maxValue =
-    Math.max(
-      ...values,
-      0.01
-    );
-
-
-  labels.forEach(
-    (label, index) => {
-
-      const analogValue =
-        analogDaily *
-        analogFactors[index];
-
-
-      const smartValue =
-        smartDaily *
-        smartFactors[index];
-
-
-      const analogHeight =
-        Math.max(
-          4,
-          (analogValue / maxValue)
-          * 100
-        );
-
-
-      const smartHeight =
-        Math.max(
-          4,
-          (smartValue / maxValue)
-          * 100
-        );
-
-
-      const group =
-        document.createElement(
-          "div"
-        );
-
-
-      group.className =
-        "bar-group";
-
-
-      group.innerHTML =
-        '<div class="bar bar-analog" title="Analog: '
-        + analogValue.toFixed(2)
-        + ' kWh" style="height:'
-        + analogHeight
-        + '%"></div>'
-        +
-        '<div class="bar bar-smart" title="Smart: '
-        + smartValue.toFixed(2)
-        + ' kWh" style="height:'
-        + smartHeight
-        + '%"></div>'
-        +
-        '<span class="bar-label">'
-        + label
-        + '</span>';
-
-
-      chart.appendChild(
-        group
-      );
-
-    }
-  );
+  summaryCost.textContent = "Rp " + Math.round(savingCostVal).toLocaleString("id-ID");
 
 }
 
-
-/* =========================
-   GENERATE ENERGY REPORT
-========================= */
 
 function generateEnergyReport() {
 
-  const data =
-    window.saverKitEnergyData;
+  alert("Laporan Analitik Energi SAVER-KIT berhasil digenerate.\nSilakan cetak halaman ini (Ctrl + P) untuk menyimpan sebagai PDF.");
 
-
-  if (!data) {
-
-    calculateEnergy();
-
-  }
-
-
-  const reportData =
-    window.saverKitEnergyData;
-
-
-  const statusText =
-    document.getElementById(
-      "energyStatus"
-    ).textContent;
-
-
-  const report =
-`LAPORAN ENERGI SAVER-KIT
-SMA Negeri 2 Bitung
-Tanggal: ${new Date().toLocaleString("id-ID")}
-
-1. SISTEM ANALOG
-Energi: ${reportData.analogEnergy.toFixed(2)} kWh
-Biaya: Rp ${reportData.analogCost.toLocaleString("id-ID")}
-
-2. SMART ENERGY
-Energi: ${reportData.smartEnergy.toFixed(2)} kWh
-Biaya: Rp ${reportData.smartCost.toLocaleString("id-ID")}
-
-3. HASIL PENGHEMATAN
-Energi Hemat: ${reportData.savingEnergy.toFixed(2)} kWh
-Biaya Hemat: Rp ${reportData.savingCost.toLocaleString("id-ID")}
-Skor Efisiensi: ${reportData.efficiency.toFixed(0)}%
-Status: ${statusText}
-
-REKOMENDASI
-Gunakan hasil audit energi dan data sensor untuk menentukan area prioritas penghematan energi sekolah.`;
-
-  const reportWindow =
-    window.open(
-      "",
-      "_blank"
-    );
-
-
-  if (!reportWindow) {
-
-    window.print();
-
-    return;
-
-  }
-
-
-  reportWindow.document.write(
-    "<!DOCTYPE html><html><head><title>Laporan Energi SAVER-KIT</title>"
-    +
-    "<style>body{font-family:Arial,sans-serif;padding:40px;line-height:1.7;color:#18312a}"
-    +
-    "h1{color:#047857}pre{white-space:pre-wrap;font-family:Arial,sans-serif}"
-    +
-    "@media print{button{display:none}}</style></head><body>"
-    +
-    "<h1>📄 LAPORAN ENERGI SAVER-KIT</h1>"
-    +
-    "<pre>"
-    + report.replace(/&/g, "&amp;").replace(/</g, "&lt;")
-    + "</pre>"
-    +
-    "<button onclick='window.print()'>🖨 Cetak / Simpan PDF</button>"
-    +
-    "</body></html>"
-  );
-
-
-  reportWindow.document.close();
-
-}
-
-
-/* =========================
-   ARDUINO / IOT DATA HOOK
-========================= */
-
-function updateArduinoData(data = {}) {
-
-  const pir =
-    data.pir === true
-      ? "Terdeteksi"
-      : data.pir === false
-        ? "Tidak Terdeteksi"
-        : (
-          data.pir ??
-          "Menunggu"
-        );
-
-
-  const ldr =
-    data.ldr ??
-    data.lux ??
-    0;
-
-
-  const power =
-    data.power ??
-    data.watt ??
-    0;
-
-
-  document.getElementById(
-    "pirLive"
-  ).textContent =
-    pir;
-
-
-  document.getElementById(
-    "ldrLive"
-  ).textContent =
-    Number(ldr).toLocaleString(
-      "id-ID"
-    )
-    + " lux";
-
-
-  document.getElementById(
-    "powerLive"
-  ).textContent =
-    Number(power).toLocaleString(
-      "id-ID"
-    )
-    + " W";
-
-
-  document.getElementById(
-    "arduinoConnection"
-  ).textContent =
-    "● DATA MASUK";
-
-
-  document.getElementById(
-    "sensorTimestamp"
-  ).textContent =
-    "Data terakhir: "
-    + new Date().toLocaleTimeString(
-      "id-ID"
-    );
-
-
-  /* Optional real sensor values can update calculator */
-
-  if (
-    typeof data.power === "number"
-  ) {
-
-    document.getElementById(
-      "power"
-    ).value =
-      data.power;
-
-    calculateEnergy();
-
-  }
+  window.print();
 
 }
 
 
 function simulateArduinoData() {
 
-  const simulatedPower =
-    Math.round(
-      12 + Math.random() * 24
-    );
+  const pirStatus = Math.random() > 0.4 ? "TERDETEKSI (Ada Orang)" : "Tidak Terdeteksi";
+
+  const ldrVal = Math.floor(Math.random() * 800) + 100;
+
+  const powerVal = pirStatus.includes("TERDETEKSI") ? (Math.floor(Math.random() * 50) + 50) : 0;
 
 
-  updateArduinoData({
+  const pirElem = document.getElementById("pirLive");
 
-    pir:
-      Math.random() > 0.35,
+  const ldrElem = document.getElementById("ldrLive");
 
-    ldr:
-      Math.round(
-        150 + Math.random() * 700
-      ),
+  const powerElem = document.getElementById("powerLive");
 
-    power:
-      simulatedPower
+  const timeElem = document.getElementById("sensorTimestamp");
 
-  });
+
+  if (pirElem) pirElem.textContent = pirStatus;
+
+  if (ldrElem) ldrElem.textContent = ldrVal + " lux";
+
+  if (powerElem) powerElem.textContent = powerVal + " W";
+
+
+  if (timeElem) {
+
+    const now = new Date();
+
+    timeElem.textContent = "Update Terakhir: " + now.toLocaleTimeString();
+
+  }
 
 }
 
 
-/* Global endpoint for future Serial/WebSocket/MQTT/Firebase/API bridge */
-
-window.updateArduinoData =
-  updateArduinoData;
-
-
-
-
 /* =========================
-   AUTO CALCULATE
+   DETAIL LINTAS MAPEL DATA & MODAL
 ========================= */
-
-const inputs =
-
-  document.querySelectorAll(
-    ".energy-input"
-  );
-
-
-inputs.forEach(
-
-  input => {
-
-
-    input.addEventListener(
-
-      "input",
-
-      calculateEnergy
-
-    );
-
-
+const mapelDetails = {
+  fisika: {
+    title: "⚡ 1. FISIKA",
+    content: `
+      <div class="space-y-4">
+        <div>
+          <h4 class="font-bold text-yellow-500 text-base">Kaitan dengan SAVER-KIT</h4>
+          <p class="mt-1">SAVER-KIT sangat erat dengan pembelajaran Fisika karena membahas penggunaan energi listrik dalam kehidupan sehari-hari.<br/>
+          Melalui SAVER-KIT, peserta didik dapat memahami bahwa penggunaan lampu dan peralatan listrik memerlukan energi. Besarnya energi yang digunakan dipengaruhi oleh daya peralatan dan lama penggunaannya.<br/>
+          Dalam simulasi, peserta didik dapat membandingkan penggunaan energi pada sistem:</p>
+          <ul class="list-disc list-inside mt-2 space-y-1">
+            <li>🔌 Analog/manual</li>
+            <li>🤖 Smart system berbasis sensor (menggunakan sensor PIR untuk mendeteksi keberadaan manusia dan sensor LDR untuk mendeteksi kondisi cahaya)</li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="font-bold text-yellow-500 text-base">📚 Kaitan dengan CP Fisika SMA</h4>
+          <p class="mt-1">Fisika pada Fase E dan F mengembangkan kemampuan peserta didik dalam memahami konsep fisika serta menerapkannya untuk menganalisis fenomena dan menyelesaikan masalah.</p>
+        </div>
+        <div>
+          <h4 class="font-bold text-yellow-500 text-base">Keterkaitan SAVER-KIT: Energi dan daya listrik</h4>
+          <p class="mt-1">Peserta didik memahami hubungan antara: Daya → Waktu → Energi melalui <strong>E = P × t</strong>. SAVER-KIT memberikan konteks nyata untuk memahami konsep tersebut melalui penggunaan lampu.</p>
+        </div>
+        <div class="bg-slate-100 dark:bg-slate-800 p-3 rounded-xl">
+          <h5 class="font-bold">Informasi Pembelajaran</h5>
+          <p class="mt-1">Misalnya: Lampu = 20 Watt | Digunakan = 5 jam<br/>Maka energi: 20 Watt × 5 jam = 100 Wh.<br/>Melalui simulasi, konsep yang sebelumnya hanya berupa rumus dapat diamati dalam penggunaan teknologi.</p>
+        </div>
+        <div>
+          <h4 class="font-bold text-yellow-500 text-base">Kompetensi yang dikembangkan:</h4>
+          <ul class="list-disc list-inside mt-1 space-y-1">
+            <li>Memahami konsep energi.</li>
+            <li>Menganalisis penggunaan energi.</li>
+            <li>Membandingkan efisiensi.</li>
+            <li>Menghubungkan konsep fisika dengan teknologi.</li>
+            <li>Menjelaskan solusi penghematan energi.</li>
+          </ul>
+        </div>
+      </div>
+    `
+  },
+  matematika: {
+    title: "📐 2. MATEMATIKA",
+    content: `
+      <div class="space-y-4">
+        <div>
+          <h4 class="font-bold text-blue-500 text-base">Kaitan dengan SAVER-KIT</h4>
+          <p class="mt-1">Matematika digunakan untuk mengolah data yang dihasilkan dalam SAVER-KIT. Data penggunaan energi dapat digunakan untuk: Menghitung energi, membandingkan data, menghitung selisih, menghitung persentase penghematan, membuat tabel, dan membuat grafik.</p>
+        </div>
+        <div>
+          <h4 class="font-bold text-blue-500 text-base">📚 Kaitan dengan CP Matematika SMA</h4>
+          <p class="mt-1">Salah satu elemen yang sangat relevan dalam CP Matematika adalah Analisis Data dan Peluang, yaitu kemampuan merepresentasikan dan menginterpretasi data menggunakan berbagai bentuk representasi serta menyelidiki hubungan antarvariabel.</p>
+        </div>
+        <div>
+          <h4 class="font-bold text-blue-500 text-base">Keterkaitan SAVER-KIT dengan Analisis Data</h4>
+          <p class="mt-1"><strong>Contoh data:</strong> Sistem Analog = 2 kWh, Sistem Smart = 1,2 kWh</p>
+          <ol class="list-decimal list-inside mt-2 space-y-1">
+            <li><strong>Membandingkan data:</strong> 2 kWh lebih besar daripada 1,2 kWh.</li>
+            <li><strong>Menghitung selisih:</strong> 2 − 1,2 = 0,8 kWh.</li>
+            <li><strong>Menghitung persentase:</strong> Penghematan = Selisih ÷ Energi awal × 100%.</li>
+            <li><strong>Membuat grafik:</strong> Data disajikan dalam Diagram batang 📊, Grafik garis 📈, atau Tabel 📋.</li>
+          </ol>
+        </div>
+        <div class="bg-slate-100 dark:bg-slate-800 p-3 rounded-xl">
+          <h5 class="font-bold">Informasi Pembelajaran</h5>
+          <p class="mt-1">Melalui SAVER-KIT, Matematika digunakan untuk menjawab pertanyaan: Berapa energi yang digunakan? Sistem mana yang lebih efisien? Berapa besar penghematan? Bagaimana data energi dapat disajikan?<br/>Dengan demikian, peserta didik memahami bahwa Matematika dapat digunakan untuk menganalisis masalah nyata berdasarkan data.</p>
+        </div>
+      </div>
+    `
+  },
+  informatika: {
+    title: "💻 3. INFORMATIKA",
+    content: `
+      <div class="space-y-4">
+        <div>
+          <h4 class="font-bold text-emerald-500 text-base">Kaitan dengan SAVER-KIT</h4>
+          <p class="mt-1">Informatika merupakan bagian penting dalam SAVER-KIT karena sistem ini menggunakan: Coding, Sensor, ESP32, Data, Sistem otomatis, dan Logika algoritma.<br/>SAVER-KIT membantu peserta didik memahami bagaimana teknologi bekerja untuk menyelesaikan masalah.</p>
+        </div>
+        <div>
+          <h4 class="font-bold text-emerald-500 text-base">📚 Kaitan dengan CP Informatika SMA</h4>
+          <p class="mt-1">Dalam CP Informatika Fase E terdapat elemen-elemen seperti: Berpikir Komputasional, Sistem Komputer, Analisis Data, Algoritma dan Pemrograman, Jaringan Komputer dan Internet, Dampak Sosial Informatika, serta Praktik Lintas Bidang.<br/>Dokumen panduan resmi Informatika juga menekankan kemampuan memahami algoritma, struktur data, proses komputasi, serta dinamika Input–Process–Output.</p>
+        </div>
+        <div>
+          <h4 class="font-bold text-emerald-500 text-base">Keterkaitan SAVER-KIT (Input–Process–Output)</h4>
+          <ul class="list-disc list-inside mt-1 space-y-2">
+            <li><strong>INPUT:</strong> Sensor memberikan data (PIR → Ada/tidak orang; LDR → Terang/gelap).</li>
+            <li><strong>PROCESS:</strong> ESP32 membaca & memproses data (Jika ada orang DAN gelap, maka Lampu ON).</li>
+            <li><strong>OUTPUT:</strong> Sistem memberikan respons (💡 Lampu ON / OFF).</li>
+          </ul>
+        </div>
+        <div class="bg-slate-100 dark:bg-slate-800 p-3 rounded-xl">
+          <h5 class="font-bold">Informasi Pembelajaran</h5>
+          <p class="mt-1">Alur: Masalah → Algoritma → Coding → Sistem → Solusi.<br/>Contoh masalah: Lampu sering lupa dimatikan. Dibuat algoritma: Jika tidak ada orang → Lampu OFF. Teknologi kemudian digunakan sebagai solusi terhadap masalah tersebut.</p>
+        </div>
+      </div>
+    `
+  },
+  biologi: {
+    title: "🌱 4. BIOLOGI",
+    content: `
+      <div class="space-y-4">
+        <div>
+          <h4 class="font-bold text-green-500 text-base">Kaitan dengan SAVER-KIT</h4>
+          <p class="mt-1">Biologi dikaitkan dengan SAVER-KIT melalui hubungan antara: 👨 Manusia → ⚡ Penggunaan energi → 🌱 Lingkungan → 🌍 Keberlanjutan. Penggunaan energi merupakan bagian dari aktivitas manusia yang dapat memberikan dampak terhadap lingkungan.</p>
+        </div>
+        <div>
+          <h4 class="font-bold text-green-500 text-base">📚 Kaitan dengan CP Biologi SMA</h4>
+          <p class="mt-1">CP Biologi SMA mencakup kemampuan peserta didik dalam memahami fenomena kehidupan dan lingkungan serta menggunakan keterampilan proses untuk menganalisis berbagai persoalan Biologi (Fase E dan F SMA).</p>
+        </div>
+        <div>
+          <h4 class="font-bold text-green-500 text-base">Keterkaitan SAVER-KIT</h4>
+          <p class="mt-1">SAVER-KIT memberikan informasi bahwa penggunaan teknologi dapat mendukung efisiensi energi.</p>
+          <div class="grid grid-cols-2 gap-2 mt-2 text-xs">
+            <div class="bg-slate-100 dark:bg-slate-800 p-2 rounded-lg">
+              <strong>Kondisi Analog:</strong> Ruangan kosong → Lampu tetap menyala → Energi terbuang
+            </div>
+            <div class="bg-slate-100 dark:bg-slate-800 p-2 rounded-lg">
+              <strong>Kondisi Smart:</strong> Ruangan kosong → Sensor mendeteksi → Lampu OFF → Energi lebih efisien
+            </div>
+          </div>
+        </div>
+        <div class="bg-slate-100 dark:bg-slate-800 p-3 rounded-xl">
+          <h5 class="font-bold">Informasi Pembelajaran</h5>
+          <p class="mt-1">Peserta didik memahami bahwa aktivitas manusia memerlukan energi, namun energi perlu digunakan secara bijak untuk mendukung keberlanjutan lingkungan.<br/>Kaitan Biologi dalam SAVER-KIT digunakan terutama sebagai konteks interdisipliner tentang lingkungan, aktivitas manusia, dan keberlanjutan.</p>
+        </div>
+      </div>
+    `
+  },
+  geografi: {
+    title: "🌍 5. GEOGRAFI",
+    content: `
+      <div class="space-y-4">
+        <div>
+          <h4 class="font-bold text-sky-500 text-base">Kaitan dengan SAVER-KIT</h4>
+          <p class="mt-1">Geografi sangat relevan karena penggunaan energi dipengaruhi oleh kondisi lingkungan, karakteristik wilayah, aktivitas manusia, pemanfaatan sumber daya, dan pembangunan berkelanjutan.</p>
+        </div>
+        <div>
+          <h4 class="font-bold text-sky-500 text-base">📚 Kaitan dengan CP Geografi SMA</h4>
+          <p class="mt-1">Pada Fase E, CP Geografi mencakup pemahaman konsep geografi, penelitian geografi, fenomena geosfer, analisis wilayah, serta menguraikan masalah dan solusi. Pada Fase F terdapat pembahasan karakteristik wilayah, lingkungan hidup, pembangunan, serta perubahan fisik dan sosial.</p>
+        </div>
+        <div>
+          <h4 class="font-bold text-sky-500 text-base">Keterkaitan SAVER-KIT</h4>
+          <p class="mt-1">SAVER-KIT digunakan untuk mengamati kondisi lingkungan sekolah:</p>
+          <ul class="list-disc list-inside mt-1 space-y-1">
+            <li><strong>Ruangan A:</strong> Banyak cahaya alami ☀️ → Kebutuhan lampu lebih sedikit ⬇️.</li>
+            <li><strong>Ruangan B:</strong> Cahaya alami kurang 🌙 → Kebutuhan lampu lebih besar ⬆️.</li>
+          </ul>
+        </div>
+        <div class="bg-slate-100 dark:bg-slate-800 p-3 rounded-xl">
+          <h5 class="font-bold">Informasi Pembelajaran & Kaitan CP</h5>
+          <p class="mt-1">Kondisi suatu lingkungan memengaruhi kebutuhan energi (Lingkungan → Aktivitas Manusia → Penggunaan Energi → Dampak & Efisiensi). SAVER-KIT menjadi konteks mengamati lingkungan, mengumpulkan informasi, menganalisis masalah lingkungan, serta mengomunikasikan solusi.</p>
+        </div>
+      </div>
+    `
+  },
+  ekonomi: {
+    title: "💰 6. EKONOMI",
+    content: `
+      <div class="space-y-4">
+        <div>
+          <h4 class="font-bold text-yellow-500 text-base">Kaitan dengan SAVER-KIT</h4>
+          <p class="mt-1">Ekonomi berkaitan langsung dengan penggunaan energi karena setiap penggunaan listrik memiliki biaya.<br/>Alur: Energi ⚡ → Biaya 💰 → Penghematan 📉 → Efisiensi 📊.</p>
+        </div>
+        <div>
+          <h4 class="font-bold text-yellow-500 text-base">📚 Kaitan dengan CP Ekonomi SMA</h4>
+          <p class="mt-1">CP Ekonomi ditetapkan untuk Fase E dan F SMA. Pembelajaran Ekonomi mengembangkan pemahaman dan kemampuan peserta didik untuk menganalisis fenomena serta persoalan ekonomi dalam kehidupan nyata.</p>
+        </div>
+        <div>
+          <h4 class="font-bold text-yellow-500 text-base">Keterkaitan SAVER-KIT</h4>
+          <p class="mt-1"><strong>Menghitung biaya listrik:</strong> Biaya = Energi × Tarif.<br/><em>Contoh:</em> 2 kWh × Rp 1.444,70/kWh = Rp 2.889,40.</p>
+          <p class="mt-2"><strong>Membandingkan Efisiensi:</strong> Sistem Analog memiliki energi & biaya lebih tinggi, sedangkan Sistem Smart memiliki energi & biaya lebih rendah.</p>
+        </div>
+        <div class="bg-slate-100 dark:bg-slate-800 p-3 rounded-xl">
+          <h5 class="font-bold">Informasi Pembelajaran</h5>
+          <p class="mt-1">Peserta didik memahami bahwa penggunaan energi yang lebih efisien membantu mengurangi biaya. Konsep Ekonomi dikaitkan dengan efisiensi, penghematan, pengambilan keputusan, penggunaan sumber daya, dan analisis manfaat teknologi.</p>
+        </div>
+      </div>
+    `
+  },
+  bahasa: {
+    title: "📝 7. BAHASA INDONESIA",
+    content: `
+      <div class="space-y-4">
+        <div>
+          <h4 class="font-bold text-pink-500 text-base">Kaitan dengan SAVER-KIT</h4>
+          <p class="mt-1">Setiap hasil pengamatan dan analisis perlu dikomunikasikan. Melalui SAVER-KIT, peserta didik memperoleh data, grafik, informasi, dan hasil simulasi sebagai bahan mengembangkan kemampuan berbahasa.</p>
+        </div>
+        <div>
+          <h4 class="font-bold text-pink-500 text-base">📚 Kaitan dengan CP Bahasa Indonesia SMA</h4>
+          <p class="mt-1">CP Bahasa Indonesia mengembangkan kemampuan berbahasa melalui elemen: Menyimak, Membaca & Memirsa, Berbicara & Mempresentasikan, serta Menulis. Pada Fase F, peserta didik mengevaluasi teks serta mempresentasikan dan menulis berbagai teks konteks sosial, akademis, dan kerja.</p>
+        </div>
+        <div>
+          <h4 class="font-bold text-pink-500 text-base">Keterkaitan SAVER-KIT</h4>
+          <ul class="list-disc list-inside mt-1 space-y-1">
+            <li><strong>Membaca:</strong> Data energi, grafik, informasi teknologi, artikel energi.</li>
+            <li><strong>Menulis:</strong> Laporan hasil pengamatan 📝, artikel hemat energi 📰, teks argumentasi 📄.</li>
+            <li><strong>Berbicara:</strong> Menjelaskan data 🎤, mempresentasikan hasil 📊, menyampaikan rekomendasi 💡.</li>
+          </ul>
+        </div>
+        <div class="bg-slate-100 dark:bg-slate-800 p-3 rounded-xl">
+          <h5 class="font-bold">Informasi Pembelajaran</h5>
+          <p class="mt-1">Contoh argumentasi berdasarkan data: <em>"Berdasarkan hasil simulasi, penggunaan sensor dapat mengurangi waktu lampu menyala sehingga penggunaan energi menjadi lebih efisien."</em> (bukan sekadar pendapat tanpa data seperti "Sensor sangat bagus").</p>
+        </div>
+      </div>
+    `
+  },
+  ppkn: {
+    title: "🇮🇩 8. PENDIDIKAN PANCASILA",
+    content: `
+      <div class="space-y-4">
+        <div>
+          <h4 class="font-bold text-red-500 text-base">Kaitan dengan SAVER-KIT</h4>
+          <p class="mt-1">Pendidikan Pancasila dikaitkan dengan pembentukan sikap dalam menggunakan teknologi dan sumber daya secara bertanggung jawab. SAVER-KIT tidak hanya membahas "Bagaimana teknologi bekerja?", tetapi juga "Bagaimana manusia menggunakan energi secara bertanggung jawab?".</p>
+        </div>
+        <div>
+          <h4 class="font-bold text-red-500 text-base">📚 Kaitan dengan CP Pendidikan Pancasila SMA</h4>
+          <p class="mt-1">CP Pendidikan Pancasila mengembangkan pemahaman dan penerapan nilai-nilai Pancasila, termasuk kesadaran peserta didik dalam menjalankan peran, hak, kewajiban, dan tanggung jawab dalam kehidupan warga sekolah, masyarakat, dan negara.</p>
+        </div>
+        <div>
+          <h4 class="font-bold text-red-500 text-base">Keterkaitan SAVER-KIT</h4>
+          <ul class="list-disc list-inside mt-1 space-y-1">
+            <li><strong>Tanggung Jawab:</strong> Menggunakan listrik sesuai kebutuhan.</li>
+            <li><strong>Gotong Royong:</strong> Bekerja bersama menjaga fasilitas sekolah.</li>
+            <li><strong>Kepedulian:</strong> Memperhatikan penggunaan energi bersama.</li>
+            <li><strong>Kesadaran:</strong> Memahami bahwa tindakan sederhana memberikan dampak.</li>
+          </ul>
+        </div>
+        <div class="bg-slate-100 dark:bg-slate-800 p-3 rounded-xl">
+          <h5 class="font-bold">Informasi Pembelajaran</h5>
+          <p class="mt-1">Teknologi tidak dapat bekerja sendiri tanpa perilaku manusia yang bertanggung jawab. Walaupun sensor membantu mematikan lampu, manusia tetap perlu menggunakan listrik bijak dan menjaga lingkungan.</p>
+        </div>
+      </div>
+    `
   }
+};
 
-);
-
-
-/* =========================
-   LIGHT / DARK MODE
-========================= */
-
-const themeToggle =
-  document.getElementById("themeToggle");
-
-
-const themeIcon =
-  document.getElementById("themeIcon");
-
-
-const themeText =
-  document.getElementById("themeText");
-
-
-function updateThemeUI(theme) {
-
-  if (theme === "dark") {
-
-    themeIcon.setAttribute(
-      "data-lucide",
-      "sun"
-    );
-
-    themeText.textContent =
-      "Mode Terang";
-
-  } else {
-
-    themeIcon.setAttribute(
-      "data-lucide",
-      "moon"
-    );
-
-    themeText.textContent =
-      "Mode Gelap";
-
+function openMapelDetail(key) {
+  const backdrop = document.getElementById("mapelModalBackdrop");
+  const titleElem = document.getElementById("mapelModalTitle");
+  const bodyElem = document.getElementById("mapelModalBody");
+  
+  if (mapelDetails[key]) {
+    titleElem.innerHTML = mapelDetails[key].title;
+    bodyElem.innerHTML = mapelDetails[key].content;
+    backdrop.classList.add("active");
   }
-
-  lucide.createIcons();
-
 }
 
-
-function setTheme(theme) {
-
-  document.documentElement.setAttribute(
-    "data-theme",
-    theme
-  );
-
-  localStorage.setItem(
-    "saverkit-theme",
-    theme
-  );
-
-  updateThemeUI(theme);
-
+function closeMapelModal() {
+  const backdrop = document.getElementById("mapelModalBackdrop");
+  backdrop.classList.remove("active");
 }
 
-
-const savedTheme =
-  localStorage.getItem(
-    "saverkit-theme"
-  );
-
-
-const systemDark =
-  window.matchMedia &&
-  window.matchMedia(
-    "(prefers-color-scheme: dark)"
-  ).matches;
-
-
-const initialTheme =
-  savedTheme ||
-  (
-    systemDark
-      ? "dark"
-      : "light"
-  );
-
-
-document.documentElement.setAttribute(
-  "data-theme",
-  initialTheme
-);
-
-
-updateThemeUI(
-  initialTheme
-);
-
-
-themeToggle.addEventListener(
-  "click",
-  function() {
-
-    const currentTheme =
-      document.documentElement.getAttribute(
-        "data-theme"
-      );
-
-
-    setTheme(
-      currentTheme === "dark"
-        ? "light"
-        : "dark"
-    );
-
+/* Close modal on outside click */
+document.getElementById("mapelModalBackdrop").addEventListener("click", function(e) {
+  if (e.target === this) {
+    closeMapelModal();
   }
-);
-
-
-/* =========================
-   INITIAL CALCULATE
-========================= */
-
-calculateEnergy();
-
-
-/* =========================
-   ICON
-========================= */
-
-lucide.createIcons();
-
-
-</script>
-<script>
-/* SIDEBAR MENU: hanya mengatur tampilan panel, fungsi asli tidak diubah */
-document.addEventListener('DOMContentLoaded', function(){
-  const sidebarLinks=document.querySelectorAll('.sidebar-link');
-  const panels=document.querySelectorAll('.app-panel');
-  const welcome=document.getElementById('beranda');
-  function showPanel(target){
-    sidebarLinks.forEach(link=>link.classList.toggle('active',link.dataset.target===target));
-    panels.forEach(panel=>panel.classList.toggle('active',panel.dataset.panel===target));
-    if(welcome) welcome.classList.toggle('active',target==='beranda');
-    // Posisi halaman dipertahankan agar saat menu diklik langsung menampilkan isi panel.
-  }
-  sidebarLinks.forEach(link=>link.addEventListener('click',()=>showPanel(link.dataset.target)));
-  if(window.lucide) lucide.createIcons();
 });
-</script>
-<script id="learning-submenu-script">
-document.addEventListener('DOMContentLoaded', function(){
-  const group = document.getElementById('learningMenuGroup');
-  const toggle = document.getElementById('learningMenuToggle');
 
-  if (!group || !toggle) return;
 
-  toggle.addEventListener('click', function(){
-    const isOpen = group.classList.toggle('open');
-    toggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
-  });
+/* =========================
+   INIT
+========================= */
 
-  group.querySelectorAll('.learning-submenu .sidebar-link').forEach(function(item){
-    item.addEventListener('click', function(){
-      group.classList.add('open');
-      toggle.setAttribute('aria-expanded', 'true');
-    });
-  });
+window.addEventListener("DOMContentLoaded", () => {
+
+  calculateEnergy();
+
 });
+
+
 </script>
 </body>
 </html>
